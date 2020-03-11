@@ -1,0 +1,1 @@
+# izrada-cjelovitog-aplikativnog-19-20
