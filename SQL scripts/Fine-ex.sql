@@ -1,90 +1,90 @@
-CREATE TABLE [Racun] (
-  [idRacun] integer PRIMARY KEY IDENTITY(1, 1),
-  [ulazni] bit,
-  [TvrtkaOib] integer,
-  [primateljOib] integer,
-  [datum] datetime,
-  [mjesto] nvarchar(255),
-  [datumDospijeca] datetime,
-  [datumIsporuke] datetime,
-  [brojRacuna] nvarchar(255),
-  [zaposlenikId] nvarchar(255),
-  [nacinPlacanja] nvarchar(255),
-  [zki] nvarchar(255),
-  [jir] nvarchar(255),
-  [pdvId] nvarchar(255),
-  [pdvKlijentaSwiftBanke] nvarchar(255)
+CREATE TABLE [Invoice] (
+  [IdInvoice] integer PRIMARY KEY IDENTITY(1, 1),
+  [Incoming] bit,
+  [CompanyId] integer,
+  [RecepientId] integer,
+  [Date] datetime,
+  [Location] nvarchar(255),
+  [DueDate] datetime,
+  [DeliveryDate] datetime,
+  [InvoiceNumber] nvarchar(255),
+  [EmployeeId] nvarchar(255),
+  [PaymentMethod] nvarchar(255),
+  [ProtectedCodeOfSupplier] nvarchar(255),
+  [UniqueIdentifierOfInvoice] nvarchar(255),
+  [VatNumber] nvarchar(255),
+  [VatSwiftBankClient] nvarchar(255)
 )
 GO
 
-CREATE TABLE [Primatelj] (
-  [oib] nvarchar(255) PRIMARY KEY,
-  [naziv] nvarchar(255),
-  [adresa] nvarchar(255),
-  [mjesto] nvarchar(255)
+CREATE TABLE [Recepient] (
+  [Id] nvarchar(255) PRIMARY KEY,
+  [Name] nvarchar(255),
+  [Address] nvarchar(255),
+  [Location] nvarchar(255)
 )
 GO
 
-CREATE TABLE [Stavka] (
-  [idStavka] integer PRIMARY KEY IDENTITY(1, 1),
-  [racunId] integer,
-  [naziv] nvarchar(255),
-  [cijena] double,
-  [kolicina] integer,
-  [tvrtkaOib] integer
+CREATE TABLE [Item] (
+  [IdItem] integer PRIMARY KEY IDENTITY(1, 1),
+  [InvoiceId] integer,
+  [Name] nvarchar(255),
+  [Price] double,
+  [Amount] integer,
+  [CompanyId] integer
 )
 GO
 
-CREATE TABLE [Zaposlenik] (
-  [idZaposlenik] integer PRIMARY KEY IDENTITY(1, 1),
-  [ime] nvarchar(255),
-  [prezime] nvarchar(255),
-  [placa] double,
-  [tvrtkaId] integer
+CREATE TABLE [Employee] (
+  [IdEmployee] integer PRIMARY KEY IDENTITY(1, 1),
+  [Name] nvarchar(255),
+  [Surname] nvarchar(255),
+  [Salary] double,
+  [CompanyId] integer
 )
 GO
 
-CREATE TABLE [Rola] (
-  [idRola] integer PRIMARY KEY IDENTITY(1, 1),
-  [naziv] nvarchar(255)
+CREATE TABLE [Role] (
+  [IdRole] integer PRIMARY KEY IDENTITY(1, 1),
+  [Name] nvarchar(255)
 )
 GO
 
-CREATE TABLE [ZaposlenikRola] (
-  [zaposlenikId] integer,
-  [rolaId] integer
+CREATE TABLE [EmployeeRole] (
+  [EmployeeId] integer,
+  [RoleId] integer
 )
 GO
 
-CREATE TABLE [Tvrtka] (
-  [oib] integer PRIMARY KEY,
-  [naziv] nvarchar(255),
-  [adresa] nvarchar(255),
-  [mjesto] nvarchar(255),
-  [iban] nvarchar(255)
+CREATE TABLE [Company] (
+  [Id] integer PRIMARY KEY,
+  [Name] nvarchar(255),
+  [Address] nvarchar(255),
+  [Location] nvarchar(255),
+  [Iban] nvarchar(255)
 )
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([TvrtkaOib]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([CompanyId]) REFERENCES [Company] ([Id])
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([primateljOib]) REFERENCES [Primatelj] ([oib])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([RecepientId]) REFERENCES [Recepient] ([Id])
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([zaposlenikId]) REFERENCES [Zaposlenik] ([idZaposlenik])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([IdEmployee])
 GO
 
-ALTER TABLE [Stavka] ADD FOREIGN KEY ([racunId]) REFERENCES [Racun] ([idRacun])
+ALTER TABLE [Item] ADD FOREIGN KEY ([InvoiceId]) REFERENCES [Invoice] ([IdInvoice])
 GO
 
-ALTER TABLE [Stavka] ADD FOREIGN KEY ([tvrtkaOib]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([CompanyId]) REFERENCES [Company] ([Id])
 GO
 
-ALTER TABLE [Zaposlenik] ADD FOREIGN KEY ([tvrtkaId]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Employee] ADD FOREIGN KEY ([CompanyId]) REFERENCES [Company] ([Id])
 GO
 
-ALTER TABLE [ZaposlenikRola] ADD FOREIGN KEY ([zaposlenikId]) REFERENCES [Zaposlenik] ([idZaposlenik])
+ALTER TABLE [EmployeeRole] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([IdEmployee])
 GO
 
-ALTER TABLE [ZaposlenikRola] ADD FOREIGN KEY ([rolaId]) REFERENCES [Rola] ([idRola])
+ALTER TABLE [EmployeeRole] ADD FOREIGN KEY ([RoleId]) REFERENCES [Role] ([IdRole])
 GO
