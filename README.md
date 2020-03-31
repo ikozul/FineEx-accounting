@@ -1,5 +1,5 @@
-# OICAR --- FineEx
+﻿# OICAR --- FineEx
 
-Complex accounting system used for simplifying business and financial processes of an organization, made for web and mobile devices.
+Složeni računovodstveni sustav koji služi za pojednostavljenje poslovno-financijskih procesa jedne organizacije.
 
-
+Accounting software made for Web and Mobile usage.
