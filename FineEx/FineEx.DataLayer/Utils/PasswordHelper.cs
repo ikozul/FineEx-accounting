@@ -14,6 +14,7 @@ namespace FineEx.DataLayer.Utils
         /// </summary>
         /// <param name="plainPassword"></param>
         /// <returns></returns>
+        /// <code>User.Password != PasswordHelper.HashPassword(Pass)</code>
         public static string HashPassword(string plainPassword)
         {
             try
