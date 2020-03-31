@@ -1,90 +1,123 @@
-CREATE TABLE [Racun] (
-  [idRacun] integer PRIMARY KEY IDENTITY(1, 1),
-  [ulazni] bit,
-  [TvrtkaOib] integer,
-  [primateljOib] integer,
-  [datum] datetime,
-  [mjesto] nvarchar(255),
-  [datumDospijeca] datetime,
-  [datumIsporuke] datetime,
-  [brojRacuna] nvarchar(255),
-  [zaposlenikId] nvarchar(255),
-  [nacinPlacanja] nvarchar(255),
-  [zki] nvarchar(255),
-  [jir] nvarchar(255),
-  [pdvId] nvarchar(255),
-  [pdvKlijentaSwiftBanke] nvarchar(255)
+CREATE DATABASE FineEx
+GO
+USE FineEx
+GO
+
+CREATE TABLE [Invoice] (
+  [IdInvoice] integer PRIMARY KEY IDENTITY(1, 1),
+  [Incoming] bit,
+  [SenderCompanyId] integer,
+  [RecipientCompanyId] integer,
+  [Date] datetime,
+  [LocationId] integer,
+  [DueDate] datetime,
+  [DeliveryDate] datetime,
+  [InvoiceNumber] nvarchar(255),
+  [EmployeeId] nvarchar(255),
+  [PaymentMethod] nvarchar(255),
+  [ProtectedCodeOfSupplier] nvarchar(255),
+  [UniqueIdentifierOfInvoice] nvarchar(255),
+  [VatNumber] nvarchar(255),
+  [VatSwiftBankClient] nvarchar(255)
 )
 GO
 
-CREATE TABLE [Primatelj] (
-  [oib] nvarchar(255) PRIMARY KEY,
-  [naziv] nvarchar(255),
-  [adresa] nvarchar(255),
-  [mjesto] nvarchar(255)
+CREATE TABLE [Item] (
+  [IdItem] integer PRIMARY KEY IDENTITY(1, 1),
+  [InvoiceId] integer,
+  [Name] nvarchar(255),
+  [Price] float,
+  [Amount] integer,
+  [CompanyId] integer
 )
 GO
 
-CREATE TABLE [Stavka] (
-  [idStavka] integer PRIMARY KEY IDENTITY(1, 1),
-  [racunId] integer,
-  [naziv] nvarchar(255),
-  [cijena] double,
-  [kolicina] integer,
-  [tvrtkaOib] integer
+CREATE TABLE [User] (
+  [IdUser] integer PRIMARY KEY IDENTITY(1, 1),
+  [Name] nvarchar(255),
+  [Surname] nvarchar(255),
+  [Salary] float,
+  [CompanyId] integer,
+  [Password] nvarchar(255),
+  [IdCardNumber] nvarchar(255),
+  [IdNumber] nvarchar(255),
+  [IsActive] bit
 )
 GO
 
-CREATE TABLE [Zaposlenik] (
-  [idZaposlenik] integer PRIMARY KEY IDENTITY(1, 1),
-  [ime] nvarchar(255),
-  [prezime] nvarchar(255),
-  [placa] double,
-  [tvrtkaId] integer
+CREATE TABLE [Role] (
+  [IdRole] integer PRIMARY KEY,
+  [Name] nvarchar(255)
 )
 GO
 
-CREATE TABLE [Rola] (
-  [idRola] integer PRIMARY KEY IDENTITY(1, 1),
-  [naziv] nvarchar(255)
+CREATE TABLE [EmployeeRole] (
+  [UserId] integer,
+  [RoleId] integer
 )
 GO
 
-CREATE TABLE [ZaposlenikRola] (
-  [zaposlenikId] integer,
-  [rolaId] integer
+CREATE TABLE [Company] (
+  [IdCompany] integer PRIMARY KEY,
+  [Name] nvarchar(255),
+  [Address] nvarchar(255),
+  [LocationId] integer,
+  [Iban] nvarchar(255),
+  [Email] nvarchar(255),
+  [IsActive] bit,
+  [InsertDate] datetime,
+  [UpdateDate] datetime,
+  [DeleteDate] datetime
 )
 GO
 
-CREATE TABLE [Tvrtka] (
-  [oib] integer PRIMARY KEY,
-  [naziv] nvarchar(255),
-  [adresa] nvarchar(255),
-  [mjesto] nvarchar(255),
-  [iban] nvarchar(255)
+CREATE TABLE [Location] (
+  [IdLocation] integer PRIMARY KEY IDENTITY(1, 1),
+  [X] float,
+  [Y] float,
+  [StreetName] nvarchar(255),
+  [StreetNumber] integer,
+  [City] nvarchar(255),
+  [PostalCode] integer,
+  [Country] nvarchar(255)
 )
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([TvrtkaOib]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([SenderCompanyId]) REFERENCES [Company] ([IdCompany])
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([primateljOib]) REFERENCES [Primatelj] ([oib])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([RecepientCompanyId]) REFERENCES [Company] ([IdCompany])
 GO
 
-ALTER TABLE [Racun] ADD FOREIGN KEY ([zaposlenikId]) REFERENCES [Zaposlenik] ([idZaposlenik])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [User] ([IdUser])
 GO
 
-ALTER TABLE [Stavka] ADD FOREIGN KEY ([racunId]) REFERENCES [Racun] ([idRacun])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([LocationId]) REFERENCES [Location] ([IdLocation])
 GO
 
-ALTER TABLE [Stavka] ADD FOREIGN KEY ([tvrtkaOib]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Company] ADD FOREIGN KEY ([LocationId]) REFERENCES [Location] ([IdLocation])
 GO
 
-ALTER TABLE [Zaposlenik] ADD FOREIGN KEY ([tvrtkaId]) REFERENCES [Tvrtka] ([oib])
+ALTER TABLE [Item] ADD FOREIGN KEY ([InvoiceId]) REFERENCES [Invoice] ([IdInvoice])
 GO
 
-ALTER TABLE [ZaposlenikRola] ADD FOREIGN KEY ([zaposlenikId]) REFERENCES [Zaposlenik] ([idZaposlenik])
+ALTER TABLE [Item] ADD FOREIGN KEY ([CompanyId]) REFERENCES [Company] ([IdCompany])
 GO
 
-ALTER TABLE [ZaposlenikRola] ADD FOREIGN KEY ([rolaId]) REFERENCES [Rola] ([idRola])
+ALTER TABLE [User] ADD FOREIGN KEY ([CompanyId]) REFERENCES [Company] ([IdCompany])
+GO
+
+ALTER TABLE [EmployeeRole] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([IdUser])
+GO
+
+ALTER TABLE [EmployeeRole] ADD FOREIGN KEY ([RoleId]) REFERENCES [Role] ([IdRole])
+GO
+
+INSERT INTO [Role] ([IdRole], [Name]) VALUES
+  (100, 'Site admin'),
+  (90, 'Tech support'),
+  (50, 'Company admin'),
+  (40, 'Sales manager'),
+  (30, 'Procurement manager'),
+  (20, 'Accountant')
 GO

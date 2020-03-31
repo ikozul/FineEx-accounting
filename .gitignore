@@ -18,3 +18,6 @@
 /FineEx/FineEx/packages/Microsoft.AspNet.Mvc.5.2.7
 /FineEx/FineEx.BusinessLayer/obj/Debug
 /FineEx/FineEx.DataLayer/obj/Debug
+/FineEx/FineEx/packages/EntityFramework.6.2.0/Content/net40
+/FineEx/FineEx/packages/EntityFramework.6.2.0
+/FineEx/FineEx.DataLayer/bin/Debug

@@ -1,4 +1,4 @@
-# OICAR --- FineEx
+﻿# OICAR --- FineEx
 
 Složeni računovodstveni sustav koji služi za pojednostavljenje poslovno-financijskih procesa jedne organizacije.
 
