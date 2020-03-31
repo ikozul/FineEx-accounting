@@ -9,6 +9,11 @@ namespace FineEx.DataLayer.Utils
 {
     public static class PasswordHelper
     {
+
+        public static bool CheckPasswordValidity(string plainPassword)
+        {
+            return plainPassword == HashPassword(plainPassword);
+        }
         /// <summary>
         /// Class that hashes password
         /// </summary>
@@ -17,6 +22,7 @@ namespace FineEx.DataLayer.Utils
         /// <code>User.Password != PasswordHelper.HashPassword(Pass)</code>
         public static string HashPassword(string plainPassword)
         {
+            //Todo We need to use this when we are registering User
             try
             {
                 //Todo implement class that reads configs
@@ -32,5 +38,6 @@ namespace FineEx.DataLayer.Utils
             }
             return null;
         }
+
     }
 }
