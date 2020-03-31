@@ -61,6 +61,7 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Service\DatabaseService.cs" />
+    <Compile Include="Utils\PasswordHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
