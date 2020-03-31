@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="DbFineEx.cs" />
     <Compile Include="Models\Invoice.cs" />
