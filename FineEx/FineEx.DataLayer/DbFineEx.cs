@@ -24,16 +24,21 @@ namespace FineEx.DataLayer
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.Invoices)
                 .WithOptional(e => e.Company)
-                .HasForeignKey(e => e.SenderCompanyId);
+                .HasForeignKey(e => e.RecipientCompanyId);
 
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.Invoices1)
                 .WithOptional(e => e.Company1)
-                .HasForeignKey(e => e.SenderCompanyId);
+                .HasForeignKey(e => e.RecipientCompanyId);
 
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.Invoices2)
                 .WithOptional(e => e.Company2)
+                .HasForeignKey(e => e.SenderCompanyId);
+
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.Invoices3)
+                .WithOptional(e => e.Company3)
                 .HasForeignKey(e => e.SenderCompanyId);
 
             modelBuilder.Entity<Company>()
@@ -84,32 +89,32 @@ namespace FineEx.DataLayer
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Companies)
                 .WithOptional(e => e.Location)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Companies1)
                 .WithOptional(e => e.Location1)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Companies2)
                 .WithOptional(e => e.Location2)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Invoices)
                 .WithOptional(e => e.Location)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Invoices1)
                 .WithOptional(e => e.Location1)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.Invoices2)
                 .WithOptional(e => e.Location2)
-                .HasForeignKey(e => e.LocationId);
+                .HasForeignKey(e => e.IdLocation);
         }
     }
 }

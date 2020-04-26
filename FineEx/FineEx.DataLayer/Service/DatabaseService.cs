@@ -8,10 +8,10 @@ namespace FineEx.DataLayer.Service
 {
     public class DatabaseService : IDisposable
     {
-        public readonly DbFineEx db;
+        //public readonly DbFineEx db;
         public void Dispose()
         {
-            db.Dispose();
+            //db.Dispose();
         }
     }
 }

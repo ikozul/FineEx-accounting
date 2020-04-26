@@ -13,28 +13,28 @@ namespace FineEx.DataLayer
         [ThreadStatic]
         private static DatabaseService DatabaseService;
 
-        public static DbFineEx Db
-        {
-            get
-            {
-                if (HttpContext.Current == null)
-                {
-                    if (DatabaseService == null)
-                    {
-                        DatabaseService = new DatabaseService();
-                    }
+        //public static DbFineEx Db
+        //{
+        //    get
+        //    {
+        //        if (HttpContext.Current == null)
+        //        {
+        //            if (DatabaseService == null)
+        //            {
+        //                DatabaseService = new DatabaseService();
+        //            }
 
-                    return DatabaseService.db;
-                }
+        //            return DatabaseService.db;
+        //        }
 
-                if (HttpContext.Current.Items.Contains("_db"))
-                    return ((DatabaseService)HttpContext.Current.Items["db"]).db;
+        //        if (HttpContext.Current.Items.Contains("_db"))
+        //            return ((DatabaseService)HttpContext.Current.Items["db"]).db;
 
-                var dbService = new DatabaseService();
-                HttpContext.Current.Items.Add("_db", dbService);
+        //        var dbService = new DatabaseService();
+        //        HttpContext.Current.Items.Add("_db", dbService);
 
-                return ((DatabaseService)HttpContext.Current.Items["db"]).db;
-            }
-        }
+        //        return ((DatabaseService)HttpContext.Current.Items["db"]).db;
+        //    }
+        //}
     }
 }
