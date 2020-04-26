@@ -1,4 +1,4 @@
-CREATE DATABASE FineEx
+Create DATABASE FineEx
 GO
 USE FineEx
 GO
@@ -86,7 +86,7 @@ GO
 ALTER TABLE [Invoice] ADD FOREIGN KEY ([SenderCompanyId]) REFERENCES [Company] ([IdCompany])
 GO
 
-ALTER TABLE [Invoice] ADD FOREIGN KEY ([RecepientCompanyId]) REFERENCES [Company] ([IdCompany])
+ALTER TABLE [Invoice] ADD FOREIGN KEY ([RecipientCompanyId]) REFERENCES [Company] ([IdCompany])
 GO
 
 ALTER TABLE [Invoice] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [User] ([IdUser])
