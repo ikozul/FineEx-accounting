@@ -124,15 +124,14 @@
   <ItemGroup>
     <Compile Include="Context\App.cs" />
     <Compile Include="Context\DbFineEx.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

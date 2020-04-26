@@ -10,9 +10,9 @@ namespace FineEx.DataLayer.Models
 {
     public class User
     {
+
         [Key]
-        // Don't auto-increment the field since we'll use the IDs from Moj-eRačun
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string FirstName { get; set; }
