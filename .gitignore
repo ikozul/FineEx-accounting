@@ -2,8 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/FineEx/FineEx/.vs/FineEx
+/FineEx/FineEx/.vs
 /FineEx/FineEx/bin
+/FineEx/FineEx/obj
 /FineEx/FineEx/App_Start/RouteConfig.vb
 /FineEx/FineEx/obj/Debug
 /FineEx/FineEx/packages/Newtonsoft.Json.12.0.2
