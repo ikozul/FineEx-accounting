@@ -22,9 +22,6 @@ namespace FineEx.DataLayer.Models
 
         public string Name { get; set; }
 
-        [JsonIgnore]
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
-
         public IQueryable<Item> Search()
         {
             return App.Db.Items

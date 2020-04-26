@@ -1,0 +1,5 @@
+D:\Projects\University\izrada-cjelovitog-aplikativnog-19-20\FineEx\FineEx.BusinessLayer\FineEx.BusinessLayer\bin\Debug\FineEx.BusinessLayer.dll
+D:\Projects\University\izrada-cjelovitog-aplikativnog-19-20\FineEx\FineEx.BusinessLayer\FineEx.BusinessLayer\bin\Debug\FineEx.BusinessLayer.pdb
+D:\Projects\University\izrada-cjelovitog-aplikativnog-19-20\FineEx\FineEx.BusinessLayer\FineEx.BusinessLayer\obj\Debug\FineEx.BusinessLayer.csprojAssemblyReference.cache
+D:\Projects\University\izrada-cjelovitog-aplikativnog-19-20\FineEx\FineEx.BusinessLayer\FineEx.BusinessLayer\obj\Debug\FineEx.BusinessLayer.dll
+D:\Projects\University\izrada-cjelovitog-aplikativnog-19-20\FineEx\FineEx.BusinessLayer\FineEx.BusinessLayer\obj\Debug\FineEx.BusinessLayer.pdb

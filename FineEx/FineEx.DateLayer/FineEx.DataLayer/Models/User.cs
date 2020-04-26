@@ -20,7 +20,7 @@ namespace FineEx.DataLayer.Models
         public string Email { get; set; }
 
         public int LanguageId { get; set; }
-        [ForeignKey("LanguageId")] public virtual Language Language { get; set; }
+        //[ForeignKey("LanguageId")] public virtual Language Language { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
 

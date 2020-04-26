@@ -105,8 +105,6 @@ namespace FineEx.DataLayer.Models
         [JsonIgnore]
         public virtual ICollection<Invoice> ReceivedInvoices { get; set; }
 
-        public virtual ICollection<ItemChargePreset> ItemChargePresets { get; set; }
-
         public Company()
         {
             if (PricePrecision == 0)
