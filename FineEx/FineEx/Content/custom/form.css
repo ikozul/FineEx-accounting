@@ -1,0 +1,94 @@
+﻿body {
+    background: linear-gradient(90deg, rgb(0, 85, 197) 10%, rgb(0, 139, 167) 100%);
+}
+
+form {
+    width: 60%;
+    margin: 40px auto;
+    background: #efefef;
+    padding: 60px 120px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.label-txt, .control-label {
+    position: absolute;
+    top: -1.6em;
+    padding: 10px;
+    color: rgb(73, 73, 73);
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: ease .2s;
+}
+
+.form-group {
+    text-align: left;
+    margin-top: 80px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.form-control:focus {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.line-box {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: #BCBCBC;
+}
+
+/*.input:focus + .line-box .line {
+    width: 100%;
+}*/
+
+.label-active {
+    color: black;
+    top: -3em;
+}
+
+.btn {
+    margin-top: 50px;
+    padding: 8px 24px;
+    background: rgb(220, 220, 220);
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    font-size: 18px;
+    transition: ease .3s;
+}
+
+/* for phones */
+
+@media only screen and (max-width: 767px) {
+    form {
+        padding: 60px 20px 20px 20px;
+    }
+    .col-md-6:last-of-type {
+        margin-top: 80px !important;
+    }
+}
+
+
+/* for tablets */
+
+@media only screen and (min-width: 768px) and (max-width: 1320px) {
+    form {
+        padding: 60px 60px 20px 60px;
+    }
+}
