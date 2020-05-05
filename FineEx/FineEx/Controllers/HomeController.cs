@@ -10,7 +10,14 @@ namespace FineEx.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["user"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult About()
