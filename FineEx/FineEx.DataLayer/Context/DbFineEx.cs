@@ -23,7 +23,11 @@ namespace FineEx.DataLayer.Context
         public Microsoft.EntityFrameworkCore.DbSet<Item> Items { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Company> Companies { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
-        //public DbSet<Item> Items { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Invoice> Invoices { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Role> Role { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Location> Locations { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Country> Country { get; set; }
 
     }
 }
