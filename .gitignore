@@ -7,16 +7,7 @@
 /FineEx/FineEx/obj
 /FineEx/FineEx/App_Start/RouteConfig.vb
 /FineEx/FineEx/obj/Debug
-/FineEx/FineEx/packages/Newtonsoft.Json.12.0.2
-/FineEx/FineEx/packages/Microsoft.Web.Infrastructure.1.0.0.0
-/FineEx/FineEx/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
-/FineEx/FineEx/packages/Microsoft.AspNet.WebPages.3.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.WebApi.WebHost.5.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.WebApi.Core.5.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.WebApi.Client.5.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.WebApi.5.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.Razor.3.2.7
-/FineEx/FineEx/packages/Microsoft.AspNet.Mvc.5.2.7
+/FineEx/FineEx/packages
 /FineEx/FineEx.BusinessLayer/obj/Debug
 /FineEx/FineEx.DataLayer/obj/Debug
 /FineEx/FineEx/packages/EntityFramework.6.2.0/Content/net40
@@ -26,3 +17,6 @@
 /FineEx/FineEx.DataLayer/obj/Release
 /FineEx/FineEx.BusinessLayer/obj/Release
 /.vs/izrada-cjelovitog-aplikativnog-19-20/v16
+/FineEx/FineEx.Testing/obj/Debug
+/FineEx/FineEx.Testing/bin/Debug
+/FineEx/FineEx.Testing
