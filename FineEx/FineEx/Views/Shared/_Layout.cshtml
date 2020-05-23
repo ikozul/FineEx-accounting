@@ -15,17 +15,23 @@
         </button>
         <div class="collapse navbar-collapse flex-column" id="navbarNav">
             <ul class="navbar-nav" id="nav">
-                <li class="nav-item">@Html.ActionLink("Company", "Index", "Company", new { area = "" }, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Documents", "Index", "Document", new { area = "" }, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Statistics", "Index", "Statistics", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Company_Menu, "Index", "Company", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Documents_Menu, "Index", "Document", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Statistics_Menu, "Index", "Statistics", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        Account
+                        @FineEx.Resources.Common.Account_Dropdown
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Registration", "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink(FineEx.Resources.Common.Login, "Login", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="navbar-nav ml-auto">
+                        <button class="btn">hr</button>/
+                        <button class="btn">en</button>
                     </div>
                 </li>
             </ul>
@@ -65,7 +71,7 @@
                     Request successful!
                 </div>
                 <div class="modal-footer">
-                    <button id="btn-ok" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                    <button id="btn-ok" type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FineEx.Controllers
 {
-    public class CompanyController : Controller
+    public class CompanyController : BaseController
     {
         public ActionResult Index()
         {

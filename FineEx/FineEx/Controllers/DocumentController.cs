@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FineEx.Controllers
 {
-    public class DocumentController : Controller
+    public class DocumentController : BaseController
     {
         public ActionResult Index()
         {

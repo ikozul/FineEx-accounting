@@ -21,8 +21,10 @@ namespace FineEx
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/custom/general.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Scripts/javascript").Include(
+                      "~/Scripts/form.js"));
         }
     }
 }
