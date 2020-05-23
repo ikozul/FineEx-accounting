@@ -74,15 +74,55 @@
             <div class="line-box">
                 <div class="line"></div>
             </div>
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.LoginCredentials.Password, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <input type="submit" value="Register" class="btn btn-outline-warning" />
+    <input type="submit" value="Register" class="btn btn-warning" />
 }
 
 @section Scripts {
-    <script src="~/Scripts/form.js"></script>
+    <script>
+
+        $("#btn-ok").click(function () {
+            location.href = '@Url.Action("Login")';
+        });
+
+        $(".modal").on('hidden.bs.modal', function () {
+            location.href = '@Url.Action("Login")';
+        })
+
+        $("form").on('submit', function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            $("#success-modal").modal("show");
+
+            @*e.preventDefault();
+            var data = $(this).serialize();
+
+            if (data.InfoMessage == null) {
+                $.ajax({
+                    url: '@Url.Action("Registration")',
+                    method: 'POST',
+                    data: data,
+                    success: function (data) {
+                        if (typeof (data) == 'object' && data.InfoMessage == null) {
+                            console.log(data);
+                            $("#success-modal").modal("show");
+                        }
+                        else if (typeof (data) == 'object') {
+                            console.log(data);
+                            $("#error-modal").modal("show");
+                            $("#info-message").text(data.InfoMessage);
+                            $("#error-message").text(data.Message);
+                        }
+                    }
+                });
+            }*@
+        });
+    </script>
 
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/javascript")
+
 }

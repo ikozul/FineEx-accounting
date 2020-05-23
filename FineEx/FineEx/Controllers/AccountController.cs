@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace FineEx.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [HttpGet]
         [Route("login")]

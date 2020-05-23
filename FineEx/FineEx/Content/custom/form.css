@@ -2,6 +2,10 @@
     background: linear-gradient(90deg, rgb(0, 85, 197) 10%, rgb(0, 139, 167) 100%);
 }
 
+.modal-dialog {
+    margin-top: 8rem;
+}
+
 form {
     width: 60%;
     margin: 40px auto;
@@ -65,12 +69,10 @@ h2 {
 .btn {
     margin-top: 50px;
     padding: 8px 24px;
-    background: rgb(220, 220, 220);
     font-weight: bold;
     color: black;
     cursor: pointer;
     font-size: 18px;
-    transition: ease .3s;
 }
 
 /* for phones */
