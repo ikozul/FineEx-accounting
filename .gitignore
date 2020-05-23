@@ -22,3 +22,6 @@
 /FineEx/FineEx/packages/EntityFramework.6.2.0
 /FineEx/FineEx.DataLayer/bin/Debug
 /FineEx/FineEx.BusinessLayer/bin/Debug
+/FineEx/FineEx.DataLayer/obj/Release
+/FineEx/FineEx.BusinessLayer/obj/Release
+/.vs
