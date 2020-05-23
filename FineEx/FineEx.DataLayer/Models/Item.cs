@@ -15,10 +15,14 @@ namespace FineEx.DataLayer.Models
         [Key]
         public int Id { get; set; }
 
+        public decimal ItemPrice { get; set; }
+        public decimal ItemQuantity { get; set; }
+        public string ItemName { get; set; }
+
         public int CompanyId { get; set; }
 
         [ForeignKey("CompanyId")]
-        public virtual Company Company { get; set; }
+        public virtual Company Company { get; set; }    
 
         public string Name { get; set; }
 
