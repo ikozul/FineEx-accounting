@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FineEx.BusinessLayer
 {
-    public class Class1
+    class Config
     {
+        // temp
+        public const string Salt = "(*.*)Fine(*_*)Ex_(*o*)_";
     }
 }
