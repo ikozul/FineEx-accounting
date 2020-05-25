@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="Context\App.cs" />
     <Compile Include="Context\DbFineEx.cs" />
+    <Compile Include="Context\DbFineExInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
@@ -141,7 +142,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,21 +9,17 @@ namespace FineEx.DataLayer.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<Context.DbFineEx>
     {
-        public Configuration()
-        {
-            #if DEBUG
-                AutomaticMigrationsEnabled = false;
-            #else
-                AutomaticMigrationsEnabled = true;
-            #endif
-        }
+        //public Configuration()
+        //{
+        //    AutomaticMigrationsEnabled = true;
+        //}
 
-        protected override void Seed(FineEx.DataLayer.Context.DbFineEx context)
-        {
-            //  This method will be called after migrating to the latest version.
+        //protected override void Seed(FineEx.DataLayer.Context.DbFineEx context)
+        //{
+        //    //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
-        }
+        //    //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+        //    //  to avoid creating duplicate seed data.
+        //}
     }
 }

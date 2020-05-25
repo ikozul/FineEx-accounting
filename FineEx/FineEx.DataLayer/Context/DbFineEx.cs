@@ -1,26 +1,29 @@
 ﻿using System.Data.Entity;
-using FineEx.DataLayer.Migrations;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using FineEx.DataLayer.Models;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace FineEx.DataLayer.Context
 {
     public class DbFineEx : System.Data.Entity.DbContext
     {
 
-        public DbFineEx() : base("DbFineEx")
+        public DbFineEx() : base("dbFineEx")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DbFineEx, Configuration>());
+            Database.SetInitializer(strategy: new DbFineExInitializer());
         }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            //ToDo
+            //modelBuilder.Configurations.Add(new StudentConfigurations());
+            modelBuilder.Entity<User>()
+                .ToTable("User");
+
+            modelBuilder.Entity<User>()
+                .MapToStoredProcedures();
+
+
         }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Item> Items { get; set; }
+        public DbSet<Item> Items { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Company> Companies { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Invoice> Invoices { get; set; }
