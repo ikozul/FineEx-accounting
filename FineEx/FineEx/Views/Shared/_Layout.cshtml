@@ -28,11 +28,18 @@
                         @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" })
                     </div>
                 </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <div class="navbar-nav ml-auto">
-                        <button class="btn">hr</button>/
-                        <button class="btn">en</button>
-                    </div>
+                    @Html.ActionLink("English", "ChangeCulture", "Base",
+                    new { lang = "en", returnUrl = this.Request.RawUrl }, new { @class = "nav-link" })
+                </li>
+                <span class="text-white py-2">/</span>
+                <li class="nav-item">
+                    @Html.ActionLink("Hrvatski", "ChangeCulture", "Base",
+                    new { lang = "hr", returnUrl = this.Request.RawUrl }, new { @class = "nav-link" })
                 </li>
             </ul>
         </div>
@@ -83,6 +90,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/javascript")
     @RenderSection("scripts", required: false)
 </body>
 </html>
