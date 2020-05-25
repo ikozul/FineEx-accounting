@@ -23,39 +23,5 @@ namespace FineEx.DataLayer.Context
                 return (DbFineEx)HttpContext.Current.Items["_db"];
             }
         }
-
-        public static string Language
-        {
-            get
-            {
-                var cultureCookie = HttpContext.Current.Request.Cookies["_culture"];
-                return cultureCookie != null ? cultureCookie.Value : "hr";
-            }
-        }
-        
-        public static int? UserId
-        {
-            get { return HttpContext.Current.Session["UserId"] as int?; }
-            set { HttpContext.Current.Session["UserId"] = value; }
-        }
-
-        public static string UserPassword
-        {
-            get { return HttpContext.Current.Session["UserPassword"] as string; }
-            set { HttpContext.Current.Session["UserPassword"] = value; }
-        }
-
-        public static User User
-        {
-            get
-            {
-                if (UserId.HasValue)
-                {
-                    return Db.Users.FirstOrDefault(u => u.Id == UserId);
-                }
-
-                return null;
-            }
-        }
     }
 }
