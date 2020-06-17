@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.DataLayer.Context;
 
 namespace FineEx.Controllers
 {
@@ -13,6 +14,23 @@ namespace FineEx.Controllers
         [Route("login")]
         public ActionResult Login()
         {
+            try
+            {
+                var xompany = new Company()
+                {
+                    IdCompany = 1,
+                    Name = "Algebra",
+                    Address = "Ilica 242"
+                };
+
+                App.Db.Companies.Add(xompany);
+                App.Db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
             return View();
         }
 
