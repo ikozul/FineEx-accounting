@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FineEx.BusinessLayer.Models
 {
-    public class UserViewModel
+    class UserCreateModel
     {
     }
 }
