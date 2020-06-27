@@ -21,9 +21,6 @@ namespace FineEx.DataLayer.Models
         public string Password { get; set; }
         public bool IsActive { get; set; }
 
-        //[ForeignKey("LanguageId")] public virtual Language Language { get; set; }
-        public int LanguageId { get; set; }
-        
         public virtual ICollection<Company> Companies { get; set; }
 
         [ForeignKey("Role")]

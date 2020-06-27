@@ -20,17 +20,21 @@ namespace FineEx.DataLayer.Models
         public string ItemName { get; set; }
 
         public int CompanyId { get; set; }
-
-        [ForeignKey("CompanyId")]
-        public virtual Company Company { get; set; }    
-
         public string Name { get; set; }
+        public ICollection<Company> Companies { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
 
         public IQueryable<Item> Search()
         {
             return App.Db.Items
                 .Where(q => q.CompanyId == CompanyId && q.Name.StartsWith(Name))
                 .AsQueryable();
+        }
+
+        public Item()
+        {
+            Companies = new HashSet<Company>();
+            Invoices = new HashSet<Invoice>();
         }
     }
 }
