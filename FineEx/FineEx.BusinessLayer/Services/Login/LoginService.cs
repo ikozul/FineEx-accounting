@@ -9,7 +9,7 @@ namespace FineEx.BusinessLayer.Services.Login
 {
     public class LoginService : ILoginService
     {
-        public UserViewModel GetUser(string username, string password)
+        public LoginViewModel GetUser(string username, string password)
         {
             throw new NotImplementedException();
         }
