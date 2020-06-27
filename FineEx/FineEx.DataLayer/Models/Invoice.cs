@@ -19,18 +19,19 @@ namespace FineEx.DataLayer.Models
 
         public bool Incoming { get; set; }
 
-        [ForeignKey("SenderId")]
+        [ForeignKey("Sender")]
+        public int SenderId { get; set; }
         public virtual Company Sender
         {
             get; set;
         }
 
-        [ForeignKey("ReceiverId")]
-        public virtual Company Receiver
-        {
-            get; set;
-        }
-        [ForeignKey("PaymentMethodId")]
+        [ForeignKey("Receiver")]
+        public int ReceiverId { get; set; }
+        public virtual Company Receiver { get; set; }
+
+        [ForeignKey("PaymentMethod")]
+        public int PaymentMethodId { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
 
         public DateTime InvoiceDate { get; set; }
@@ -42,7 +43,8 @@ namespace FineEx.DataLayer.Models
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
 
-        [ForeignKey("LocationId")]  
+        [ForeignKey("Location")]  
+        public int LocationId { get; set; }
         public virtual Location Location { get; set; }
 
         public string InvoiceNumber { get; set; }

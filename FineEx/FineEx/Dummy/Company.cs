@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FineEx.Dummy
 {
-    public class Company
+    public class Company : DataLayer.Models.Company
     {
         public int IdCompany { get; set; }
         public string Name { get; set; }

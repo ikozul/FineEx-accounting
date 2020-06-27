@@ -22,7 +22,9 @@ namespace FineEx.DataLayer.Models
 
         public int PostalCode { get; set; }
 
-        [ForeignKey("CoutntryId")]
+        [ForeignKey("Country")]
+        public int CountryId { get; set; }
+
         public virtual Country Country { get;   set; }
     }
 }
