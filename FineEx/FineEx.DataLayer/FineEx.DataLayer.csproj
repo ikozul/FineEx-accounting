@@ -128,6 +128,10 @@
     <Compile Include="Context\App.cs" />
     <Compile Include="Context\DbFineEx.cs" />
     <Compile Include="Context\DbFineExInitializer.cs" />
+    <Compile Include="Migrations\202006270842166_InitialCreate.cs" />
+    <Compile Include="Migrations\202006270842166_InitialCreate.designer.cs">
+      <DependentUpon>202006270842166_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
@@ -142,6 +146,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006270842166_InitialCreate.resx">
+      <DependentUpon>202006270842166_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

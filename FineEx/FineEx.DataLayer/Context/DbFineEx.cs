@@ -35,6 +35,18 @@ namespace FineEx.DataLayer.Context
             modelBuilder.Entity<Company>().HasMany(i => i.ReceivedInvoices).WithRequired().WillCascadeOnDelete(false);
 
 
+            modelBuilder.Entity<Invoice>()
+                .HasRequired(m => m.Sender)
+                .WithMany(t => t.SentInvoices)
+                .HasForeignKey(m => m.SenderId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Invoice>()
+                .HasRequired(m => m.Receiver)
+                .WithMany(t => t.ReceivedInvoices)
+                .HasForeignKey(m => m.ReceiverId)
+                .WillCascadeOnDelete(false);
+
         }
 
         public DbSet<Item> Items { get; set; }
