@@ -126,6 +126,9 @@
   <data name="Documents_Menu" xml:space="preserve">
     <value>Dokumenti</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Prijava</value>
   </data>

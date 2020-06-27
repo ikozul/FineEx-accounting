@@ -126,6 +126,9 @@
   <data name="Documents_Menu" xml:space="preserve">
     <value>Documents</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>hr</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
