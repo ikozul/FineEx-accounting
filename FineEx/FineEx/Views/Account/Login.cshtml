@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <h2>Login</h2>
+    <h2>@FineEx.Resources.Login.Login.Title</h2>
     @Html.AntiForgeryToken()
 
     <div class="col">

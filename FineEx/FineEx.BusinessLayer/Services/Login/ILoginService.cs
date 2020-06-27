@@ -9,6 +9,6 @@ namespace FineEx.BusinessLayer.Services.Login
 {
     public interface ILoginService
     {
-        UserViewModel GetUser(string username, string password);
+        LoginViewModel GetUser(string username, string password);
     }
 }

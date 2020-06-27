@@ -1,4 +1,5 @@
-﻿using FineEx.Dummy;
+﻿using FineEx.DataLayer.Context;
+using FineEx.Dummy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace FineEx.Controllers
         [Route("login")]
         public ActionResult Login()
         {
+            var test = App.Db.Users;
             return View();
         }
 

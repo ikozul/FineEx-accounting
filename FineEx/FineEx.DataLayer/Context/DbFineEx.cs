@@ -9,7 +9,7 @@ namespace FineEx.DataLayer.Context
 
         public DbFineEx() : base("dbFineEx")
         {
-            Database.SetInitializer(strategy: new DbFineExInitializer());
+            Database.SetInitializer(strategy: new CreateDatabaseIfNotExists<DbFineEx>());
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
