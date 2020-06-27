@@ -88,6 +88,15 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hr.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
