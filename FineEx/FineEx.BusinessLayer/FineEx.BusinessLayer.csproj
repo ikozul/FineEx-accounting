@@ -58,6 +58,7 @@
     <Compile Include="Models\User\UserCreateModel.cs" />
     <Compile Include="Models\User\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\InvoiceService\InvoiceService.cs" />
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
     <Compile Include="Services\Registration\IRegistrationService.cs" />
@@ -75,9 +76,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Services\InvoiceService\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
