@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
 
@@ -11,18 +8,17 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
     public class InvoiceService
     {
         private IQueryable<Invoice> _invoices;
-        private List<InvoiceViewModel> _invoicesView;
-        private string businessNumber;
+        private readonly List<InvoiceViewModel> _invoicesView = new List<InvoiceViewModel>();
+        private readonly string _businessNumber;
 
-        public InvoiceService(string businessNumber, List<InvoiceViewModel> invoicesView)
+        public InvoiceService(string businessNumber)
         {
-            this.businessNumber = businessNumber;
-            _invoicesView = invoicesView;
+            this._businessNumber = businessNumber;
         }
 
         public List<InvoiceViewModel> GetIncomingInvoices()
         {
-            _invoices = App.Db.Invoices.Where(x => x.Receiver.BusinessNumber == businessNumber);
+            _invoices = App.Db.Invoices.Where(x => x.Receiver.BusinessNumber == _businessNumber);
             GetInvoiceViewModels();
             return _invoicesView;
 
@@ -30,7 +26,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
 
         public List<InvoiceViewModel> GetOutgoingInvoices()
         {
-            _invoices = App.Db.Invoices.Where(x => x.Sender.BusinessNumber == businessNumber);
+            _invoices = App.Db.Invoices.Where(x => x.Sender.BusinessNumber == _businessNumber);
             GetInvoiceViewModels();
             return _invoicesView;
         }
