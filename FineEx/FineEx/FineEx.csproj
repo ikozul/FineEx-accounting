@@ -218,9 +218,6 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
-    <Compile Include="Dummy\Company.cs" />
-    <Compile Include="Dummy\User.cs" />
-    <Compile Include="Dummy\UserLogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,6 +241,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Registration\Registration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Registration.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Registration\Registration.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Registration.hr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -678,7 +685,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Resources\Registration\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -706,6 +712,14 @@
     <EmbeddedResource Include="Resources\Login\Login.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Registration\Registration.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Registration.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Registration\Registration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Registration.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

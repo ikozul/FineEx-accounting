@@ -21,11 +21,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        @FineEx.Resources.Common.Account_Dropdown
+                        @{ FineEx.BusinessLayer.Models.User.UserViewModel user = (FineEx.BusinessLayer.Models.User.UserViewModel)Session["user"]; }
+                        @((Session["user"] == null) ? @FineEx.Resources.Common.Account_Dropdown : user.Email)
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink(FineEx.Resources.Common.Login, "Login", "Account", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                        @((Session["user"] == null) ? @Html.ActionLink(FineEx.Resources.Common.Login, "Login", "Account", new { area = "" }, new { @class = "dropdown-item" }) : @Html.ActionLink(FineEx.Resources.Common.Logout, "Logout", "Account", new { area = "" }, new { @class = "dropdown-item" }))
+                        @((Session["user"] == null) ? @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" }) : null)
                     </div>
                 </li>
             </ul>
