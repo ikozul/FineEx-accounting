@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
 
