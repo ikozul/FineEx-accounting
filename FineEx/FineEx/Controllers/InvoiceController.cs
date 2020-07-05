@@ -28,10 +28,10 @@ namespace FineEx.Controllers
         }
 
         [HttpPost]
-        public ActionResult Partial(int invoiceType, )
+        public ActionResult Partial(int invoiceType, string businessNumber)
         {
 
-
+            return View();
         }
     }
 }
