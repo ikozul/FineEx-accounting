@@ -682,12 +682,12 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Invoice\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
