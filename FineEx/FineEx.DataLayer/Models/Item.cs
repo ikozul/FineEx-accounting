@@ -20,14 +20,13 @@ namespace FineEx.DataLayer.Models
         public string ItemName { get; set; }
 
         public int CompanyId { get; set; }
-        public string Name { get; set; }
         public ICollection<Company> Companies { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
 
         public IQueryable<Item> Search()
         {
             return App.Db.Items
-                .Where(q => q.CompanyId == CompanyId && q.Name.StartsWith(Name))
+                .Where(q => q.CompanyId == CompanyId)
                 .AsQueryable();
         }
 
