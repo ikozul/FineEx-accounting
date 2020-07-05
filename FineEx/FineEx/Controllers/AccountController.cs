@@ -1,5 +1,7 @@
-﻿using FineEx.DataLayer.Context;
-using FineEx.Dummy;
+﻿using FineEx.BusinessLayer.Exceptions;
+using FineEx.BusinessLayer.Models.User;
+using FineEx.BusinessLayer.Services.Login;
+using FineEx.DataLayer.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,60 +12,47 @@ namespace FineEx.Controllers
 {
     public class AccountController : BaseController
     {
+        private LoginService loginService;
+
         [HttpGet]
         [Route("login")]
         public ActionResult Login()
-        {            
+        {
             return View();
         }
 
         [HttpPost]
         [Route("login")]
-        public ActionResult Login(UserLogin loginCredentials)
+        public ActionResult Login(LoginViewModel loginCredentials)
         {
-            if (ModelState.IsValid && loginCredentials.Username.Trim() == "admin" && loginCredentials.Password.Trim() == "admin")
+            if (ModelState.IsValid)
             {
-                // provjera credentialsa
-                Session["user"] = loginCredentials.Username;
-                return RedirectToAction("Index", "Home");
+                try
+                {
+                    loginService = new LoginService();
+                    UserViewModel user = loginService.GetUser(loginCredentials);
+                    Session["user"] = user;
+                }
+                catch (InvalidCredentialsException ex)
+                {
+                    ViewBag.LoginError = true;
+                    ViewBag.LoginMessage = ex.Message;
+                    return View();
+                }
             }
-            ViewBag.LoginError = true;
-            ViewBag.LoginMessage = "Wrong username or password";
-            ModelState.Clear();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         [Route("registration")]
         public ActionResult Registration()
         {
-            ViewBag.Companies = new SelectList(new List<Company>()
-            {
-                new Company()
-                {
-                    IdCompany = 1,
-                    Name = "Algebra",
-                    Address = "Ilica 242"
-                },
-                new Company()
-                {
-                    IdCompany = 2,
-                    Name = "Pliva",
-                    Address = "Baruna Filipovica 25"
-                },
-                new Company()
-                {
-                    IdCompany = 3,
-                    Name = "INA",
-                    Address = "Veceslava Holjevca 10"
-                }
-            }, "IdCompany", "Name", 1);
             return View();
         }
 
         [HttpPost]
         [Route("registration")]
-        public ActionResult Registration(User user)
+        public ActionResult Registration(UserCreateModel user)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +60,14 @@ namespace FineEx.Controllers
                 return RedirectToAction("Login");
             }
             return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
     }
 }
