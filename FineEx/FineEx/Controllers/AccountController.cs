@@ -1,5 +1,5 @@
 ﻿using FineEx.BusinessLayer.Exceptions;
-using FineEx.BusinessLayer.Models.User;
+using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.Login;
 using FineEx.DataLayer.Context;
 using System;
