@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FineEx.BusinessLayer.Models.User
+namespace FineEx.BusinessLayer.Models.UserModels
 {
     public class UserCreateModel
     {

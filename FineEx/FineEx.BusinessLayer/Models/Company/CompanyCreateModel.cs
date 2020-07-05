@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FineEx.BusinessLayer.Models.Company
+namespace FineEx.BusinessLayer.Models.CompanyModels
 {
     public class CompanyCreateModel
     {

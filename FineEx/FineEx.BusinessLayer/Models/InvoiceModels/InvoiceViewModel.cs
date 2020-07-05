@@ -1,13 +1,13 @@
-﻿using FineEx.DataLayer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FineEx.DataLayer.Models;
 
-namespace FineEx.BusinessLayer.Models
+namespace FineEx.BusinessLayer.Models.InvoiceModels
 {
-    class InvoiceViewModel
+    public class InvoiceViewModel
     {
         public InvoiceViewModel(Invoice invoice)
         {
@@ -27,12 +27,12 @@ namespace FineEx.BusinessLayer.Models
 
         public int Id { get; set; }
         public bool Approved { get; set; }
-        public string SenderNameNumber{ get; set; }
+        public string SenderNameNumber { get; set; }
         public string ReceiverNameNumber { get; set; }
         public string PaymentMethod { get; set; }
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
-        public string UniqueIdentifierOfInvoice{ get; set; }
+        public string UniqueIdentifierOfInvoice { get; set; }
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
         public string InvoiceNumber { get; set; }

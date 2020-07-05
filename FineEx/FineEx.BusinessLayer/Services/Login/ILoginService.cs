@@ -1,4 +1,4 @@
-﻿using FineEx.BusinessLayer.Models.User;
+﻿using FineEx.BusinessLayer.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
