@@ -10,6 +10,7 @@ GO
 
 select * from Users
 select * from Companies
+select * from UsersCompanies
 
 insert into Companies ([BusinessNumber], [BusinessUnit], [Name], [Address], [City], [County], [GLN], [IBAN], [Phone], [PricePrecision], [QuantityPrecision]) values
 ('99999999927', '', 'Test Company', 'Ilica 212', 'Zagreb', 'Croatia', '', 'HR46546546546465', '123', 2 , 2)
