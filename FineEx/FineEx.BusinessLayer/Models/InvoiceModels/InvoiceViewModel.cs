@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FineEx.BusinessLayer.Models.ItemModels;
 using FineEx.DataLayer.Models;
 
 namespace FineEx.BusinessLayer.Models.InvoiceModels
@@ -23,6 +24,7 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
             VatSwiftBankClient = invoice.VatSwiftBankClient;
             InvoiceNumber = invoice.InvoiceNumber;
             Issuer = invoice.User.FullName;
+            Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.ItemQuantity)).ToList();
         }
 
         public int Id { get; set; }
@@ -37,5 +39,6 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public string VatSwiftBankClient { get; set; }
         public string InvoiceNumber { get; set; }
         public string Issuer { get; set; }
+        public List<ItemViewModel> Items { get; set; }
     }
 }

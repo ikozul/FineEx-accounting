@@ -13,18 +13,20 @@ namespace FineEx.BusinessLayer.Services.Login
 {
     public class LoginService : ILoginService
     {
+        private User _user;
+
         public UserViewModel GetUser(LoginViewModel loginViewModel) 
         {
             using (DbFineEx db = new DbFineEx())
             {
-                User user = db.Users.FirstOrDefault(u => u.Email == loginViewModel.Email);
-                if (user == null)
+                _user = db.Users.FirstOrDefault(u => u.Email == loginViewModel.Email);
+                if (_user == null)
                 {
                     throw new InvalidCredentialsException("Invalid Email");
                 } 
-                else if (user.Password == PasswordHelper.HashPassword(loginViewModel.Password))
+                else if (_user.Password == PasswordHelper.HashPassword(loginViewModel.Password))
                 {
-                    return new UserViewModel(user.FirstName, user.LastName, user.Email, user.Role);
+                    return new UserViewModel(_user.FirstName, _user.LastName, _user.Email, _user.Role);
                 }
                 else
                 {

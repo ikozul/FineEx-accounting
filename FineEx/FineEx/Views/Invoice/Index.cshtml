@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
+}
+
+<br />
+<h2>Invoices</h2>
+
+<div class="col-lg-4 pl-lg-0 mt-lg-5">
+
+    <div class="form-group">
+        @Html.Label("Invoice Type:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+        <div class="col-md-12">
+            @Html.DropDownList("ddlInvoiceType", invoiceTypeList, "Select invoice type", new { @class = "form-control col-md-12" })
+        </div>
+    </div>
+</div>
+
+<div id="container">
+
+</div>
+
+<div>
+    <a id="addRoute" href="Invoice/Create" class="btn btn-success mx-3 mr-lg-5 disabled">Create New Invoice</a>
+</div>
+
+@section scripts {
+    <script>
+        $('select').on('change', function () {
+            var invoiceTypeVal = $(this).val();
+            console.log(invoiceTypeVal);
+            if (invoiceTypeVal != 0) {
+                $.ajax({
+                    url: '/Invoice/Partial?invoiceTypeVal=' + invoiceTypeVal,
+                    type: 'POST',
+                    success: function (data) {
+                        $("#container").html(data)
+                    }
+                })
+            }
+            else {
+                $("#container").empty();
+            }
+        });
+    </script>
+}
+

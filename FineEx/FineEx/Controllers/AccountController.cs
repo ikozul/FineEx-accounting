@@ -12,7 +12,7 @@ namespace FineEx.Controllers
 {
     public class AccountController : BaseController
     {
-        private LoginService loginService;
+        private LoginService loginService = new LoginService();
 
         [HttpGet]
         [Route("login")]
@@ -29,7 +29,6 @@ namespace FineEx.Controllers
             {
                 try
                 {
-                    loginService = new LoginService();
                     UserViewModel user = loginService.GetUser(loginCredentials);
                     Session["user"] = user;
                 }
