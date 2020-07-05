@@ -1,4 +1,4 @@
-﻿using FineEx.BusinessLayer.Models;
+﻿using FineEx.BusinessLayer.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace FineEx.BusinessLayer.Services.Login
 {
     public interface ILoginService
     {
-        LoginViewModel GetUser(string username, string password);
+        UserViewModel GetUser(LoginViewModel loginViewModel);
     }
 }
