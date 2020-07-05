@@ -53,8 +53,9 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
-    <Compile Include="Models\Company\CompanyCreateModel.cs" />
+    <Compile Include="Models\CompanyModels\CompanyCreateModel.cs" />
     <Compile Include="Models\InvoiceModels\InvoiceViewModel.cs" />
+    <Compile Include="Models\ItemModels\ItemViewModel.cs" />
     <Compile Include="Models\UserModels\LoginViewModel.cs" />
     <Compile Include="Models\UserModels\UserCreateModel.cs" />
     <Compile Include="Models\UserModels\UserViewModel.cs" />
