@@ -8,19 +8,6 @@
         public override void Up()
         {
             CreateTable(
-                "dbo.Items",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ItemPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ItemQuantity = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ItemName = c.String(),
-                        CompanyId = c.Int(nullable: false),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Companies",
                 c => new
                     {
@@ -41,6 +28,19 @@
                 .Index(t => t.BusinessNumber);
             
             CreateTable(
+                "dbo.Items",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ItemPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ItemQuantity = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ItemName = c.String(),
+                        CompanyId = c.Int(nullable: false),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Invoices",
                 c => new
                     {
@@ -51,11 +51,13 @@
                         PaymentMethodId = c.Int(nullable: false),
                         InvoiceDate = c.DateTime(nullable: false),
                         DueDate = c.DateTime(nullable: false),
-                        DeliveryDate = c.DateTime(nullable: false),
                         ProtectedCodeOfSupplier = c.String(),
                         UniqueIdentifierOfInvoice = c.String(),
                         VatNumber = c.String(),
                         VatSwiftBankClient = c.String(),
+                        PriceWithoutVat = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        VatPercentage = c.Decimal(nullable: false, precision: 18, scale: 2),
                         LocationId = c.Int(nullable: false),
                         InvoiceNumber = c.String(),
                         User_Id = c.Int(),
@@ -134,17 +136,17 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.CompanyItems",
+                "dbo.ItemCompanies",
                 c => new
                     {
-                        Company_Id = c.Int(nullable: false),
                         Item_Id = c.Int(nullable: false),
+                        Company_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Company_Id, t.Item_Id })
-                .ForeignKey("dbo.Companies", t => t.Company_Id, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Item_Id, t.Company_Id })
                 .ForeignKey("dbo.Items", t => t.Item_Id, cascadeDelete: true)
-                .Index(t => t.Company_Id)
-                .Index(t => t.Item_Id);
+                .ForeignKey("dbo.Companies", t => t.Company_Id, cascadeDelete: true)
+                .Index(t => t.Item_Id)
+                .Index(t => t.Company_Id);
             
             CreateTable(
                 "dbo.UsersCompanies",
@@ -187,14 +189,14 @@
             DropForeignKey("dbo.Invoices", "PaymentMethodId", "dbo.PaymentMethods");
             DropForeignKey("dbo.Invoices", "LocationId", "dbo.Locations");
             DropForeignKey("dbo.Locations", "CountryId", "dbo.Countries");
-            DropForeignKey("dbo.CompanyItems", "Item_Id", "dbo.Items");
-            DropForeignKey("dbo.CompanyItems", "Company_Id", "dbo.Companies");
+            DropForeignKey("dbo.ItemCompanies", "Company_Id", "dbo.Companies");
+            DropForeignKey("dbo.ItemCompanies", "Item_Id", "dbo.Items");
             DropIndex("dbo.InvoiceItems", new[] { "ItemId" });
             DropIndex("dbo.InvoiceItems", new[] { "InvoiceId" });
             DropIndex("dbo.UsersCompanies", new[] { "CompanyId" });
             DropIndex("dbo.UsersCompanies", new[] { "UserId" });
-            DropIndex("dbo.CompanyItems", new[] { "Item_Id" });
-            DropIndex("dbo.CompanyItems", new[] { "Company_Id" });
+            DropIndex("dbo.ItemCompanies", new[] { "Company_Id" });
+            DropIndex("dbo.ItemCompanies", new[] { "Item_Id" });
             DropIndex("dbo.Users", new[] { "RoleId" });
             DropIndex("dbo.Locations", new[] { "CountryId" });
             DropIndex("dbo.Invoices", new[] { "User_Id" });
@@ -205,15 +207,15 @@
             DropIndex("dbo.Companies", new[] { "BusinessNumber" });
             DropTable("dbo.InvoiceItems");
             DropTable("dbo.UsersCompanies");
-            DropTable("dbo.CompanyItems");
+            DropTable("dbo.ItemCompanies");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.PaymentMethods");
             DropTable("dbo.Countries");
             DropTable("dbo.Locations");
             DropTable("dbo.Invoices");
-            DropTable("dbo.Companies");
             DropTable("dbo.Items");
+            DropTable("dbo.Companies");
         }
     }
 }

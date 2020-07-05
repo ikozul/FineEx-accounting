@@ -6,7 +6,7 @@ using FineEx.DataLayer.Models;
 
 namespace FineEx.BusinessLayer.Services.InvoiceService
 {
-    public class InvoiceService
+    public class InvoiceService : IInvoiceService
     {
         private IQueryable<Invoice> _invoices;
         private readonly List<InvoiceViewModel> _invoicesView = new List<InvoiceViewModel>();
@@ -32,7 +32,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             return _invoicesView;
         }
 
-        private void GetInvoiceViewModels()
+        public void GetInvoiceViewModels()
         {
             if (_invoicesView.Count != 0)
                 _invoicesView.Clear();

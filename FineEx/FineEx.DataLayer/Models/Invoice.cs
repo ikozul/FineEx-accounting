@@ -36,12 +36,15 @@ namespace FineEx.DataLayer.Models
 
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
 
         public string ProtectedCodeOfSupplier { get; set; }
         public string UniqueIdentifierOfInvoice { get; set; }
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
+
+        public decimal PriceWithoutVat { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal VatPercentage { get; set; }
 
         [ForeignKey("Location")]  
         public int LocationId { get; set; }

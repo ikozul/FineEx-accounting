@@ -1,0 +1,868 @@
+﻿@using RazorLight
+@using System
+
+@model FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Moj-eRačun</title>
+    <style>
+        body {
+            font-size: 0.75rem;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div><h5>Račun broj: @(Model.InvoiceNumber)</h5></div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <div>
+                            <div>
+                                Datum izdavanja:
+                                @FormatDateTime(Model.InvoiceDate.Date)
+                            </div>
+                            <div>
+                                Datum dospijeća plaćanja: @FormatDateTime(Model.DueDate)
+                            </div>
+                            @{
+                                foreach (var means in Model?.PaymentMeans)
+                                {
+                                    @NullableDiv("Šifra načina plaćanja:", means?.PaymentMeansCode?.Value);
+                                    if (!string.IsNullOrEmpty(means?.PaymentDueDate?.ValueString))
+                                    {
+                                        <div> Datum plaćanja: @FormatDateTime(means?.PaymentDueDate?.Value) </div>
+                                    }
+
+                                    if (means.PaymentID?.Count > 0)
+                                    {
+                                        <div>
+                                            Poziv na broj:
+                                            @foreach (var pId in means.PaymentID)
+                                            {
+                                                @NullableDiv(string.Empty, pId?.Value);
+                                            }
+                                        </div>
+                                    }
+
+                                    @NullableDiv("Model zaduženja:", means.InstructionID?.Value);
+
+                                    if (means?.InstructionNote.Count > 0)
+                                    {
+                                        <div>
+                                            Opis plaćanja:
+                                            @foreach (var insNote in means?.InstructionNote)
+                                            {
+                                                <div>@(insNote?.Value) </div>
+                                            }
+                                        </div>
+                                    }
+
+                                    @NullableDiv("Broj računa primatelja:", means?.PayeeFinancialAccount?.ID?.Value);
+                                    @NullableDiv("Naziv računa Primatelja:", means?.PayeeFinancialAccount?.Name?.Value);
+                                    @NullableDiv("Identifikator banke primatelja:", means?.PayeeFinancialAccount?.FinancialInstitutionBranch?.ID?.Value);
+                                    @NullableDiv("Naziv banke Primatelja:", means?.PayeeFinancialAccount?.FinancialInstitutionBranch?.Name?.Value);
+
+                                    @NullableDiv("Broj računa platitelja:", means?.PayerFinancialAccount?.ID?.Value);
+                                    @NullableDiv("Naziv računa platitelja:", means?.PayerFinancialAccount?.Name?.Value);
+                                    @NullableDiv("Identifikator banke platitelja:", means?.PayerFinancialAccount?.FinancialInstitutionBranch?.ID?.Value);
+                                    @NullableDiv("Naziv banke platitelja:", means?.PayerFinancialAccount?.FinancialInstitutionBranch?.Name?.Value);
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        @{
+                            var buyerReference = Model?.BuyerReference?.Value;
+                            if (buyerReference != null)
+                            {
+                                <div>Interni identifikator kupca: @(buyerReference)</div>
+                            }
+
+                            var invoiceDocumentReference = Model?.BillingReference?.FirstOrDefault()?.InvoiceDocumentReference?.ID?.Value;
+                            if (invoiceDocumentReference != null)
+                            {
+                                <div>Oznaka na prijašnji račun: @(invoiceDocumentReference)</div>
+                            }
+
+                            var originatorDocumentReference = Model?.OriginatorDocumentReference?.FirstOrDefault()?.ID?.Value;
+                            if (originatorDocumentReference != null)
+                            {
+                                <div>Oznaka javnog nadmetanja: @(originatorDocumentReference)</div>
+                            }
+
+                            if (Model.AdditionalDocumentReference?.Count > 0)
+                            {
+                                <div>Oznake dodatnih dokumenata:</div>
+                                foreach (var documentReference in Model?.AdditionalDocumentReference)
+                                {
+                                    <div>@(documentReference?.ID?.Value)</div>
+                                }
+
+                            }
+                            @NullableDiv("Mjesto troška: ", Model?.AccountingCost?.Value)
+
+                            var startDate = Model?.InvoicePeriod?.FirstOrDefault()?.StartDate;
+                            var endDate = Model?.InvoicePeriod?.FirstOrDefault()?.EndDate;
+                            if (startDate != null && endDate != null)
+                            {
+                                <div>
+                                    Obračunsko razdoblje od: @FormatDateTime(startDate?.Value) do: @FormatDateTime(endDate?.Value)
+                                </div>
+                            }
+
+                            string contractDocumentReferenceId = Model?.ContractDocumentReference?.FirstOrDefault()?.ID?.Value;
+                            if (contractDocumentReferenceId != null)
+                            {
+                                <div>
+                                    Broj ugovora: @contractDocumentReferenceId
+                                </div>
+                            }
+
+                            string orderReferenceId = Model?.OrderReference?.ID?.Value;
+                            var orderReferenceDate = Model?.OrderReference?.IssueDate;
+                            if (orderReferenceId != null)
+                            {
+                                <div>
+                                    Broj narudžbe: @(orderReferenceId)
+                                </div>
+                            }
+
+                            if (orderReferenceDate?.Value != null
+                                && orderReferenceDate?.Value != DateTimeOffset.MinValue)
+                            {
+                                <div>
+                                    Datum narudžbe: @FormatDateTime(orderReferenceDate?.Value)
+                                </div>
+                            }
+
+                            string despatchReferenceId = Model?.DespatchDocumentReference?.FirstOrDefault()?.ID?.Value;
+                            var despatchReferenceDate = Model?.DespatchDocumentReference?.FirstOrDefault()?.IssueDate;
+                            if (despatchReferenceId != null)
+                            {
+                                <div>
+                                    Broj otpremnice: @(despatchReferenceId)
+                                </div>
+                            }
+
+                            if (despatchReferenceDate?.Value != null
+                                && despatchReferenceDate?.Value != DateTimeOffset.MinValue)
+                            {
+                                <div>
+                                    Datum otpremnice: @FormatDateTime(despatchReferenceDate?.Value)
+                                </div>
+                            }
+
+                            string receiptDocumentId = Model?.ReceiptDocumentReference?.FirstOrDefault()?.ID?.Value;
+                            var receiptDocumentDate = Model?.ReceiptDocumentReference?.FirstOrDefault()?.IssueDate;
+                            if (receiptDocumentId != null)
+                            {
+                                <div>
+                                    Broj primke: @(receiptDocumentId)
+                                </div>
+                            }
+
+                            if (receiptDocumentDate?.Value != null
+                                && receiptDocumentDate?.Value != DateTimeOffset.MinValue)
+                            {
+                                <div>
+                                    Datum primke: @FormatDateTime(receiptDocumentDate?.Value)
+                                </div>
+                            }
+
+                            string projectReferenceId = Model?.ProjectReference?.FirstOrDefault()?.ID?.Value;
+                            var projectReferenceDate = Model?.ProjectReference?.FirstOrDefault()?.IssueDate;
+
+                            if (projectReferenceId != null)
+                            {
+                                <div>
+                                    Broj projekta od: @(projectReferenceId)
+                                </div>
+                            }
+
+
+                            if (projectReferenceDate?.Value != null
+                                && projectReferenceDate?.Value != DateTimeOffset.MinValue)
+                            {
+                                <div>
+                                    Datum izdavanja projekta: @FormatDateTime(projectReferenceDate?.Value)
+                                </div>
+                            }
+                        }
+                        @if (Model?.Note.Count > 0)
+                        {
+                            <div>Napomene: </div>
+                            foreach (var note in Model?.Note)
+                            {
+                                <div>@(note?.Value)</div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">Pošiljatelj</h6>
+                        <div>
+                            <div>
+                                Naziv: @(Model?.AccountingSupplierParty?.Party?.PartyLegalEntity?.FirstOrDefault()?.RegistrationName?.Value)
+                            </div>
+                            <div>
+                                ID: @(Model?.AccountingSupplierParty?.Party?.PartyIdentification?.FirstOrDefault()?.ID?.Value)
+                            </div>
+                            <div>
+                                OIB ili porezni broj: @(Model?.AccountingSupplierParty?.Party?.PartyTaxScheme?.FirstOrDefault()?.CompanyID?.Value)
+                            </div>
+                            @{
+                                string taxScheme = Model?.AccountingSupplierParty?.Party?.PartyTaxScheme?.FirstOrDefault()?.TaxScheme?.Name?.Value;
+                                if (taxScheme != null)
+                                {
+                                    <div>
+                                        Porezna shema: @(taxScheme)
+                                    </div>
+                                }
+                            }
+                            <strong>Adresa</strong>
+                            <div>Elektronička adresa: @(Model?.AccountingSupplierParty?.Party?.EndpointID?.Value)</div>
+                            <div>
+                                Ulica i kućni broj:
+                                @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.StreetName?.Value)
+                                @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.BuildingNumber?.Value)
+                            </div>
+                            <div>Mjesto: @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.CityName?.Value)</div>
+                            <div>Poštanski broj: @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.PostalZone?.Value)</div>
+                            <div>
+                                ISO kod države:
+                                @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.Country?.IdentificationCode?.Value)
+                            </div>
+                            @NullableDiv("Dodatne pravne informacije: ", Model?.AccountingSupplierParty?.Party?.PartyLegalEntity?.FirstOrDefault()?.CompanyLegalForm?.Value)
+                            @{
+                                string firstName = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.FirstName?.Value;
+                                if (firstName != null)
+                                {
+                                    @:<strong>Kontakt</strong>
+                                    <div>
+                                        Ime: @(firstName)
+                                    </div>
+                                }
+
+                                string lastName = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.FamilyName?.Value;
+                                if (lastName != null)
+                                {
+                                    <div>
+                                        Prezime: @(lastName)
+                                    </div>
+                                }
+
+
+                                string telephone = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telephone?.Value;
+                                if (telephone != null)
+                                {
+                                    <div>
+                                        Telefon: @(telephone)
+                                    </div>
+                                }
+
+                                string telefax = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telefax?.Value;
+                                if (telefax != null)
+                                {
+                                    <div>
+                                        Telefax: @(telefax)
+                                    </div>
+                                }
+
+                                string email = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.ElectronicMail?.Value;
+                                if (email != null)
+                                {
+                                    <div>
+                                        E-mail: @(email)
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">Primatelj</h6>
+                        <div>
+                            <div>
+                                Naziv: @(Model?.AccountingCustomerParty?.Party?.PartyLegalEntity?.FirstOrDefault()?.RegistrationName?.Value)
+                            </div>
+                            <div>
+                                ID: @(Model?.AccountingCustomerParty?.Party?.PartyIdentification?.FirstOrDefault()?.ID?.Value)
+                            </div>
+                            <div>
+                                OIB ili porezni broj: @(Model?.AccountingCustomerParty?.Party?.PartyTaxScheme?.FirstOrDefault()?.CompanyID?.Value)
+                            </div>
+                            <strong>Adresa</strong>
+                            <div>Elektronička adresa: @(Model?.AccountingCustomerParty?.Party?.EndpointID?.Value)</div>
+                            <div>
+                                Ulica i kućni broj:
+                                @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.StreetName?.Value)
+                                @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.BuildingNumber?.Value)
+                            </div>
+                            <div>Mjesto: @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.CityName?.Value)</div>
+                            <div>Poštanski broj: @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.PostalZone?.Value)</div>
+                            @NullableDiv("Dodatne pravne informacije: ", Model?.AccountingCustomerParty?.Party?.PartyLegalEntity?.FirstOrDefault()?.CompanyLegalForm?.Value)
+                            <div>
+                                ISO kod države:
+                                @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.Country?.IdentificationCode?.Value)
+                            </div>
+                            @{
+                                string customerFirstName = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.FirstName?.Value;
+                                if (customerFirstName != null)
+                                {
+                                    @:<strong>Kontakt</strong>
+                                    <div>
+                                        Ime: @(customerFirstName)
+                                    </div>
+                                }
+
+                                string customerLastName = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.FamilyName?.Value;
+                                if (customerLastName != null)
+                                {
+                                    <div>
+                                        Prezime: @(customerLastName)
+                                    </div>
+                                }
+
+
+                                string customerTelephone = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telephone?.Value;
+                                if (customerTelephone != null)
+                                {
+                                    <div>
+                                        Telefon: @(customerTelephone)
+                                    </div>
+                                }
+
+                                string customerTelefax = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telefax?.Value;
+                                if (customerTelefax != null)
+                                {
+                                    <div>
+                                        Telefax: @(customerTelefax)
+                                    </div>
+                                }
+
+                                string customerEmail = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.ElectronicMail?.Value;
+                                if (customerEmail != null)
+                                {
+                                    <div>
+                                        E-mail: @(customerEmail)
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        @{
+                            var deliveryDate = Model?.Delivery?.FirstOrDefault()?.ActualDeliveryDate;
+                            if (deliveryDate?.Value != null && deliveryDate?.Value != DateTimeOffset.MinValue)
+                            {
+                                <h6 class="mb-3">Dostava</h6>
+                                <div>Datum isporuke: @FormatDateTime(deliveryDate?.Value)</div>
+                            }
+
+                            var deliveryAddress = Model?.Delivery?.FirstOrDefault()?.DeliveryAddress?.AddressLine?.FirstOrDefault()?.Line?.Value;
+                            if (deliveryAddress != null)
+                            {
+                                <div>@(deliveryAddress)</div>
+                            }
+
+                            @NullableDiv("Lokacija dostave: ", Model?.Delivery?.FirstOrDefault()?.DeliveryLocation?.Address?.AddressLine.FirstOrDefault()?.Line?.Value)
+                            @NullableDiv("Isporučitelj: ", Model?.Delivery?.FirstOrDefault()?.Despatch?.DespatchParty?.PartyName?.FirstOrDefault()?.Name?.Value)
+                            @NullableDiv("Preuzimatelj: ", Model?.Delivery?.FirstOrDefault()?.DeliveryParty?.PartyName?.FirstOrDefault()?.Name?.Value)
+                        }
+
+                    </div>
+                </div>
+                <div class="invoiceItems">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h6>Stavke računa</h6>
+                    </div>
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="center">#</th>
+                                    <th>Naziv artikla</th>
+                                    <th>JM</th>
+                                    <th class="right">Kol</th>
+                                    <th class="center">Cijena</th>
+                                    <th class="right">Porez</th>
+                                    <th class="left">Iznos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var invoiceItem in Model?.InvoiceLine)
+                                {
+
+                                    <tr>
+                                        <td class="center">
+                                            <strong>@(invoiceItem?.ID?.Value)</strong>
+                                        </td>
+                                        <td class="left strong">
+                                            <strong>@(invoiceItem?.Item?.Name?.Value)</strong>
+                                        </td>
+                                        <td class="left">
+                                            <strong>@(new UnitCodes().GetCodeSymbol(invoiceItem.InvoicedQuantity?.unitCode))</strong>
+                                        </td>
+                                        <td class="right">
+                                            <strong> @(invoiceItem?.InvoicedQuantity?.Value)</strong>
+                                        </td>
+                                        <td class="center">
+                                            <strong> @(invoiceItem?.Price?.PriceAmount?.Value)</strong>
+                                        </td>
+                                        <td class="right">
+                                            @{
+                                                bool isStandardRate = invoiceItem?.Item?.ClassifiedTaxCategory?.FirstOrDefault()?.ID?.Value == "S";
+                                                if (isStandardRate)
+                                                {
+                                                    <strong>@(invoiceItem?.Item.ClassifiedTaxCategory?.FirstOrDefault()?.Percent?.Value.ToString() + " %")</strong>
+                                                }
+                                                else
+                                                {
+                                                    <strong>@(new TaxCategories().GetCategories(invoiceItem?.Item.ClassifiedTaxCategory?.FirstOrDefault()?.ID?.Value))</strong>
+                                                }
+                                            }
+
+                                        </td>
+                                        <td class="right">
+                                            <strong>@(invoiceItem?.LineExtensionAmount?.Value)</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="6">
+                                            @if (invoiceItem?.AllowanceCharge.Count > 0)
+                                            {
+                                                <div>
+                                                    <table class="table table-clear">
+                                                        <tr>
+                                                            <td>Popust/Trošak</td>
+                                                            <td>Razlog popusta/troška</td>
+                                                            <td>Osnovica iznosa popusta/troška</td>
+                                                            <td>Postotak popusta/troška</td>
+                                                            <td>Iznos popusta/troška</td>
+
+                                                        </tr>
+
+                                                        @foreach (var allowance in invoiceItem?.AllowanceCharge)
+                                                        {
+                                                            <tr>
+                                                                @{
+                                                                    var isInvoiceItemCharge = allowance?.ChargeIndicator?.Value;
+                                                                    if (isInvoiceItemCharge.HasValue && !isInvoiceItemCharge.Value)
+                                                                    {
+
+                                                                        <td class="text-left">Popust</td>
+
+                                                                    }
+                                                                    else if (isInvoiceItemCharge.HasValue)
+                                                                    {
+                                                                        <td class="text-left">Trošak</td>
+
+
+                                                                    }
+                                                                }
+                                                                <td class="text-left">
+                                                                    @(allowance?.AllowanceChargeReason?.FirstOrDefault()?.Value)
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @(allowance?.BaseAmount?.Value)
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @(allowance?.MultiplierFactorNumeric?.Value)
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    @(allowance?.Amount?.Value)
+                                                                </td>
+
+
+                                                            </tr>
+                                                        }
+
+                                                    </table>
+                                                </div>
+                                            }
+
+
+                                            <table class="table table-clear">
+                                                @if (invoiceItem?.Item?.Description.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Opis artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.Description?.FirstOrDefault()?.Value)
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                                @if (invoiceItem?.Note?.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Napomena:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Note?.FirstOrDefault()?.Value)
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                                @if (invoiceItem?.InvoicePeriod?.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Razdoblje stavke računa:
+                                                        </td>
+                                                        <td>
+                                                            @(FormatDateTime(invoiceItem?.InvoicePeriod?.FirstOrDefault()?.StartDate?.Value))
+                                                            -
+                                                            @(FormatDateTime(invoiceItem?.InvoicePeriod?.FirstOrDefault()?.EndDate?.Value))
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (invoiceItem?.OrderLineReference?.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Stavka narudžbenice:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.OrderLineReference?.FirstOrDefault()?.LineID?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (invoiceItem?.DocumentReference?.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Identifikator objekta stavke računa:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.DocumentReference?.FirstOrDefault()?.ID?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (!string.IsNullOrEmpty(invoiceItem?.Item?.SellersItemIdentification.ID.Value))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Identifikator artikla prodavatelja:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.SellersItemIdentification.ID.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (!string.IsNullOrEmpty(invoiceItem?.Item?.BuyersItemIdentification.ID.Value))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Identifikator artikla kupca:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.BuyersItemIdentification.ID.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (!string.IsNullOrEmpty(invoiceItem?.Item?.StandardItemIdentification.ID.Value))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Standardni identifikator artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.StandardItemIdentification.ID.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (invoiceItem?.Item?.CommodityClassification.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Identifikator klasifikacije artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.CommodityClassification.FirstOrDefault().ItemClassificationCode?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (!string.IsNullOrEmpty(invoiceItem?.Item?.OriginCountry?.IdentificationCode?.Value))
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Zemlja porijekla artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Item?.OriginCountry?.IdentificationCode?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                @foreach (var additionalItemProperty in invoiceItem?.Item?.AdditionalItemProperty)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @(additionalItemProperty?.Name?.Value)
+                                                        </td>
+                                                        <td>
+                                                            @(additionalItemProperty?.Value?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                                @if (invoiceItem?.Price?.AllowanceCharge?.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            Bruto cijena artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Price?.AllowanceCharge?.FirstOrDefault()?.BaseAmount?.Value)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Popust na cijenu artikla:
+                                                        </td>
+                                                        <td>
+                                                            @(invoiceItem?.Price?.AllowanceCharge?.FirstOrDefault()?.Amount?.Value)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @if (Model.AllowanceCharge.Count > 0)
+                        {
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h6>Popusti i troškovi</h6>
+                                <table class="table table-clear">
+                                    <tr>
+                                        <td><strong>Popust/Trošak</strong></td>
+                                        <td><strong>Razlog popusta/troška</strong></td>
+                                        <td><strong>Osnovica iznosa popusta/troška</strong></td>
+                                        <td><strong>Postotak popusta/troška</strong></td>
+                                        <td><strong>Kategorija PDV-a</strong></td>
+                                        <td><strong>Stopa PDV-a</strong></td>
+                                        <td><strong>Iznos popusta/troška</strong></td>
+
+                                    </tr>
+
+                                    @foreach (var allowance in Model?.AllowanceCharge)
+                                    {
+                                        <tr>
+                                            @{
+                                                var isCharge = allowance?.ChargeIndicator?.Value;
+                                                if (isCharge.HasValue && !isCharge.Value)
+                                                {
+
+                                                    <td class="text-left">Popust</td>
+
+                                                }
+                                                else if (isCharge.HasValue)
+                                                {
+                                                    <td class="text-left">Trošak</td>
+
+
+                                                }
+                                            }
+                                            <td class="text-left">
+                                                @(allowance?.AllowanceChargeReason?.FirstOrDefault()?.Value)
+                                            </td>
+                                            <td class="text-center">
+                                                @(allowance?.BaseAmount?.Value)
+                                            </td>
+                                            <td class="text-center">
+                                                @(allowance?.MultiplierFactorNumeric?.Value)
+                                            </td>
+                                            <td class="text-center">
+                                                @(new TaxCategories().GetCategories(allowance?.TaxCategory?.FirstOrDefault().ID?.Value))
+                                            </td>
+                                            <td class="text-center">
+                                                @(allowance?.TaxCategory?.FirstOrDefault()?.Percent?.Value)
+                                            </td>
+                                            <td class="text-left">
+                                                <strong>@(allowance?.Amount?.Value)</strong>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+                        }
+                        <div class="row mb-4">
+                            <div class="col-sm-6"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h6>Ukupni iznosi</h6>
+                                <table class="table table-clear">
+                                    <tbody>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Zbroj neto iznosa stavki računa:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model?.LegalMonetaryTotal?.LineExtensionAmount?.Value)</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Ukupan popust:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.AllowanceTotalAmount?.Value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Ukupan trošak:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.ChargeTotalAmount?.Value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Ukupan iznos računa bez PDV-a:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model?.LegalMonetaryTotal?.TaxExclusiveAmount?.Value)</td>
+                                        </tr>
+                                        @foreach (var item in Model?.TaxTotal)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <strong>Ukupan iznos PDV-a (@(item.TaxAmount?.currencyID))</strong>
+                                                </td>
+                                                <td class="text-right">
+                                                    @(item?.TaxAmount?.Value)
+                                                </td>
+                                            </tr>
+
+
+                                        }
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Ukupan iznos računa sa PDV-om:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.TaxInclusiveAmount?.Value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Plaćeno unaprijed:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.PrepaidAmount?.Value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Iznos zaokruživanja:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.PayableRoundingAmount?.Value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>Iznos za plaćanje:</strong>
+                                            </td>
+                                            <td class="text-right">@(Model.LegalMonetaryTotal?.PayableAmount?.Value)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h6>Rekapitulacija poreza</h6>
+                            <table class="table table-clear">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Stopa PDV-a</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Osnovica PDV</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Iznos PDV-a</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Razlog oslobođenja</strong>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-center">
+                                        @(Model) %
+                                    </td>
+                                    <td class="text-right">@(subTotal?.TaxableAmount?.Value)</td>
+
+                                    <td class="text-right">@(subTotal?.TaxAmount?.Value)</td>
+                                    <td class="text-right">@(subTotal?.TaxCategory?.TaxExemptionReason?.FirstOrDefault()?.Value)</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                </div>
+                </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row mb-12">
+                        <div class="col-sm-12 text-center">
+                            <strong class="text-dark mt-12 text-center">Vizualizaciju dokumenta je kreirao FineEx sustav</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@functions
+{
+    private string FormatDateTime(DateTimeOffset? offset)
+    {
+        if (offset.HasValue && offset.Value != DateTimeOffset.MinValue)
+        {
+            return @offset.Value.ToString("dd.MM.yyyy : HH:mm");
+        }
+
+        return string.Empty;
+    }
+
+    private string FormatTime(DateTimeOffset? offset)
+    {
+        if (offset.HasValue && offset.Value != DateTimeOffset.MinValue)
+        {
+            return @offset.Value.ToString("HH:mm");
+        }
+
+        return string.Empty;
+    }
+
+    private string NullableDiv(string title, string text)
+    {
+        if (!string.IsNullOrEmpty(text))
+        {
+            return $"{title} {text}";
+        }
+
+        return string.Empty;
+    }
+}
