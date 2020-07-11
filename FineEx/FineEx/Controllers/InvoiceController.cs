@@ -1,4 +1,6 @@
-﻿using FineEx.BusinessLayer.Services.InvoiceService;
+﻿using FineEx.BusinessLayer.Models.CompanyModels;
+using FineEx.BusinessLayer.Services.CompanyService;
+using FineEx.BusinessLayer.Services.InvoiceService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace FineEx.Controllers
     public class InvoiceController : Controller
     {
         private InvoiceService _invoiceService;
+        private CompanyService _companyService;
+        private List<CompanyViewModel> _companies;
 
         public InvoiceController()
         {
@@ -18,6 +22,16 @@ namespace FineEx.Controllers
                 new SelectListItem { Value = "1", Text = "Incoming"},
                 new SelectListItem { Value = "2", Text = "Outgoing"}
             }, "Value", "Text");
+
+            _companyService = new CompanyService();
+            _companies = _companyService.GetCompanies();
+            IEnumerable<SelectListItem> selectList = from c in _companies
+                                                     select new SelectListItem
+                                                     {
+                                                         Value = c.BusinessNumber,
+                                                         Text = c.CompanyName
+                                                     };
+            ViewBag.Companies = new SelectList(selectList, "Value", "Text");
         }
 
         [HttpGet]
