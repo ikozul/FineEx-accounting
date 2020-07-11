@@ -7,7 +7,7 @@ INSERT INTO [Roles] ([Id], [Name]) VALUES
   (20, 'Accountant')
 GO
 
-
+select * from Items
 select * from Users
 select * from Companies
 select * from UsersCompanies

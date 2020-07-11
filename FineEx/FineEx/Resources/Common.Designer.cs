@@ -88,6 +88,15 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoices.
+        /// </summary>
+        public static string Invoices_Menu {
+            get {
+                return ResourceManager.GetString("Invoices_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to hr.
         /// </summary>
         public static string Language {

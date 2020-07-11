@@ -14,8 +14,8 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         {
             Id = invoice.Id;
             Approved = invoice.Incoming;
-            SenderNameNumber = invoice.Sender.Name + invoice.Sender.BusinessNumber;
-            ReceiverNameNumber = invoice.Receiver.Name + invoice.Receiver.BusinessNumber;
+            Sender = invoice.Sender;
+            Receiver = invoice.Receiver;
             PaymentMethod = invoice.PaymentMethod.PaymentType;
             InvoiceDate = invoice.InvoiceDate;
             DueDate = invoice.DueDate;
@@ -29,8 +29,8 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
 
         public int Id { get; set; }
         public bool Approved { get; set; }
-        public string SenderNameNumber { get; set; }
-        public string ReceiverNameNumber { get; set; }
+        public Company Sender { get; set; }
+        public Company Receiver { get; set; }
         public string PaymentMethod { get; set; }
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
