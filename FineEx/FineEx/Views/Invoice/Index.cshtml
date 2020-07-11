@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
     SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
+    SelectList companyList = ViewBag.Companies as SelectList;
 }
 
 <br />
@@ -21,7 +22,7 @@
             <div class="form-group">
                 @Html.Label("Company:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
-                    @Html.DropDownList("ddlCompany", invoiceTypeList, "Select company", new { @class = "form-control col-lg-12" })
+                    @Html.DropDownList("ddlCompany", companyList, "Select company", new { @class = "form-control col-lg-12" })
                 </div>
             </div>
         </div>
