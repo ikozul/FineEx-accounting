@@ -17,14 +17,21 @@ namespace FineEx.Controllers
             {
                 new SelectListItem { Value = "1", Text = "Incoming"},
                 new SelectListItem { Value = "2", Text = "Outgoing"}
-            });
+            }, "Value", "Text");
         }
 
         [HttpGet]
         [Route("invoices")]
         public ActionResult Index()
         {
-            return View();
+            if (Session["user"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         [HttpPost]

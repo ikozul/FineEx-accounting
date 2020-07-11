@@ -5,14 +5,25 @@
 }
 
 <br />
-<h2>Invoices</h2>
+<h2 class="ml-2">Invoices</h2>
 
-<div class="col-lg-4 pl-lg-0 mt-lg-5">
-
-    <div class="form-group">
-        @Html.Label("Invoice Type:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
-        <div class="col-md-12">
-            @Html.DropDownList("ddlInvoiceType", invoiceTypeList, "Select invoice type", new { @class = "form-control col-md-12" })
+<div class="col-lg-9 pl-lg-0 mt-lg-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.Label("Invoice Type:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlInvoiceType", invoiceTypeList, "Select invoice type", new { @class = "form-control col-lg-12" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.Label("Company:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlCompany", invoiceTypeList, "Select company", new { @class = "form-control col-lg-12" })
+                </div>
+            </div>
         </div>
     </div>
 </div>
