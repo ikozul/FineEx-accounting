@@ -18,7 +18,14 @@ namespace FineEx.Controllers
         [Route("login")]
         public ActionResult Login()
         {
-            return View();
+            if (Session["user"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Invoice");
+            }
         }
 
         [HttpPost]
@@ -39,7 +46,7 @@ namespace FineEx.Controllers
                     return View();
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Invoice");
         }
 
         [HttpGet]
