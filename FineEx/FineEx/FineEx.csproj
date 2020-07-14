@@ -233,6 +233,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Invoice\Invoice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Invoice.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Invoice\Invoice.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Invoice.hr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Login\Login.hr.Designer.cs">
       <DependentUpon>Login.hr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -683,6 +693,7 @@
     <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\_InvoicePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -706,6 +717,14 @@
     <EmbeddedResource Include="Resources\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Invoice\Invoice.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Invoice.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Invoice\Invoice.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Invoice.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Login\Login.hr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

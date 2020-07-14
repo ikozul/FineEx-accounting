@@ -1,4 +1,5 @@
 ﻿using FineEx.BusinessLayer.Models.CompanyModels;
+using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
 using System;
@@ -14,6 +15,8 @@ namespace FineEx.Controllers
         private InvoiceService _invoiceService;
         private CompanyService _companyService;
         private List<CompanyViewModel> _companies;
+        private List<InvoiceViewModel> _invoices;
+
 
         public InvoiceController()
         {
@@ -22,7 +25,7 @@ namespace FineEx.Controllers
                 new SelectListItem { Value = "1", Text = "Incoming"},
                 new SelectListItem { Value = "2", Text = "Outgoing"}
             }, "Value", "Text");
-
+            
             _companyService = new CompanyService();
             _companies = _companyService.GetCompanies();
             IEnumerable<SelectListItem> selectList = from c in _companies
@@ -51,8 +54,16 @@ namespace FineEx.Controllers
         [HttpPost]
         public ActionResult Partial(int invoiceType, string businessNumber)
         {
-
-            return View();
+            _invoiceService = new InvoiceService(businessNumber);
+            if (invoiceType == 1)
+            {
+                _invoices = _invoiceService.GetIncomingInvoices();
+            }
+            else
+            {
+                _invoices = _invoiceService.GetOutgoingInvoices();
+            }
+            return PartialView("_InvoicePartial", _invoices);
         }
     }
 }
