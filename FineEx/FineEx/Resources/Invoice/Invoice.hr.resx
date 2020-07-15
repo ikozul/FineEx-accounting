@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Approved" xml:space="preserve">
+    <value>Odobreno (da/ne)</value>
+  </data>
   <data name="Company" xml:space="preserve">
     <value>Tvrtka</value>
   </data>
@@ -126,16 +129,61 @@
   <data name="CreateInvoice" xml:space="preserve">
     <value>Nova faktura</value>
   </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Datum Dospijeća</value>
+  </data>
+  <data name="IncomingInvoice" xml:space="preserve">
+    <value>Ulazne</value>
+  </data>
+  <data name="InvoiceDate" xml:space="preserve">
+    <value>Datum Izdavanja</value>
+  </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>Broj Fakture</value>
+  </data>
   <data name="InvoiceType" xml:space="preserve">
     <value>Vrsta fakture</value>
   </data>
   <data name="InvoiceTypePlaceholder" xml:space="preserve">
     <value>--- Odaberi vrstu fakture ---</value>
   </data>
+  <data name="Issuer" xml:space="preserve">
+    <value>Izdavatelj</value>
+  </data>
+  <data name="OutgoingInvoice" xml:space="preserve">
+    <value>Izlazne</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Način Plaćanja</value>
+  </data>
+  <data name="PriceWithoutVat" xml:space="preserve">
+    <value>Cijena Bez Poreza</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Primatelj</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Pošiljatelj</value>
+  </data>
   <data name="ShowInvoices" xml:space="preserve">
     <value>Prikaži fakture</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Fakture</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Ukupna Cijena</value>
+  </data>
+  <data name="UniqueInvoiceID" xml:space="preserve">
+    <value>Jedinstveni ID Fakture</value>
+  </data>
+  <data name="VatNuber" xml:space="preserve">
+    <value>Broj Poreza</value>
+  </data>
+  <data name="VatPercentage" xml:space="preserve">
+    <value>Postotak Poreza</value>
+  </data>
+  <data name="VatSwiftNumberClient" xml:space="preserve">
+    <value>Swift Klijent Broja Poreza</value>
   </data>
 </root>

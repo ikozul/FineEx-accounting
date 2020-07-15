@@ -16,15 +16,12 @@ namespace FineEx.DataLayer.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        public bool Incoming { get; set; }
+        public bool Approved { get; set; }
+        public string PdfPath { get; set; }
 
         [ForeignKey("Sender")]
         public int SenderId { get; set; }
-        public virtual Company Sender
-        {
-            get; set;
-        }
+        public virtual Company Sender { get; set; }
 
         [ForeignKey("Receiver")]
         public int ReceiverId { get; set; }
@@ -37,21 +34,13 @@ namespace FineEx.DataLayer.Models
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
 
-        public string ProtectedCodeOfSupplier { get; set; }
         public string UniqueIdentifierOfInvoice { get; set; }
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
-
         public decimal PriceWithoutVat { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal VatPercentage { get; set; }
-
-        [ForeignKey("Location")]  
-        public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
-
         public string InvoiceNumber { get; set; }
-
         public virtual User User { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }

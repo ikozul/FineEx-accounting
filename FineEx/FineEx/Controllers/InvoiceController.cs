@@ -22,10 +22,10 @@ namespace FineEx.Controllers
         {
             ViewBag.InvoiceTypes = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Value = "1", Text = "Incoming"},
-                new SelectListItem { Value = "2", Text = "Outgoing"}
+                new SelectListItem { Value = "1", Text = FineEx.Resources.Invoice.Invoice.IncomingInvoice },
+                new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.OutgoingInvoice }
             }, "Value", "Text");
-            
+
             _companyService = new CompanyService();
             _companies = _companyService.GetCompanies();
             IEnumerable<SelectListItem> selectList = from c in _companies
