@@ -61,6 +61,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved (yes/no).
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string Company {
@@ -88,6 +97,42 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due Date.
+        /// </summary>
+        public static string DueDate {
+            get {
+                return ResourceManager.GetString("DueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incoming.
+        /// </summary>
+        public static string IncomingInvoice {
+            get {
+                return ResourceManager.GetString("IncomingInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of Issue.
+        /// </summary>
+        public static string InvoiceDate {
+            get {
+                return ResourceManager.GetString("InvoiceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice Number.
+        /// </summary>
+        public static string InvoiceNumber {
+            get {
+                return ResourceManager.GetString("InvoiceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice Type.
         /// </summary>
         public static string InvoiceType {
@@ -106,6 +151,60 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Issuer.
+        /// </summary>
+        public static string Issuer {
+            get {
+                return ResourceManager.GetString("Issuer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outgoing.
+        /// </summary>
+        public static string OutgoingInvoice {
+            get {
+                return ResourceManager.GetString("OutgoingInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Method.
+        /// </summary>
+        public static string PaymentMethod {
+            get {
+                return ResourceManager.GetString("PaymentMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Without Vat.
+        /// </summary>
+        public static string PriceWithoutVat {
+            get {
+                return ResourceManager.GetString("PriceWithoutVat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string Recipient {
+            get {
+                return ResourceManager.GetString("Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sender.
+        /// </summary>
+        public static string Sender {
+            get {
+                return ResourceManager.GetString("Sender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Invoices.
         /// </summary>
         public static string ShowInvoices {
@@ -120,6 +219,51 @@ namespace FineEx.Resources.Invoice {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Price.
+        /// </summary>
+        public static string TotalPrice {
+            get {
+                return ResourceManager.GetString("TotalPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Invoice ID.
+        /// </summary>
+        public static string UniqueInvoiceID {
+            get {
+                return ResourceManager.GetString("UniqueInvoiceID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vat Number.
+        /// </summary>
+        public static string VatNuber {
+            get {
+                return ResourceManager.GetString("VatNuber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vat Percentage.
+        /// </summary>
+        public static string VatPercentage {
+            get {
+                return ResourceManager.GetString("VatPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swift Vat Number Client.
+        /// </summary>
+        public static string VatSwiftNumberClient {
+            get {
+                return ResourceManager.GetString("VatSwiftNumberClient", resourceCulture);
             }
         }
     }

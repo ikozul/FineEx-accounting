@@ -1,1 +1,24 @@
 ﻿@model IEnumerable<FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel>
+@using GridMvc.Html
+
+<div>
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(i => i.Id).Titled("ID");
+        columns.Add().RenderValueAs(i => i.Approved ? "Yes" : "No");
+        columns.Add(i => i.Approved).Titled(FineEx.Resources.Invoice.Invoice.Approved).Filterable(true);
+        columns.Add(i => i.Sender.Name).Titled(FineEx.Resources.Invoice.Invoice.Sender);
+        columns.Add(i => i.Receiver.Name).Titled(FineEx.Resources.Invoice.Invoice.Recipient);
+        columns.Add(i => i.PaymentMethod).Titled(FineEx.Resources.Invoice.Invoice.PaymentMethod);
+        columns.Add(i => i.InvoiceDate).Titled(FineEx.Resources.Invoice.Invoice.InvoiceDate);
+        columns.Add(i => i.DueDate).Titled(FineEx.Resources.Invoice.Invoice.DueDate);
+        columns.Add(i => i.UniqueIdentifierOfInvoice).Titled(FineEx.Resources.Invoice.Invoice.UniqueInvoiceID);
+        columns.Add(i => i.VatNumber).Titled(FineEx.Resources.Invoice.Invoice.VatNuber);
+        columns.Add(i => i.VatSwiftBankClient).Titled(FineEx.Resources.Invoice.Invoice.VatSwiftNumberClient);
+        columns.Add(i => i.PriceWithoutVat).Titled(FineEx.Resources.Invoice.Invoice.PriceWithoutVat);
+        columns.Add(i => i.VatPercentage).Titled(FineEx.Resources.Invoice.Invoice.VatPercentage);
+        columns.Add(i => i.TotalPrice).Titled(FineEx.Resources.Invoice.Invoice.TotalPrice);
+        columns.Add(i => i.InvoiceNumber).Titled(FineEx.Resources.Invoice.Invoice.InvoiceNumber);
+        columns.Add(i => i.Issuer).Titled(FineEx.Resources.Invoice.Invoice.Issuer);
+    }).WithPaging(10).Sortable(true)
+</div>
