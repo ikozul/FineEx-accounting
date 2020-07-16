@@ -2,47 +2,86 @@
 @{
     ViewBag.Title = "Index";
     SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
+    SelectList companyList = ViewBag.Companies as SelectList;
 }
 
+<link href="~/Content/custom/table.css" rel="stylesheet" />
+
 <br />
-<h2>Invoices</h2>
+<h2 class="ml-2 p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h2>
 
-<div class="col-lg-4 pl-lg-0 mt-lg-5">
-
-    <div class="form-group">
-        @Html.Label("Invoice Type:", htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
-        <div class="col-md-12">
-            @Html.DropDownList("ddlInvoiceType", invoiceTypeList, "Select invoice type", new { @class = "form-control col-md-12" })
+<div class="pl-lg-0 mt-lg-4">
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceType, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlInvoiceType", invoiceTypeList, FineEx.Resources.Invoice.Invoice.InvoiceTypePlaceholder, new { @class = "picker form-control col-lg-12" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlCompany", companyList, FineEx.Resources.Invoice.Invoice.CompanyPlaceholder, new { @class = "picker form-control col-lg-12" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <button id="showTable" href="Invoice/Partial" class="btn btn-warning mx-3 my-2 mr-lg-5 font-weight-bold" disabled>@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
         </div>
     </div>
 </div>
 
-<div id="container">
+<div id="container" class="main-table-container bg-light ml-2 py-2" hidden>
 
 </div>
 
 <div>
-    <a id="addRoute" href="Invoice/Create" class="btn btn-success mx-3 mr-lg-5 disabled">Create New Invoice</a>
+    <button id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 mr-lg-5" disabled>@FineEx.Resources.Invoice.Invoice.CreateInvoice</button>
 </div>
 
 @section scripts {
     <script>
-        $('select').on('change', function () {
-            var invoiceTypeVal = $(this).val();
-            console.log(invoiceTypeVal);
-            if (invoiceTypeVal != 0) {
-                $.ajax({
-                    url: '/Invoice/Partial?invoiceTypeVal=' + invoiceTypeVal,
-                    type: 'POST',
-                    success: function (data) {
-                        $("#container").html(data)
-                    }
-                })
-            }
-            else {
-                $("#container").empty();
+        $(document).ready(function () {
+            mainGrid = document.getElementById("container");
+            mainGrid.addEventListener("wheel", scrollHorizontally, false);
+        })
+
+        $(".picker").on("change", function () {
+            var $sels = $('.picker option:selected[value=""]');
+            console.log($("#ddlInvoiceType").val());
+            console.log($("#ddlCompany").val());
+            if ($sels.length == 0) {
+                $("#showTable").prop("disabled", false);
+            } else {
+                $("#showTable").prop("disabled", true);
             }
         });
+
+        $("#showTable").on("click", function () {
+            var invoiceTypeVal = $("#ddlInvoiceType").val();
+            var companyBusinessNumber = $("#ddlCompany").val();
+            //console.log(invoiceTypeVal);
+            //console.log(companyBusinessNumber);
+            $.ajax({
+                url: '/invoice/partial?invoiceType=' + invoiceTypeVal + '&businessNumber=' + companyBusinessNumber,
+                type: 'POST',
+                success: function (data) {
+                    $("#container").prop("hidden", false);
+                    $("#container").html(data)
+                }
+            })
+        });
+
+        function scrollHorizontally(e) {
+            e = window.event || e;
+            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+            $("#container").scrollLeft($("#container").scrollLeft() - delta * 50);
+            e.preventDefault();
+        }
+
     </script>
 }
 

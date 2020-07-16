@@ -126,6 +126,9 @@
   <data name="Documents_Menu" xml:space="preserve">
     <value>Documents</value>
   </data>
+  <data name="Invoices_Menu" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>hr</value>
   </data>

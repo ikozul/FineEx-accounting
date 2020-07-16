@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
@@ -18,10 +19,11 @@
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Company_Menu, "Index", "Company", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Documents_Menu, "Index", "Document", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Statistics_Menu, "Index", "Statistics", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Invoices_Menu, "Index", "Invoice", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        @{ FineEx.BusinessLayer.Models.User.UserViewModel user = (FineEx.BusinessLayer.Models.User.UserViewModel)Session["user"]; }
+                        @{ FineEx.BusinessLayer.Models.UserModels.UserViewModel user = (FineEx.BusinessLayer.Models.UserModels.UserViewModel)Session["user"]; }
                         @((Session["user"] == null) ? @FineEx.Resources.Common.Account_Dropdown : user.Email)
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -87,5 +89,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/javascript")
     @RenderSection("scripts", required: false)
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
 </body>
 </html>

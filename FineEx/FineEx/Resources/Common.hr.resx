@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account_Dropdown" xml:space="preserve">
-    <value>Račun</value>
+    <value>Korisnički Račun</value>
   </data>
   <data name="Company_Menu" xml:space="preserve">
     <value>Tvrtka</value>
   </data>
   <data name="Documents_Menu" xml:space="preserve">
     <value>Dokumenti</value>
+  </data>
+  <data name="Invoices_Menu" xml:space="preserve">
+    <value>Fakture</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>en</value>
