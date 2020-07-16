@@ -41,42 +41,9 @@
                                 Datum dospijeća plaćanja: @FormatDateTime(Model.DueDate)
                             </div>
                             @{
-                                foreach (var means in Model?.PaymentMeans)
-                                {
-                                    @NullableDiv("Šifra načina plaćanja:", means?.PaymentMeansCode?.Value);
-                                    if (!string.IsNullOrEmpty(means?.PaymentDueDate?.ValueString))
-                                    {
-                                        <div> Datum plaćanja: @FormatDateTime(means?.PaymentDueDate?.Value) </div>
-                                    }
-
-                                    if (means.PaymentID?.Count > 0)
-                                    {
-                                        <div>
-                                            Poziv na broj:
-                                            @foreach (var pId in means.PaymentID)
-                                            {
-                                                @NullableDiv(string.Empty, pId?.Value);
-                                            }
-                                        </div>
-                                    }
+                                @NullableDiv("Šifra načina plaćanja:", means?.PaymentMeansCode?.Value);
 
                                     @NullableDiv("Model zaduženja:", means.InstructionID?.Value);
-
-                                    if (means?.InstructionNote.Count > 0)
-                                    {
-                                        <div>
-                                            Opis plaćanja:
-                                            @foreach (var insNote in means?.InstructionNote)
-                                            {
-                                                <div>@(insNote?.Value) </div>
-                                            }
-                                        </div>
-                                    }
-
-                                    @NullableDiv("Broj računa primatelja:", means?.PayeeFinancialAccount?.ID?.Value);
-                                    @NullableDiv("Naziv računa Primatelja:", means?.PayeeFinancialAccount?.Name?.Value);
-                                    @NullableDiv("Identifikator banke primatelja:", means?.PayeeFinancialAccount?.FinancialInstitutionBranch?.ID?.Value);
-                                    @NullableDiv("Naziv banke Primatelja:", means?.PayeeFinancialAccount?.FinancialInstitutionBranch?.Name?.Value);
 
                                     @NullableDiv("Broj računa platitelja:", means?.PayerFinancialAccount?.ID?.Value);
                                     @NullableDiv("Naziv računa platitelja:", means?.PayerFinancialAccount?.Name?.Value);
@@ -250,49 +217,7 @@
                                 @(Model?.AccountingSupplierParty?.Party?.PostalAddress?.Country?.IdentificationCode?.Value)
                             </div>
                             @NullableDiv("Dodatne pravne informacije: ", Model?.AccountingSupplierParty?.Party?.PartyLegalEntity?.FirstOrDefault()?.CompanyLegalForm?.Value)
-                            @{
-                                string firstName = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.FirstName?.Value;
-                                if (firstName != null)
-                                {
-                                    @:<strong>Kontakt</strong>
-                                    <div>
-                                        Ime: @(firstName)
-                                    </div>
-                                }
 
-                                string lastName = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.FamilyName?.Value;
-                                if (lastName != null)
-                                {
-                                    <div>
-                                        Prezime: @(lastName)
-                                    </div>
-                                }
-
-
-                                string telephone = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telephone?.Value;
-                                if (telephone != null)
-                                {
-                                    <div>
-                                        Telefon: @(telephone)
-                                    </div>
-                                }
-
-                                string telefax = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telefax?.Value;
-                                if (telefax != null)
-                                {
-                                    <div>
-                                        Telefax: @(telefax)
-                                    </div>
-                                }
-
-                                string email = Model?.AccountingSupplierParty?.Party?.Person?.FirstOrDefault()?.Contact?.ElectronicMail?.Value;
-                                if (email != null)
-                                {
-                                    <div>
-                                        E-mail: @(email)
-                                    </div>
-                                }
-                            }
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -321,49 +246,7 @@
                                 ISO kod države:
                                 @(Model?.AccountingCustomerParty?.Party?.PostalAddress?.Country?.IdentificationCode?.Value)
                             </div>
-                            @{
-                                string customerFirstName = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.FirstName?.Value;
-                                if (customerFirstName != null)
-                                {
-                                    @:<strong>Kontakt</strong>
-                                    <div>
-                                        Ime: @(customerFirstName)
-                                    </div>
-                                }
 
-                                string customerLastName = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.FamilyName?.Value;
-                                if (customerLastName != null)
-                                {
-                                    <div>
-                                        Prezime: @(customerLastName)
-                                    </div>
-                                }
-
-
-                                string customerTelephone = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telephone?.Value;
-                                if (customerTelephone != null)
-                                {
-                                    <div>
-                                        Telefon: @(customerTelephone)
-                                    </div>
-                                }
-
-                                string customerTelefax = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.Telefax?.Value;
-                                if (customerTelefax != null)
-                                {
-                                    <div>
-                                        Telefax: @(customerTelefax)
-                                    </div>
-                                }
-
-                                string customerEmail = Model?.AccountingCustomerParty?.Party?.Person?.FirstOrDefault()?.Contact?.ElectronicMail?.Value;
-                                if (customerEmail != null)
-                                {
-                                    <div>
-                                        E-mail: @(customerEmail)
-                                    </div>
-                                }
-                            }
                         </div>
                     </div>
                 </div>
@@ -383,7 +266,6 @@
                                 <div>@(deliveryAddress)</div>
                             }
 
-                            @NullableDiv("Lokacija dostave: ", Model?.Delivery?.FirstOrDefault()?.DeliveryLocation?.Address?.AddressLine.FirstOrDefault()?.Line?.Value)
                             @NullableDiv("Isporučitelj: ", Model?.Delivery?.FirstOrDefault()?.Despatch?.DespatchParty?.PartyName?.FirstOrDefault()?.Name?.Value)
                             @NullableDiv("Preuzimatelj: ", Model?.Delivery?.FirstOrDefault()?.DeliveryParty?.PartyName?.FirstOrDefault()?.Name?.Value)
                         }
@@ -408,12 +290,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var invoiceItem in Model?.InvoiceLine)
+                                @foreach (var invoiceItem in Model.Items)
                                 {
 
                                     <tr>
                                         <td class="center">
-                                            <strong>@(invoiceItem?.ID?.Value)</strong>
+                                            <strong>@(invoiceItem.)</strong>
                                         </td>
                                         <td class="left strong">
                                             <strong>@(invoiceItem?.Item?.Name?.Value)</strong>
