@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\FineEx\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="IronBarCode, Version=2020.6.0.0, Culture=neutral, PublicKeyToken=b971bb3971bdf306, processorArchitecture=MSIL">
+      <HintPath>..\FineEx\packages\BarCode.2020.6.0\lib\net40\IronBarCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Html.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\FineEx\packages\Microsoft.AspNetCore.Html.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.AspNetCore.Html.Abstractions.dll</HintPath>
     </Reference>
@@ -87,6 +90,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NReco.PdfGenerator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=231663d50a41b451, processorArchitecture=MSIL">
+      <HintPath>..\FineEx\packages\NReco.PdfGenerator.1.2.0\lib\net45\NReco.PdfGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="RazorLight, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\FineEx\packages\RazorLight.1.1.0\lib\net451\RazorLight.dll</HintPath>
     </Reference>
@@ -127,6 +133,10 @@
       <HintPath>..\FineEx\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\FineEx\packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\FineEx\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
@@ -247,6 +257,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\FineEx\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -308,6 +319,8 @@
     <Compile Include="Services\InvoiceService\InvoiceService.cs" />
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
+    <Compile Include="Services\PdfGenerator\Model\QuickResponseCode.cs" />
+    <Compile Include="Services\PdfGenerator\PdfGenerator.cs" />
     <Compile Include="Services\PdfGenerator\ViewToStringRenderer.cs" />
     <Compile Include="Services\Registration\IRegistrationService.cs" />
     <Compile Include="Services\Registration\RegistrationService.cs" />
@@ -316,7 +329,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Services\PdfGenerator\Views\InvoicePdf.cshtml" />
+    <None Include="Services\PdfGenerator\Views\InvoicePdf.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FineEx.DataLayer\FineEx.DataLayer.csproj">

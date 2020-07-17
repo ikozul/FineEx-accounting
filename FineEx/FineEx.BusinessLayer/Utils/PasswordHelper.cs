@@ -9,10 +9,6 @@ namespace FineEx.BusinessLayer.Utils
 {
     public static class PasswordHelper
     {
-        public static bool CheckPasswordValidity(string plainPassword)
-        {
-            return plainPassword == HashPassword(plainPassword);
-        }
         /// <summary>
         /// Method that hashes password
         /// </summary>
