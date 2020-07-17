@@ -1,0 +1,8 @@
+﻿
+.main-table-container:not(:empty) {
+    overflow-x: scroll;
+}
+
+.main-table-container table {
+    white-space: nowrap
+}

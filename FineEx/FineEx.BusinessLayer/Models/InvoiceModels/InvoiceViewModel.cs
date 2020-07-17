@@ -13,7 +13,7 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public InvoiceViewModel(Invoice invoice)
         {
             Id = invoice.Id;
-            Approved = invoice.Incoming;
+            Approved = invoice.Approved;
             Sender = invoice.Sender;
             Receiver = invoice.Receiver;
             PaymentMethod = invoice.PaymentMethod.PaymentType;
@@ -23,6 +23,9 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
             VatNumber = invoice.VatNumber;
             VatSwiftBankClient = invoice.VatSwiftBankClient;
             InvoiceNumber = invoice.InvoiceNumber;
+            PriceWithoutVat = invoice.PriceWithoutVat;
+            TotalPrice = invoice.TotalPrice;
+            VatPercentage = invoice.VatPercentage;
             Issuer = invoice.User.FullName;
             Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.ItemQuantity)).ToList();
         }
@@ -38,6 +41,9 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
         public string InvoiceNumber { get; set; }
+        public decimal PriceWithoutVat { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal VatPercentage { get; set; }
         public string Issuer { get; set; }
         public List<ItemViewModel> Items { get; set; }
     }

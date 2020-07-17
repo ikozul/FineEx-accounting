@@ -5,12 +5,14 @@
     SelectList companyList = ViewBag.Companies as SelectList;
 }
 
+<link href="~/Content/custom/table.css" rel="stylesheet" />
+
 <br />
 <h2 class="ml-2 p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h2>
 
-<div class="col-lg-9 pl-lg-0 mt-lg-4">
+<div class="pl-lg-0 mt-lg-4">
     <div class="row mb-5">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceType, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -18,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -26,22 +28,27 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4 mt-4">
+            <button id="showTable" href="Invoice/Partial" class="btn btn-warning mx-3 my-2 mr-lg-5 font-weight-bold" disabled>@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
+        </div>
     </div>
 </div>
 
-<div id="container">
+<div id="container" class="main-table-container bg-light ml-2 py-2" hidden>
 
 </div>
 
-<div>
-    <button id="showTable" href="Invoice/Partial" class="btn btn-warning mx-3 my-2 mr-lg-5 font-weight-bold" disabled>@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
-</div>
 <div>
     <button id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 mr-lg-5" disabled>@FineEx.Resources.Invoice.Invoice.CreateInvoice</button>
 </div>
 
 @section scripts {
     <script>
+        $(document).ready(function () {
+            mainGrid = document.getElementById("container");
+            mainGrid.addEventListener("wheel", scrollHorizontally, false);
+        })
+
         $(".picker").on("change", function () {
             var $sels = $('.picker option:selected[value=""]');
             console.log($("#ddlInvoiceType").val());
@@ -56,16 +63,25 @@
         $("#showTable").on("click", function () {
             var invoiceTypeVal = $("#ddlInvoiceType").val();
             var companyBusinessNumber = $("#ddlCompany").val();
-            console.log(invoiceTypeVal);
-            console.log(companyBusinessNumber);
+            //console.log(invoiceTypeVal);
+            //console.log(companyBusinessNumber);
             $.ajax({
                 url: '/invoice/partial?invoiceType=' + invoiceTypeVal + '&businessNumber=' + companyBusinessNumber,
                 type: 'POST',
                 success: function (data) {
+                    $("#container").prop("hidden", false);
                     $("#container").html(data)
                 }
             })
         });
+
+        function scrollHorizontally(e) {
+            e = window.event || e;
+            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+            $("#container").scrollLeft($("#container").scrollLeft() - delta * 50);
+            e.preventDefault();
+        }
+
     </script>
 }
 
