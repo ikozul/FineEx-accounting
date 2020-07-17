@@ -11,11 +11,13 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
     {
         private readonly InvoiceViewModel _invoiceViewModel;
         private ViewToStringRenderer _viewToStringRenderer;
+        private string _basePdfPath;
 
         public PdfGenerator(InvoiceViewModel invoiceViewModel)
         {
             _invoiceViewModel = invoiceViewModel;
             _viewToStringRenderer = new ViewToStringRenderer();
+            _basePdfPath = Config.PdfPath + invoiceViewModel.Id;
         }
 
         private string GetHtmlPdf()
@@ -29,12 +31,12 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
                 var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
             var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
 
-            Save();
+            Save(pdfBytes);
         }
 
-        private void Save()
+        private void Save(byte[] pdfBytes)
         {
-            throw new NotImplementedException();
+            System.IO.File.WriteAllBytes(_basePdfPath, pdfBytes);
         }
     }
 }
