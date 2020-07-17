@@ -126,6 +126,9 @@
   <data name="CompanyPlaceholder" xml:space="preserve">
     <value>--- Select company ---</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="CreateInvoice" xml:space="preserve">
     <value>New Invoice</value>
   </data>
@@ -184,6 +187,6 @@
     <value>Vat Percentage</value>
   </data>
   <data name="VatSwiftNumberClient" xml:space="preserve">
-    <value>Swift Vat Number Client</value>
+    <value>Swift</value>
   </data>
 </root>

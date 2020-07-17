@@ -11,6 +11,7 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
     {
         public CompanyViewModel(Company company)
         {
+            Id = company.Id;
             BusinessNumber = company.BusinessNumber;
             BusinessUnit = company.BusinessUnit;
             CompanyName = company.Name;
@@ -24,6 +25,7 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
             QuantityPrecision = company.QuantityPrecision;
         }
 
+        public int Id { get; set; }
         public string BusinessNumber { get; set; }
         public string BusinessUnit { get; set; }
         public string CompanyName { get; set; }

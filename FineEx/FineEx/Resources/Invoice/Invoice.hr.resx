@@ -126,8 +126,11 @@
   <data name="CompanyPlaceholder" xml:space="preserve">
     <value>--- Odaberi tvrtku ---</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Izradi</value>
+  </data>
   <data name="CreateInvoice" xml:space="preserve">
-    <value>Nova faktura</value>
+    <value>Nova Faktura</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Datum Dospijeća</value>
@@ -184,6 +187,6 @@
     <value>Postotak Poreza</value>
   </data>
   <data name="VatSwiftNumberClient" xml:space="preserve">
-    <value>Swift Klijent Broja Poreza</value>
+    <value>Swift</value>
   </data>
 </root>

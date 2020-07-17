@@ -296,6 +296,7 @@
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
     <Compile Include="Models\CompanyModels\CompanyCreateModel.cs" />
     <Compile Include="Models\CompanyModels\CompanyViewModel.cs" />
+    <Compile Include="Models\InvoiceModels\InvoiceCreateModel.cs" />
     <Compile Include="Models\InvoiceModels\InvoiceViewModel.cs" />
     <Compile Include="Models\ItemModels\ItemViewModel.cs" />
     <Compile Include="Models\UserModels\LoginViewModel.cs" />

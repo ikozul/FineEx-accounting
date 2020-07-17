@@ -88,6 +88,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Invoice.
         /// </summary>
         public static string CreateInvoice {
@@ -259,7 +268,7 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Swift Vat Number Client.
+        ///   Looks up a localized string similar to Swift.
         /// </summary>
         public static string VatSwiftNumberClient {
             get {

@@ -2,6 +2,7 @@
 using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
+using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace FineEx.Controllers
     public class InvoiceController : Controller
     {
         private InvoiceService _invoiceService;
-        private CompanyService _companyService;
+        private CompanyService _companyService;        
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
 
@@ -65,5 +66,14 @@ namespace FineEx.Controllers
             }
             return PartialView("_InvoicePartial", _invoices);
         }
+
+        [HttpGet]
+        public ActionResult Create(string businessNumber)
+        {
+            InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
+            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
+            return View(invoiceCreateModel);
+        }
+
     }
 }
