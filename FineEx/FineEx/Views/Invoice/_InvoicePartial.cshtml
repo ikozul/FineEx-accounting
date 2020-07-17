@@ -5,7 +5,7 @@
     @Html.Grid(Model).Columns(columns =>
     {
         columns.Add(i => i.Id).Titled("ID");
-        columns.Add().RenderValueAs(i => i.Approved ? "Yes" : "No");
+        columns.Add().RenderValueAs(i => i.Approved ? "Yes" : "No").Titled(FineEx.Resources.Invoice.Invoice.Approved).Filterable(true);
         columns.Add(i => i.Approved).Titled(FineEx.Resources.Invoice.Invoice.Approved).Filterable(true);
         columns.Add(i => i.Sender.Name).Titled(FineEx.Resources.Invoice.Invoice.Sender);
         columns.Add(i => i.Receiver.Name).Titled(FineEx.Resources.Invoice.Invoice.Recipient);

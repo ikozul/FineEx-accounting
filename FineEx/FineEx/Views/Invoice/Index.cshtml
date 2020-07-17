@@ -28,8 +28,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <button id="showTable" href="Invoice/Partial" class="btn btn-warning mx-3 my-2 mr-lg-5 font-weight-bold" disabled>@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
+        <div class="col-md-2 mt-4">
+            <a id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 font-weight-bold disabled">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
+        </div>
+        <div class="col-md-2 mt-4">
+            <button id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled">@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
         </div>
     </div>
 </div>
@@ -38,9 +41,6 @@
 
 </div>
 
-<div>
-    <button id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 mr-lg-5" disabled>@FineEx.Resources.Invoice.Invoice.CreateInvoice</button>
-</div>
 
 @section scripts {
     <script>
@@ -51,20 +51,20 @@
 
         $(".picker").on("change", function () {
             var $sels = $('.picker option:selected[value=""]');
-            console.log($("#ddlInvoiceType").val());
-            console.log($("#ddlCompany").val());
+            var companyBusinessNumber = $("#ddlCompany").val();
+            $("#createInvoice").attr('href', '/Invoice/Create?businessNumber=' + companyBusinessNumber)
             if ($sels.length == 0) {
-                $("#showTable").prop("disabled", false);
+                $("#showTable").removeClass("disabled");
+                $("#createInvoice").removeClass("disabled");
             } else {
-                $("#showTable").prop("disabled", true);
+                $("#showTable").addClass("disabled");
+                $("#createInvoice").addClass("disabled");
             }
         });
 
         $("#showTable").on("click", function () {
             var invoiceTypeVal = $("#ddlInvoiceType").val();
             var companyBusinessNumber = $("#ddlCompany").val();
-            //console.log(invoiceTypeVal);
-            //console.log(companyBusinessNumber);
             $.ajax({
                 url: '/invoice/partial?invoiceType=' + invoiceTypeVal + '&businessNumber=' + companyBusinessNumber,
                 type: 'POST',
