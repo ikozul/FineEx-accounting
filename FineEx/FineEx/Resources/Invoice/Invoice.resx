@@ -180,7 +180,7 @@
   <data name="UniqueInvoiceID" xml:space="preserve">
     <value>Unique Invoice ID</value>
   </data>
-  <data name="VatNuber" xml:space="preserve">
+  <data name="VatNumber" xml:space="preserve">
     <value>Vat Number</value>
   </data>
   <data name="VatPercentage" xml:space="preserve">
