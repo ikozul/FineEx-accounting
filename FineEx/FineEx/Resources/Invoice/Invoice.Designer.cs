@@ -252,9 +252,9 @@ namespace FineEx.Resources.Invoice {
         /// <summary>
         ///   Looks up a localized string similar to Vat Number.
         /// </summary>
-        public static string VatNuber {
+        public static string VatNumber {
             get {
-                return ResourceManager.GetString("VatNuber", resourceCulture);
+                return ResourceManager.GetString("VatNumber", resourceCulture);
             }
         }
         

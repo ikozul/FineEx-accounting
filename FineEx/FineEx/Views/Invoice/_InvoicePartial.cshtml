@@ -1,24 +1,87 @@
 ﻿@model IEnumerable<FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel>
-@using GridMvc.Html
 
 <div>
-    @Html.Grid(Model).Columns(columns =>
-    {
-        columns.Add(i => i.Id).Titled("ID");
-        columns.Add().RenderValueAs(i => i.Approved ? "Yes" : "No").Titled(FineEx.Resources.Invoice.Invoice.Approved).Filterable(true);
-        columns.Add(i => i.Approved).Titled(FineEx.Resources.Invoice.Invoice.Approved).Filterable(true);
-        columns.Add(i => i.Sender.Name).Titled(FineEx.Resources.Invoice.Invoice.Sender);
-        columns.Add(i => i.Receiver.Name).Titled(FineEx.Resources.Invoice.Invoice.Recipient);
-        columns.Add(i => i.PaymentMethod).Titled(FineEx.Resources.Invoice.Invoice.PaymentMethod);
-        columns.Add(i => i.InvoiceDate).Titled(FineEx.Resources.Invoice.Invoice.InvoiceDate);
-        columns.Add(i => i.DueDate).Titled(FineEx.Resources.Invoice.Invoice.DueDate);
-        columns.Add(i => i.UniqueIdentifierOfInvoice).Titled(FineEx.Resources.Invoice.Invoice.UniqueInvoiceID);
-        columns.Add(i => i.VatNumber).Titled(FineEx.Resources.Invoice.Invoice.VatNuber);
-        columns.Add(i => i.VatSwiftBankClient).Titled(FineEx.Resources.Invoice.Invoice.VatSwiftNumberClient);
-        columns.Add(i => i.PriceWithoutVat).Titled(FineEx.Resources.Invoice.Invoice.PriceWithoutVat);
-        columns.Add(i => i.VatPercentage).Titled(FineEx.Resources.Invoice.Invoice.VatPercentage);
-        columns.Add(i => i.TotalPrice).Titled(FineEx.Resources.Invoice.Invoice.TotalPrice);
-        columns.Add(i => i.InvoiceNumber).Titled(FineEx.Resources.Invoice.Invoice.InvoiceNumber);
-        columns.Add(i => i.Issuer).Titled(FineEx.Resources.Invoice.Invoice.Issuer);
-    }).WithPaging(10).Sortable(true)
+    <table id="invoices" class="table">
+        <tr>
+            <th>ID</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Approved</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Sender</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Recipient</th>
+            <th>@FineEx.Resources.Invoice.Invoice.PaymentMethod</th>
+            <th>@FineEx.Resources.Invoice.Invoice.InvoiceDate</th>
+            <th>@FineEx.Resources.Invoice.Invoice.DueDate</th>
+            <th>@FineEx.Resources.Invoice.Invoice.UniqueInvoiceID</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatNumber</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatSwiftNumberClient</th>
+            <th>@FineEx.Resources.Invoice.Invoice.PriceWithoutVat</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatPercentage</th>
+            <th>@FineEx.Resources.Invoice.Invoice.TotalPrice</th>
+            <th>@FineEx.Resources.Invoice.Invoice.InvoiceNumber</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Issuer</th>
+            <th>PDF</th>
+        </tr>
+
+        @foreach (var invoice in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.Approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.Sender.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.Receiver.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.PaymentMethod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.InvoiceDate.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.DueDate.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.UniqueIdentifierOfInvoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.VatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.VatSwiftBankClient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.PriceWithoutVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.VatPercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.InvoiceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => invoice.Sender.Name)
+        </td>
+        <td>
+            @*@Html.ActionLink("Delete", "Delete", "Services", new { id = service.IDService }, new { @class = "btn btn-outline-danger" })*@
+        </td>
+    </tr>
+        }
+
+    </table>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#invoices').DataTable();
+        });
+    </script>
+}
