@@ -138,10 +138,16 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
   </data>
   <data name="Statistics_Menu" xml:space="preserve">
     <value>Statistics</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

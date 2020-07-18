@@ -5,14 +5,12 @@
     SelectList companyList = ViewBag.Companies as SelectList;
 }
 
-<link href="~/Content/custom/table.css" rel="stylesheet" />
-
 <br />
 <h2 class="ml-2 p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h2>
 
-<div class="pl-lg-0 mt-lg-4">
+<div class="pl-lg-0 mt-4">
     <div class="row mb-5">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceType, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -20,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -28,26 +26,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mt-4">
-            <a id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 font-weight-bold disabled">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
+        <div class="col-lg-2 mt-4">
+            <a id="createInvoice" href="Invoice/Create" class="btn btn-success my-2 ml- font-weight-bold disabled text-nowrap">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
         </div>
-        <div class="col-md-2 mt-4">
-            <button id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled">@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
+        <div class="col-lg-2 mt-4">
+            <a id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled text-nowrap">@FineEx.Resources.Invoice.Invoice.ShowInvoices</a>
         </div>
     </div>
 </div>
 
-<div id="container" class="main-table-container bg-light ml-2 py-2" hidden>
-
+<div id="container" class="main-table-container bg-light ml-2 p-2" hidden>
+    
 </div>
 
 
 @section scripts {
     <script>
-        $(document).ready(function () {
-            mainGrid = document.getElementById("container");
-            mainGrid.addEventListener("wheel", scrollHorizontally, false);
-        })
 
         $(".picker").on("change", function () {
             var $sels = $('.picker option:selected[value=""]');
@@ -62,7 +56,8 @@
             }
         });
 
-        $("#showTable").on("click", function () {
+        $("#showTable").on("click", function (e) {
+            e.preventDefault();
             var invoiceTypeVal = $("#ddlInvoiceType").val();
             var companyBusinessNumber = $("#ddlCompany").val();
             $.ajax({
@@ -70,7 +65,21 @@
                 type: 'POST',
                 success: function (data) {
                     $("#container").prop("hidden", false);
-                    $("#container").html(data)
+                    $("#container").html(data);
+                    $('#invoices').DataTable({
+                        "scrollX": true,
+                        "rowCallback": function (row, data, index) {
+                            console.log(data[1]);
+                            if (data[1] == "Yes" || data[1] == "Da") {
+                                $(row).find('td:eq(1)').css('background-color', 'lightgreen');
+                            }
+                            else {
+                                $(row).find('td:eq(1)').css('background-color', 'tomato');
+                            }
+                        }
+                    });
+                    mainGrid = document.getElementById("invoices");
+                    mainGrid.addEventListener("wheel", scrollHorizontally, false);
                 }
             })
         });
@@ -78,7 +87,7 @@
         function scrollHorizontally(e) {
             e = window.event || e;
             var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-            $("#container").scrollLeft($("#container").scrollLeft() - delta * 50);
+            $(".dataTables_scrollBody").scrollLeft($(".dataTables_scrollBody").scrollLeft() - delta * 50);
             e.preventDefault();
         }
 

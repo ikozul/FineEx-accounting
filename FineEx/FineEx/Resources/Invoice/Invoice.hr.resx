@@ -180,7 +180,7 @@
   <data name="UniqueInvoiceID" xml:space="preserve">
     <value>Jedinstveni ID Fakture</value>
   </data>
-  <data name="VatNuber" xml:space="preserve">
+  <data name="VatNumber" xml:space="preserve">
     <value>Broj Poreza</value>
   </data>
   <data name="VatPercentage" xml:space="preserve">
