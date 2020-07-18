@@ -11,14 +11,16 @@ namespace FineEx.BusinessLayer.Models.UserModels
     {
         private const int _adminRoleId = 90;
 
-        public UserViewModel(string firstName, string lastName, string email, Role role)
+        public UserViewModel(int id, string firstName, string lastName, string email, Role role)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Role = role;
         }
 
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -4,6 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.BusinessLayer.Models.UserModels;
+using FineEx.DataLayer.Context;
+using FineEx.DataLayer.Models;
 
 namespace FineEx.Controllers
 {
@@ -13,6 +16,11 @@ namespace FineEx.Controllers
         {
             Session["Culture"] = new CultureInfo(lang);
             return Redirect(returnUrl);
+        }
+
+        protected void SetUserInSession(int id)
+        {
+            App.UserId = id;
         }
     }
 }

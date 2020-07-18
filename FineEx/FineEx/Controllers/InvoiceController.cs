@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.DataLayer.Context;
 
 namespace FineEx.Controllers
 {
@@ -35,7 +36,7 @@ namespace FineEx.Controllers
             }, "Value", "Text");
 
             _companyService = new CompanyService();
-            _companies = _companyService.GetCompanies();
+            _companies = _companyService.GetCompanies(App.UserId);
             _selectList = from c in _companies
                           select new SelectListItem
                           {

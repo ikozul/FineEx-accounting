@@ -23,5 +23,7 @@ namespace FineEx.DataLayer.Context
                 return (DbFineEx)HttpContext.Current.Items["_db"];
             }
         }
+
+        public static int UserId { get; set; }
     }
 }
