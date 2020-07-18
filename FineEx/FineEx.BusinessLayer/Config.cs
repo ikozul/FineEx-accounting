@@ -11,6 +11,7 @@ namespace FineEx.BusinessLayer
     {
         // temp
         public const string Salt = "(*.*)Fine(*_*)Ex_(*o*)_";
-        public static string  PdfPath = WebConfigurationManager.AppSettings["PFUserName"];
+        public static string  PdfPath = WebConfigurationManager.AppSettings["PdfPath"];
+        public static double PaymentDueDateDays = Convert.ToInt32(WebConfigurationManager.AppSettings["PaymentDueDate"]);
     }
 }

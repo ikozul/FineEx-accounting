@@ -10,25 +10,25 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
     public class PdfGenerator
     {
         private readonly InvoiceViewModel _invoiceViewModel;
-        private ViewToStringRenderer _viewToStringRenderer;
+        private HtmlRenderer _htmlRenderer;
         private string _basePdfPath;
 
         public PdfGenerator(InvoiceViewModel invoiceViewModel)
         {
             _invoiceViewModel = invoiceViewModel;
-            _viewToStringRenderer = new ViewToStringRenderer();
-            _basePdfPath = Config.PdfPath + invoiceViewModel.Id;
+            _htmlRenderer = new HtmlRenderer();
+            _basePdfPath = Config.PdfPath + invoiceViewModel.Id + ".pdf";
         }
 
         private string GetHtmlPdf()
         {
-            return _viewToStringRenderer.RenderInvoiceTypeToString(_invoiceViewModel);
+            return _htmlRenderer.RenderHtml(_invoiceViewModel);
         }
 
         public void GeneratePdfBytes()
         {
             var htmlContent = GetHtmlPdf();
-                var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
             var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
 
             Save(pdfBytes);

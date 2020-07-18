@@ -1,6 +1,4 @@
-﻿@model FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="hr">
 
 <head>
@@ -182,16 +180,7 @@
 </head>
 
 <body>
-
     <div id="invoice">
-
-        <div class="toolbar hidden-print">
-            <div class="text-right">
-                <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
-            </div>
-            <hr>
-        </div>
         <div class="invoice overflow-auto">
             <div style="min-width: 600px">
                 <header>
@@ -202,15 +191,15 @@
                         <div class="col company-details">
                             <h2 class="name">
                                 <a target="_blank" href="">
-                                    @Model.Sender.Name
+                                   {{sender.name}}
                                 </a>
                             </h2>
-                            <div>@Model.Sender.Address</div>
-                            <div class="address">@Model.Receiver.City</div>
-                            <div class="address">@Model.Receiver.County</div>
-                            <div>@Model.Sender.Phone</div>
-                            <div>@Model.Sender.BusinessUnit</div>
-                            <div>@Model.Sender.IBAN</div>
+                            <div></div>
+                            <div class="address">{{receiver.city}}</div>
+                            <div class="address">{{receiver.county}}</div>
+                            <div>{{sender.phone}}</div>
+                            <div>{{sender.business_unit}}</div>
+                            <div>{{sender.IBAN}}</div>
                         </div>
                     </div>
                 </header>
@@ -218,16 +207,16 @@
                     <div class="row contacts">
                         <div class="col invoice-to">
                             <div class="text-gray-light">INVOICE TO:</div>
-                            <h2 class="to">@Model.Receiver.Name</h2>
-                            <div class="address">@Model.Receiver.Address</div>
-                            <div class="address">@Model.Receiver.City</div>
-                            <div class="address">@Model.Receiver.County</div>
+                            <h2 class="to">{{receiver.name}}</h2>
+                            <div class="address">{{receiver.address}}</div>
+                            <div class="address">{{receiver.city}}</div>
+                            <div class="address">{{receiver.county}}</div>
 
                         </div>
                         <div class="col invoice-details">
-                            <h1 class="invoice-id">Račun @Model.InvoiceNumber</h1>
-                            <div class="date">Datum izdavanja: @Model.InvoiceDate</div>
-                            <div class="date">Datum plaćanja: @Model.DueDate</div>
+                            <h1 class="invoice-id">Račun {{invoice_number}}</h1>
+                            <div class="date">Datum izdavanja: {{invoice_date}}</div>
+                            <div class="date">Datum plaćanja: {{due_date}}</div>
                         </div>
                     </div>
                     <table border="0" cellspacing="0" cellpadding="0">
@@ -241,35 +230,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var invoiceItem in Model.Items)
-                            {
+                            {{for item in items }}
                                 <tr>
-                                    <td class="no">@invoiceItem.Id</td>
+                                    <td class="no">{{item.id}}</td>
                                     <td class="text-left">
-                                        @invoiceItem.ItemName
+                                        {{item.item_name}}
                                     </td>
-                                    <td class="unit">@invoiceItem.ItemPrice</td>
-                                    <td class="qty">@invoiceItem.ItemQuantity</td>
-                                    <td class="total">@invoiceItem.ItemPrice*@invoiceItem.ItemQuantity</td>
+                                    <td class="unit">{{item.item_price}}</td>
+                                    <td class="qty">{{item.item_quantity}}</td>
+                                    <td class="total">{{item.item_price* item.item_quantity}}</td>
                                 </tr>
-                            }
-
+                            {{end}}
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Cijena bez PDV-a</td>
-                                <td>@Model.PriceWithoutVat</td>
+                                <td>{{price_without_vat}}</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Porez</td>
-                                <td>@Model.VatPercentage% - @{ Model.TotalPrice - Model.PriceWithoutVat }</td>
+                                <td>{{vat_percentage}}% - {{ total_price - price_without_vat }}</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Cijena sa PDV-om</td>
-                                <td>@Model.TotalPrice</td>
+                                <td>{{total_price}}</td>
                             </tr>
                         </tfoot>
                     </table>
