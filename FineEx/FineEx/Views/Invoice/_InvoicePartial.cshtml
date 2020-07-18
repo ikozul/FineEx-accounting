@@ -41,10 +41,10 @@
                     @Html.DisplayFor(modelItem => invoice.PaymentMethod)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => invoice.InvoiceDate)
+                    @invoice.InvoiceDate.ToShortDateString()
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => invoice.DueDate)
+                    @invoice.DueDate.ToShortDateString()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => invoice.UniqueIdentifierOfInvoice)

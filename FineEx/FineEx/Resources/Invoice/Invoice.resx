@@ -120,6 +120,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved (yes/no)</value>
   </data>
+  <data name="CashOnDelivery" xml:space="preserve">
+    <value>Cash On Delivery</value>
+  </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="CreateInvoice" xml:space="preserve">
     <value>New Invoice</value>
+  </data>
+  <data name="CreateTitle" xml:space="preserve">
+    <value>Create New Invoice</value>
+  </data>
+  <data name="CreditCard" xml:space="preserve">
+    <value>Credit Card</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
@@ -159,11 +168,17 @@
   <data name="PaymentMethod" xml:space="preserve">
     <value>Payment Method</value>
   </data>
+  <data name="PaymentMethodPlaceholder" xml:space="preserve">
+    <value>--- Select payment method ---</value>
+  </data>
   <data name="PriceWithoutVat" xml:space="preserve">
     <value>Price Without Vat</value>
   </data>
   <data name="Recipient" xml:space="preserve">
     <value>Recipient</value>
+  </data>
+  <data name="RecipientPlaceholder" xml:space="preserve">
+    <value>--- Select recipient ---</value>
   </data>
   <data name="Sender" xml:space="preserve">
     <value>Sender</value>
