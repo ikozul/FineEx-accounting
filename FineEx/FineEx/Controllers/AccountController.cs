@@ -42,6 +42,7 @@ namespace FineEx.Controllers
                 try
                 {
                     _user = _loginService.GetUser(loginCredentials);
+                    SetUserInSession(_user.Id);
                     Session["user"] = _user;
                 }
                 catch (InvalidCredentialsException ex)
