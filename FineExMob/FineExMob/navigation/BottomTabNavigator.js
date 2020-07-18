@@ -25,7 +25,8 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: 'Profile',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-person" />,
         }}
-      />
+      >
+      </BottomTab.Screen>
       <BottomTab.Screen
         name="Company"
         component={CompanyScreen}

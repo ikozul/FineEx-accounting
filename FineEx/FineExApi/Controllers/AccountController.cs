@@ -1,5 +1,8 @@
 ﻿using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.Login;
+using FineEx.BusinessLayer.Utils;
+using FineEx.DataLayer.Context;
+using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +16,29 @@ namespace FineExApi.Controllers
 {
     public class AccountController : ApiController
     {
-
-        private LoginService loginService = new LoginService();
+        private DbFineEx db = new DbFineEx();
 
         [HttpPost]
-        [Route("login")]
-        public UserViewModel Login(LoginViewModel loginCredentials)
+        public User Login(LoginViewModel loginCredentials)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    UserViewModel user = loginService.GetUser(loginCredentials);
-                    return user;
+                    User user = db.Users.FirstOrDefault(u => u.Email == loginCredentials.Email);
+                    if (user == null)
+                    {
+                        return null;
+                    }
+                    else if (user.Password == PasswordHelper.HashPassword(loginCredentials.Password))
+                    {
+                        user.Password = null;
+                        return user;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 catch (Exception)
                 {
@@ -37,22 +50,23 @@ namespace FineExApi.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IHttpActionResult> Register(UserCreateModel model)
+        public IHttpActionResult Register(UserCreateModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //TO DO: REGISTRIRAJ KORISNIKA
-            //var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            //IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            //if (!result.Succeeded)
-            //{
-            //    return GetErrorResult(result);
-            //}
+            if (db.Users.FirstOrDefault(u => u.Email == model.Email) == null)
+            {
+                return NotFound();
+            }
+            User user = new User() {FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Password = PasswordHelper.HashPassword(model.Password)};
+            db.Users.Add(user);
+            db.SaveChanges();
 
             return Ok();
         }

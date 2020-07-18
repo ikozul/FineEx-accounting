@@ -21,7 +21,7 @@ export default class Secured extends Component {
                 {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
                 <NavigationContainer linking={LinkingConfiguration}>
                     <Stack.Navigator>
-                        <Stack.Screen name="Root" component={BottomTabNavigator} />
+                        <Stack.Screen name="Root" component={BottomTabNavigator}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
