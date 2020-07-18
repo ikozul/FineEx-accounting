@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Models;
 
 namespace FineEx.Controllers
