@@ -7,6 +7,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
     <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
@@ -89,6 +90,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/javascript")
     @RenderSection("scripts", required: false)
-    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
 </body>
 </html>
