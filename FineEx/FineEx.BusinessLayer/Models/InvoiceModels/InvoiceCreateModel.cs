@@ -7,16 +7,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace FineEx.BusinessLayer.Models.InvoiceModels
 {
     public class InvoiceCreateModel
     {
-        public string Sender { get; set; }
+        //public int SenderID { get; set; }
+        public CompanyViewModel Sender { get; set; }
+
+        //public int ReceiverID { get; set; }
 
         [Required]
-        public string Receiver { get; set; }
-
+        public CompanyViewModel Receiver { get; set; }
+        
         [Required]
         public string PaymentMethod { get; set; }
 

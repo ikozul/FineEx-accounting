@@ -1,10 +1,14 @@
-﻿using FineEx.BusinessLayer.Models.CompanyModels;
+﻿using FineEx.BusinessLayer.Exceptions;
+using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
+using FineEx.BusinessLayer.Services.PdfGenerator;
+using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +23,7 @@ namespace FineEx.Controllers
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
         private IEnumerable<SelectListItem> _selectList;
+        private PdfGenerator _pdfGenerator;
 
 
         public InvoiceController()
@@ -72,15 +77,15 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult Create(string businessNumber)
         {
-            ViewBag.Recipients = new SelectList(_selectList.Where(c => c.Value != businessNumber), "Value", "Text");
-            ViewBag.PaymentMethods = new SelectList(new List<SelectListItem>
+            ViewBag.Recipients = new List<SelectListItem>(_selectList.Where(c => c.Value != businessNumber));
+            ViewBag.PaymentMethods = new List<SelectListItem>
             {
                 new SelectListItem { Value = "1", Text = FineEx.Resources.Invoice.Invoice.CreditCard },
                 new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.CashOnDelivery },
                 new SelectListItem { Value = "3", Text = PAYPAL }
-            }, "Value", "Text");
+            };
             InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
-            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber).CompanyName;
+            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
             return View(invoiceCreateModel);
         }
 
@@ -91,7 +96,27 @@ namespace FineEx.Controllers
             {
 
             }
-            return View(invoiceCreateModel);
+            return RedirectToAction("Create", invoiceCreateModel.Sender.BusinessNumber);
+        }
+
+        public ActionResult DownloadPDF(int id)
+        {
+            string pdfPath;
+            try
+            {
+                _invoiceService = new InvoiceService();
+                var invoiceViewModel = _invoiceService.GetInvoiceById(id);
+                _pdfGenerator = new PdfGenerator(invoiceViewModel);
+                pdfPath = _pdfGenerator.GeneratePdfBytes();
+                var fs = new FileStream(pdfPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                return File(fs, "application/pdf", ("racun-" + invoiceViewModel.InvoiceNumber + ".pdf"));
+            }
+            catch (NoInvoiceFoundException ex)
+            {
+                ViewBag.NoInvoiceFoundError = true;
+                ViewBag.NoInvoiceFoundMessage = ex.Message;
+                return View("Index");
+            }
         }
 
     }

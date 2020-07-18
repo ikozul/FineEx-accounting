@@ -71,7 +71,7 @@
                     @Html.DisplayFor(modelItem => invoice.Sender.Name)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Delete", "Delete", "Services", new { id = service.IDService }, new { @class = "btn btn-outline-danger" })*@
+                    <a href="@Url.Action("DownloadPDF", "Invoice", new { id = invoice.Id })" class="btn btn-outline-success fa fa-download"></a>
                 </td>
             </tr>
         }
