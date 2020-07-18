@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel>
 
-<div>
-    <table id="invoices" class="table">
+<table id="invoices" class="table text-nowrap">
+    <thead>
         <tr>
             <th>ID</th>
             <th>@FineEx.Resources.Invoice.Invoice.Approved</th>
@@ -20,68 +20,60 @@
             <th>@FineEx.Resources.Invoice.Invoice.Issuer</th>
             <th>PDF</th>
         </tr>
-
+    </thead>
+    <tbody>
         @foreach (var invoice in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.Approved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.Sender.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.Receiver.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.PaymentMethod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.InvoiceDate.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.DueDate.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.UniqueIdentifierOfInvoice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.VatNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.VatSwiftBankClient)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.PriceWithoutVat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.VatPercentage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.InvoiceNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => invoice.Sender.Name)
-        </td>
-        <td>
-            @*@Html.ActionLink("Delete", "Delete", "Services", new { id = service.IDService }, new { @class = "btn btn-outline-danger" })*@
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Id)
+                </td>
+                <td>
+                    @(invoice.Approved ? FineEx.Resources.Common.Yes : FineEx.Resources.Common.No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Sender.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Receiver.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.InvoiceDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.UniqueIdentifierOfInvoice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatSwiftBankClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.PriceWithoutVat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.InvoiceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Sender.Name)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Delete", "Delete", "Services", new { id = service.IDService }, new { @class = "btn btn-outline-danger" })*@
+                </td>
+            </tr>
         }
-
-    </table>
-</div>
-
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $('#invoices').DataTable();
-        });
-    </script>
-}
+    </tbody>
+</table>
