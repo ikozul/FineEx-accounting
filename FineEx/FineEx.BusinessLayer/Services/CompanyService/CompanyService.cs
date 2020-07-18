@@ -19,6 +19,12 @@ namespace FineEx.BusinessLayer.Services.CompanyService
             GetCompanyViewModels();
             return _companiesView;
         }
+        public List<CompanyViewModel> GetCompanies(int userId)
+        {
+            _companies = App.Db.Users.Single(x=>x.Id == userId).Companies.AsQueryable();
+            GetCompanyViewModels();
+            return _companiesView;
+        }
 
         public void GetCompanyViewModels()
         {
