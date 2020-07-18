@@ -120,6 +120,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Odobreno (da/ne)</value>
   </data>
+  <data name="CashOnDelivery" xml:space="preserve">
+    <value>Gotovina</value>
+  </data>
   <data name="Company" xml:space="preserve">
     <value>Tvrtka</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="CreateInvoice" xml:space="preserve">
     <value>Nova Faktura</value>
+  </data>
+  <data name="CreateTitle" xml:space="preserve">
+    <value>Izrada Nove Fakture</value>
+  </data>
+  <data name="CreditCard" xml:space="preserve">
+    <value>Kreditna Kartica</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Datum Dospijeća</value>
@@ -159,11 +168,17 @@
   <data name="PaymentMethod" xml:space="preserve">
     <value>Način Plaćanja</value>
   </data>
+  <data name="PaymentMethodPlaceholder" xml:space="preserve">
+    <value>--- Odaberi način plaćanja ---</value>
+  </data>
   <data name="PriceWithoutVat" xml:space="preserve">
     <value>Cijena Bez Poreza</value>
   </data>
   <data name="Recipient" xml:space="preserve">
     <value>Primatelj</value>
+  </data>
+  <data name="RecipientPlaceholder" xml:space="preserve">
+    <value>--- Odaberi primatelja ---</value>
   </data>
   <data name="Sender" xml:space="preserve">
     <value>Pošiljatelj</value>

@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = FineEx.Resources.Invoice.Invoice.Title;
     SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
     SelectList companyList = ViewBag.Companies as SelectList;
 }
 
 <br />
-<h2 class="ml-2 p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h2>
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h3>
+<hr />
 
 <div class="pl-lg-0 mt-4">
     <div class="row mb-5">
@@ -26,17 +27,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 mt-4">
-            <a id="createInvoice" href="Invoice/Create" class="btn btn-success my-2 ml- font-weight-bold disabled text-nowrap">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="createInvoice" href="Invoice/Create" class="btn btn-success my-2 ml- font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
         </div>
-        <div class="col-lg-2 mt-4">
-            <a id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled text-nowrap">@FineEx.Resources.Invoice.Invoice.ShowInvoices</a>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.ShowInvoices</a>
         </div>
     </div>
 </div>
 
-<div id="container" class="main-table-container bg-light ml-2 p-2" hidden>
-    
+<div id="container" class="main-table-container bg-light p-2" hidden>
+
 </div>
 
 
@@ -87,7 +88,7 @@
         function scrollHorizontally(e) {
             e = window.event || e;
             var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-            $(".dataTables_scrollBody").scrollLeft($(".dataTables_scrollBody").scrollLeft() - delta * 50);
+            $(".dataTables_scrollBody").scrollLeft($(".dataTables_scrollBody").scrollLeft() - delta * 60);
             e.preventDefault();
         }
 

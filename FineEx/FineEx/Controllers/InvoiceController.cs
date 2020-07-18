@@ -13,10 +13,12 @@ namespace FineEx.Controllers
 {
     public class InvoiceController : Controller
     {
+        private const string PAYPAL = "PayPal";
         private InvoiceService _invoiceService;
-        private CompanyService _companyService;        
+        private CompanyService _companyService;
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
+        private IEnumerable<SelectListItem> _selectList;
 
 
         public InvoiceController()
@@ -29,13 +31,13 @@ namespace FineEx.Controllers
 
             _companyService = new CompanyService();
             _companies = _companyService.GetCompanies();
-            IEnumerable<SelectListItem> selectList = from c in _companies
-                                                     select new SelectListItem
-                                                     {
-                                                         Value = c.BusinessNumber,
-                                                         Text = c.CompanyName
-                                                     };
-            ViewBag.Companies = new SelectList(selectList, "Value", "Text");
+            _selectList = from c in _companies
+                          select new SelectListItem
+                          {
+                              Value = c.BusinessNumber,
+                              Text = c.CompanyName
+                          };
+            ViewBag.Companies = new SelectList(_selectList, "Value", "Text");
         }
 
         [HttpGet]
@@ -70,8 +72,25 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult Create(string businessNumber)
         {
+            ViewBag.Recipients = new SelectList(_selectList.Where(c => c.Value != businessNumber), "Value", "Text");
+            ViewBag.PaymentMethods = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = FineEx.Resources.Invoice.Invoice.CreditCard },
+                new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.CashOnDelivery },
+                new SelectListItem { Value = "3", Text = PAYPAL }
+            }, "Value", "Text");
             InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
-            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
+            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber).CompanyName;
+            return View(invoiceCreateModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(InvoiceCreateModel invoiceCreateModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
             return View(invoiceCreateModel);
         }
 

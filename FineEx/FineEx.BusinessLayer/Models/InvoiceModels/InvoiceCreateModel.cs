@@ -12,19 +12,44 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
 {
     public class InvoiceCreateModel
     {
-        public CompanyViewModel Sender { get; set; }
-        public CompanyViewModel Receiver { get; set; }
+        public string Sender { get; set; }
+
+        [Required]
+        public string Receiver { get; set; }
+
+        [Required]
         public string PaymentMethod { get; set; }
+
+        [Required]
         public DateTime InvoiceDate { get; set; }
+
+        [Required]
         public DateTime DueDate { get; set; }
+
+        [Required]
         public string UniqueIdentifierOfInvoice { get; set; }
+
+        [Required]
         public string VatNumber { get; set; }
+
+        [Required]
         public string VatSwiftBankClient { get; set; }
+
+        [Required]
         public string InvoiceNumber { get; set; }
+
+        [Required]
         public decimal PriceWithoutVat { get; set; }
+
+        [Required]
         public decimal TotalPrice { get; set; }
+
+        [Required]
         public decimal VatPercentage { get; set; }
+
+        [Required]
         public string Issuer { get; set; }
+
         public List<ItemViewModel> Items { get; set; }
     }
 }
