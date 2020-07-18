@@ -40,6 +40,12 @@
 
 </div>
 
+<div>
+    @if (Convert.ToBoolean(ViewBag.NoInvoiceFoundError))
+    {
+        <label class="text-danger font-weight-bold">@ViewBag.NoInvoiceFoundMessage</label>
+    }
+</div>
 
 @section scripts {
     <script>

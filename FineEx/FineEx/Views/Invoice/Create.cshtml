@@ -10,7 +10,7 @@
 <h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.CreateTitle</h3>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Invoice", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Sender, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.EditorFor(model => model.Sender.CompanyName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                     </div>
                 </div>
             </div>
@@ -31,8 +31,7 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Recipient, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ddlRecipients", recipientsList, FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
-                        @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
+                        @Html.DropDownList("ddlRecipientList", (IEnumerable<SelectListItem>)ViewBag.Recipients, FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
                     </div>
                 </div>
             </div>
@@ -41,8 +40,7 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ddlPaymentMethods", paymentMethodsList, FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
-                        @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
+                        @Html.DropDownList("ddlPaymentMethodList", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
                     </div>
                 </div>
             </div>

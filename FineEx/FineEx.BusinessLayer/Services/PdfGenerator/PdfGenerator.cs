@@ -25,13 +25,14 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
             return _htmlRenderer.RenderHtml(_invoiceViewModel);
         }
 
-        public void GeneratePdfBytes()
+        public string GeneratePdfBytes()
         {
             var htmlContent = GetHtmlPdf();
             var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
             var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
 
             Save(pdfBytes);
+            return _basePdfPath;
         }
 
         private void Save(byte[] pdfBytes)
