@@ -11,19 +11,26 @@ namespace FineEx.BusinessLayer.Services.Billing
 {
     public class BillingService
     {
-        private Company _company;
+        private Company _receiverCompany;
+        private Company _senderCrompany;
         private BillingPackages _billingPackages = new BillingPackages();
         private int _userCount = 0;
 
         public BillingService(int id)
         {
-            _company = App.Db.Companies.Single(x => x.Id == id);
-            _userCount = _company.Users.Count();
+            _receiverCompany = App.Db.Companies.Single(x => x.Id == id);
+            _userCount = _receiverCompany.Users.Count();
         }
 
         public bool BillCompany()
         {
-            return true;//Todo
+            var invoice = new Invoice();
+            invoice.Sender = App.Db.Companies.Single(x => x.Id == 1);
+            invoice.Receiver = _receiverCompany;
+            invoice.InvoiceDate = DateTime.Now;
+            invoice.DueDate = DateTime.Now.AddDays(Config.PaymentDueDateDays);
+            //var billingItem = App.Db.Items.First(x => x.Companies.FirstOrDefault(z => z.Id == _senderCrompany.Id));
+            return true;
         }
     }
 }
