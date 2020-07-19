@@ -13,16 +13,14 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
 {
     public class InvoiceCreateModel
     {
-        //public int SenderID { get; set; }
-        public CompanyViewModel Sender { get; set; }
+        public int SenderID { get; set; }
 
-        //public int ReceiverID { get; set; }
+        public string Sender { get; set; }
 
-        [Required]
-        public CompanyViewModel Receiver { get; set; }
+        public int ReceiverID { get; set; }
         
         [Required]
-        public string PaymentMethod { get; set; }
+        public int PaymentMethodID { get; set; }
 
         [Required]
         public DateTime InvoiceDate { get; set; }
@@ -54,6 +52,6 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         [Required]
         public string Issuer { get; set; }
 
-        public List<ItemViewModel> Items { get; set; }
+        public List<ItemViewModel> Items { get; set; }        
     }
 }
