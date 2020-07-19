@@ -23,3 +23,6 @@
 /FineEx/FineEx.Testing/obj/Debug
 /FineEx/FineEx.Testing/bin/Debug
 /FineEx/FineEx/App_Data/wkhtmltopdf
+/FineEx/FineEx.BusinessLayer/bin/Release
+/FineEx/FineEx.DataLayer/bin/Release
+/FineEx/FineEx.Testing/obj/Release
