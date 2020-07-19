@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FineEx.BusinessLayer.Services.Billing.Models
 {
-    public class BillingPackages
+    public static class BillingPackages
     {
         public enum Packages
         {
