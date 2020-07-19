@@ -53,4 +53,4 @@ insert into InvoiceItems ([InvoiceId], [ItemId]) values
 (2, 5),
 (3, 6)
 
-insert into UsersCompanies ([UserId], [CompanyId]) values (1,1)
+insert into UsersCompanies ([UserId], [CompanyId]) values (2,1), (1,2), (1,3)

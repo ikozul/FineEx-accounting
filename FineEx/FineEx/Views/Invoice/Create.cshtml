@@ -16,13 +16,13 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        @Html.HiddenFor(model => model.SenderID)
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Sender, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Sender.CompanyName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.TextBoxFor(model => model.SenderID, new { @class = "form-control", @readonly = "readonly", @Value = @ViewBag.Sender })
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Recipient, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ddlRecipientList", (IEnumerable<SelectListItem>)ViewBag.Recipients, FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.DropDownListFor(model => model.ReceiverID, recipientsList, FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ddlPaymentMethodList", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.DropDownListFor(model => model.PaymentMethodID, paymentMethodsList, FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
                     </div>
                 </div>
             </div>

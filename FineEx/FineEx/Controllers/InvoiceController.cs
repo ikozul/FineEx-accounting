@@ -12,7 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FineEx.DataLayer.Context;
 
 namespace FineEx.Controllers
 {
@@ -78,15 +77,17 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult Create(string businessNumber)
         {
-            ViewBag.Recipients = new List<SelectListItem>(_selectList.Where(c => c.Value != businessNumber));
-            ViewBag.PaymentMethods = new List<SelectListItem>
+            InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
+            var currentCompany = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
+            invoiceCreateModel.SenderID = currentCompany.Id;
+            ViewBag.Sender = currentCompany.CompanyName;
+            ViewBag.Recipients = new SelectList(_companyService.GetCompanies().Where(c => c.BusinessNumber != businessNumber), "Id", "CompanyName");
+            ViewBag.PaymentMethods = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Value = "1", Text = FineEx.Resources.Invoice.Invoice.CreditCard },
                 new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.CashOnDelivery },
                 new SelectListItem { Value = "3", Text = PAYPAL }
-            };
-            InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
-            invoiceCreateModel.Sender = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
+            }, "Value", "Text");
             return View(invoiceCreateModel);
         }
 
@@ -97,7 +98,7 @@ namespace FineEx.Controllers
             {
 
             }
-            return RedirectToAction("Create", invoiceCreateModel.Sender.BusinessNumber);
+            return View(invoiceCreateModel);
         }
 
         public ActionResult DownloadPDF(int id)
@@ -119,6 +120,5 @@ namespace FineEx.Controllers
                 return View("Index");
             }
         }
-
     }
 }
