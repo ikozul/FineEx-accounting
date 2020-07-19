@@ -315,6 +315,7 @@
     <Compile Include="Models\InvoiceModels\InvoiceCreateModel.cs" />
     <Compile Include="Models\InvoiceModels\InvoiceViewModel.cs" />
     <Compile Include="Models\ItemModels\ItemViewModel.cs" />
+    <Compile Include="Models\PaymentMethodModels\PaymentMethodViewModel.cs" />
     <Compile Include="Models\UserModels\LoginViewModel.cs" />
     <Compile Include="Models\UserModels\UserCreateModel.cs" />
     <Compile Include="Models\UserModels\UserViewModel.cs" />
@@ -327,6 +328,8 @@
     <Compile Include="Services\InvoiceService\InvoiceService.cs" />
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
+    <Compile Include="Services\PaymentMethodService\IPaymentMethodService.cs" />
+    <Compile Include="Services\PaymentMethodService\PaymentMethodService.cs" />
     <Compile Include="Services\PdfGenerator\HtmlRenderer.cs" />
     <Compile Include="Services\PdfGenerator\Model\QuickResponseCode.cs" />
     <Compile Include="Services\PdfGenerator\PdfGenerator.cs" />

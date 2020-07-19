@@ -1,5 +1,6 @@
 ﻿using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.ItemModels;
+using FineEx.BusinessLayer.Models.PaymentMethodModels;
 using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -12,46 +13,51 @@ using System.Web.Mvc;
 namespace FineEx.BusinessLayer.Models.InvoiceModels
 {
     public class InvoiceCreateModel
-    {
+    {       
+
+        [Required(ErrorMessage = "*")]
         public int SenderID { get; set; }
 
         public string Sender { get; set; }
 
+        [Required(ErrorMessage = "*")]
         public int ReceiverID { get; set; }
-        
-        [Required]
-        public int PaymentMethodID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
+        public int PaymentMethodID { get; set; }
+        
         public DateTime InvoiceDate { get; set; }
 
-        [Required]
-        public DateTime DueDate { get; set; }
+        [Required(ErrorMessage = "*")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? DueDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public string UniqueIdentifierOfInvoice { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public string VatNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public string VatSwiftBankClient { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public string InvoiceNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public decimal PriceWithoutVat { get; set; }
 
-        [Required]
         public decimal TotalPrice { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public decimal VatPercentage { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         public string Issuer { get; set; }
 
-        public List<ItemViewModel> Items { get; set; }        
+        public List<ItemViewModel> Items { get; set; }
+
+        public List<CompanyViewModel> Recipients { get; set; }
+        public List<PaymentMethodViewModel> PaymentMethods { get; set; }
     }
 }
