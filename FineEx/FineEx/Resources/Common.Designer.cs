@@ -88,6 +88,15 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoices.
         /// </summary>
         public static string Invoices_Menu {
@@ -129,6 +138,15 @@ namespace FineEx.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Data.
+        /// </summary>
+        public static string No_Data {
+            get {
+                return ResourceManager.GetString("No_Data", resourceCulture);
             }
         }
         

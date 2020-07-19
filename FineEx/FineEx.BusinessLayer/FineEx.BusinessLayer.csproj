@@ -309,6 +309,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
     <Compile Include="Exceptions\NoInvoiceFoundException.cs" />
+    <Compile Include="Models\CompanyModels\CompanyControlPanelModel.cs" />
     <Compile Include="Models\CompanyModels\CompanyCreateModel.cs" />
     <Compile Include="Models\CompanyModels\CompanyViewModel.cs" />
     <Compile Include="Models\InvoiceModels\InvoiceCreateModel.cs" />
