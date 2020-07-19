@@ -26,16 +26,31 @@ namespace FineExApi.Controllers
 
         // GET: api/Invoices/5
         [ResponseType(typeof(Invoice))]
-        public async Task<IHttpActionResult> GetInvoice(int id)
+        public List<Invoice> GetInvoicesForCompany(int id)
         {
-            Invoice invoice = await db.Invoices.FindAsync(id);
-            if (invoice == null)
+            List<Invoice> invoices = new List<Invoice>();
+            invoices.AddRange(db.Invoices.Where(i => i.SenderId == id).ToList());
+            invoices.AddRange(db.Invoices.Where(i => i.ReceiverId == id).ToList());
+            if (invoices == null || invoices.Count == 0)
             {
-                return NotFound();
+                return null;
             }
 
-            return Ok(invoice);
+            return invoices;
         }
+
+        // GET: api/Invoices/5
+        //[ResponseType(typeof(Invoice))]
+        //public async Task<IHttpActionResult> GetInvoice(int id)
+        //{
+        //    Invoice invoice = await db.Invoices.FindAsync(id);
+        //    if (invoice == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(invoice);
+        //}
 
         // PUT: api/Invoices/5
         [ResponseType(typeof(void))]

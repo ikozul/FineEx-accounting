@@ -41,7 +41,9 @@ export default class App extends Component {
 
     if (this.state.isLoggedIn)
       return <Secured
+        onNameChange={(firstName, lastName) => this.setState({firstName, lastName})}
         onLogoutPress={() => this.setState({ isLoggedIn: false })}
+        {...this.state}
       />;
     else
       return <Login
