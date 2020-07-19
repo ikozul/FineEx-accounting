@@ -25,6 +25,11 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
             QuantityPrecision = company.QuantityPrecision;
         }
 
+        public CompanyViewModel()
+        {
+
+        }
+
         public int Id { get; set; }
         public string BusinessNumber { get; set; }
         public string BusinessUnit { get; set; }
