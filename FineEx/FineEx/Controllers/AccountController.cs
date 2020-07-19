@@ -54,7 +54,7 @@ namespace FineEx.Controllers
             }
 
             if (_user.IsSiteAdmin)
-                RedirectToAction("Index", "Administration");
+                return RedirectToAction("Index", "Administration");
 
             return RedirectToAction("Index", "Invoice");
         }

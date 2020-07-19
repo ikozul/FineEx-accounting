@@ -1,5 +1,29 @@
-﻿
+﻿@using GridMvc.Html
+@model List<FineEx.BusinessLayer.Models.CompanyModels.CompanyViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = FineEx.Resources.Common.Company_Menu;
+    ViewBag.Edit = @FineEx.Resources.Common.Edit;
+    Layout = "../Shared/_Layout.cshtml";
 }
 
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Common.Company_Menu</h3>
+<hr />
+<div class="container" style="background: aliceblue">
+    @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
+    {
+        columns.Add(c => c.CompanyName).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.CompanyName)
+            .Titled(FineEx.Resources.Company.Company.Name).Sortable(true);
+
+        columns.Add(c => c.BusinessNumber).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.BusinessNumber)
+            .Titled(FineEx.Resources.Invoice.Invoice.VatNumber).Sortable(true);
+
+        columns.Add().SetWidth("5%")
+            .Sanitized(false).Encoded(false)
+            .RenderValueAs(c => @<a href="@Url.RouteUrl(new { action = "Edit", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
+})
+</div>

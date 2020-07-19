@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.DataLayer.Context;
 
 namespace FineEx.BusinessLayer.Services.PdfGenerator
 {
@@ -27,17 +29,34 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
 
         public string GeneratePdfBytes()
         {
-            var htmlContent = GetHtmlPdf();
-            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-            var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
+            if (!File.Exists(_basePdfPath))
+            {
+                var htmlContent = GetHtmlPdf();
+                var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+                var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
 
-            Save(pdfBytes);
+                Save(pdfBytes);
+            }
+
+            if (string.IsNullOrEmpty(_invoiceViewModel.PdfPath))
+            {
+                var invoice = App.Db.Invoices.Single(x => x.Id == _invoiceViewModel.Id);
+                invoice.PdfPath = _basePdfPath;
+                App.Db.SaveChanges();
+            }
+                
             return _basePdfPath;
         }
 
         private void Save(byte[] pdfBytes)
         {
-            System.IO.File.WriteAllBytes(_basePdfPath, pdfBytes);
+            if (!File.Exists(_basePdfPath))
+            {
+                File.WriteAllBytes(_basePdfPath, pdfBytes);
+            }
+            
+
+
         }
     }
 }

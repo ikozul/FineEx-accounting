@@ -117,43 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account_Dropdown" xml:space="preserve">
-    <value>Account</value>
-  </data>
-  <data name="Company_Menu" xml:space="preserve">
-    <value>Company</value>
-  </data>
-  <data name="Documents_Menu" xml:space="preserve">
-    <value>Documents</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Invoices_Menu" xml:space="preserve">
-    <value>Invoices</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>hr</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="No_Data" xml:space="preserve">
-    <value>No Data</value>
-  </data>
-  <data name="Registration" xml:space="preserve">
-    <value>Registration</value>
-  </data>
-  <data name="Statistics_Menu" xml:space="preserve">
-    <value>Statistics</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+  <data name="Name" xml:space="preserve">
+    <value>Naziv Tvrtke</value>
   </data>
 </root>

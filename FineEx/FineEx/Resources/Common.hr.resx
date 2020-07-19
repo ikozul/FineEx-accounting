@@ -126,6 +126,9 @@
   <data name="Documents_Menu" xml:space="preserve">
     <value>Dokumenti</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Uredi</value>
+  </data>
   <data name="Invoices_Menu" xml:space="preserve">
     <value>Fakture</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Ne</value>
+  </data>
+  <data name="No_Data" xml:space="preserve">
+    <value>Nema podataka</value>
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registracija</value>
