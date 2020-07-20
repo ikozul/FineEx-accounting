@@ -133,13 +133,16 @@
     <value>Invoices</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>hr</value>
+    <value>hr-HR</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>

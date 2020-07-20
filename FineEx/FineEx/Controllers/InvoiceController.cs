@@ -1,6 +1,7 @@
 ﻿using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
 using FineEx.BusinessLayer.Services.PaymentMethodService;
@@ -86,6 +87,8 @@ namespace FineEx.Controllers
             invoiceCreateModel.Sender = currentCompany.CompanyName;
             invoiceCreateModel.Recipients = _companyService.GetCompanies().Where(c => c.BusinessNumber != businessNumber).ToList();
             invoiceCreateModel.PaymentMethods = _paymentMethodService.GetPaymentMethods();
+            UserViewModel currentUser = (UserViewModel)Session["user"];
+            invoiceCreateModel.Issuer = currentUser.ToString();
             return View(invoiceCreateModel);
         }
 
@@ -94,7 +97,24 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
+                return RedirectToAction("CreatePart2", "Invoice", invoiceCreateModel);
+            }
+            return View(invoiceCreateModel);
+        }
 
+        [HttpGet]
+        public ActionResult CreatePart2(InvoiceCreateModel invoiceCreateModel)
+        {
+            return View(invoiceCreateModel);
+        }
+
+        [HttpPost]
+        [ActionName("CreatePart2")]
+        public ActionResult CreatePart2Post(InvoiceCreateModel invoiceCreateModel)
+        {
+            if (ModelState.IsValid)
+            {
+                
             }
             return View(invoiceCreateModel);
         }

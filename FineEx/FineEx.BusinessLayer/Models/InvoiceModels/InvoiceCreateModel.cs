@@ -29,7 +29,7 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public DateTime InvoiceDate { get; set; }
 
         [Required(ErrorMessage = "*")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DueDate { get; set; }
 
         [Required(ErrorMessage = "*")]

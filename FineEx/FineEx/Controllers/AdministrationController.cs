@@ -9,6 +9,8 @@ namespace FineEx.Controllers
 {
     public class AdministrationController : BaseController
     {
+        [HttpGet]
+        [Route("administration")]
         public ActionResult Index()
         {
             BillingService service = new BillingService(2);
