@@ -133,13 +133,16 @@
     <value>Fakture</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>en</value>
+    <value>en-GB</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Prijava</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Odjava</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Dalje</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Ne</value>
