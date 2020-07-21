@@ -16,21 +16,22 @@ namespace FineEx.DataLayer.Models
         public int Id { get; set; }
 
         public decimal ItemPrice { get; set; }
-        public decimal ItemQuantity { get; set; }
+        public decimal WarehouseQuantity { get; set; }
         public string ItemName { get; set; }
 
         public int CompanyId { get; set; }
-
-        [ForeignKey("CompanyId")]
-        public virtual Company Company { get; set; }    
-
-        public string Name { get; set; }
+        public ICollection<Company> Companies { get; set; }
 
         public IQueryable<Item> Search()
         {
             return App.Db.Items
-                .Where(q => q.CompanyId == CompanyId && q.Name.StartsWith(Name))
+                .Where(q => q.CompanyId == CompanyId)
                 .AsQueryable();
+        }
+
+        public Item()
+        {
+            Companies = new HashSet<Company>();
         }
     }
 }

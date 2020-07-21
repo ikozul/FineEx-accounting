@@ -1,0 +1,41 @@
+﻿@model FineEx.BusinessLayer.Models.CompanyModels.CompanyControlPanelModel
+@using GridMvc.Html
+@{
+    ViewBag.Title = FineEx.Resources.Common.Company_Menu;
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Common.Company_Menu</h3>
+<hr />
+<div class="container" style="background: aliceblue">
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a class="btn" href="#basic-data">@FineEx.Resources.Common.Company_Data</a></li>
+        <li role="presentation" class="active"><a class="btn" href="#company-items">@FineEx.Resources.Common.Company_Inventory</a></li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade 12u" id="basic-data">
+            @Html.Partial("_Edit", Model.Company)
+        </div>
+
+        <div class="tab-pane fade 12u" id="company-items">
+            @Html.Partial("_EditItem", Model.CompanyItems)
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#myTab a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        })
+    </script>
+
+}

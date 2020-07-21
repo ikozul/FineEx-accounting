@@ -21,13 +21,11 @@ namespace FineEx.DataLayer.Models
         public string Password { get; set; }
         public bool IsActive { get; set; }
 
-        //[ForeignKey("LanguageId")] public virtual Language Language { get; set; }
-        public int LanguageId { get; set; }
-        
         public virtual ICollection<Company> Companies { get; set; }
 
-        [ForeignKey("RoleId")]
-        public virtual Role UserRola { get; set; }
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
+        public virtual Role Role { get; set; }
 
         public string FullName => string.Format("{0} {1}", FirstName, LastName).Trim();
 

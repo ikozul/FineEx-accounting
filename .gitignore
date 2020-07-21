@@ -2,8 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/FineEx/FineEx/.vs¸
+/FineEx/FineEx/.vs
 /FineEx/.vs
+/FineEx/FineEx/.vs/
+/FineEx/.vs/
 /FineEx/FineEx/bin
 /FineEx/FineEx/obj
 /FineEx/FineEx/App_Start/RouteConfig.vb
@@ -20,3 +22,8 @@
 /.vs/izrada-cjelovitog-aplikativnog-19-20/v16
 /FineEx/FineEx.Testing/obj/Debug
 /FineEx/FineEx.Testing/bin/Debug
+/FineEx/FineEx/App_Data/wkhtmltopdf
+/FineEx/FineEx.BusinessLayer/bin/Release
+/FineEx/FineEx.DataLayer/bin/Release
+/FineEx/FineEx.Testing/obj/Release
+/FineEx/FineEx/Properties/PublishProfiles

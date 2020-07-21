@@ -1,4 +1,8 @@
-﻿using FineEx.BusinessLayer.Models;
+﻿using FineEx.BusinessLayer.Exceptions;
+using FineEx.BusinessLayer.Models.UserModels;
+using FineEx.BusinessLayer.Utils;
+using FineEx.DataLayer.Context;
+using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +13,21 @@ namespace FineEx.BusinessLayer.Services.Login
 {
     public class LoginService : ILoginService
     {
-        public UserViewModel GetUser(string username, string password)
+        private User _user;
+
+        public UserViewModel GetUser(LoginViewModel loginViewModel)
         {
-            throw new NotImplementedException();
+            _user = App.Db.Users.FirstOrDefault(u => u.Email == loginViewModel.Email);
+            if (_user == null)
+            {
+                throw new InvalidCredentialsException("Invalid Email");
+            }
+
+            if (_user.Password == PasswordHelper.HashPassword(loginViewModel.Password))
+            {
+                return new UserViewModel(_user.Id, _user.FirstName, _user.LastName, _user.Email, _user.Role);
+            }
+            throw new InvalidCredentialsException("Invalid Credentials");
         }
     }
 }

@@ -118,7 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account_Dropdown" xml:space="preserve">
-    <value>Račun</value>
+    <value>Korisnički Račun</value>
+  </data>
+  <data name="Company_Data" xml:space="preserve">
+    <value>Uredi tvrtku</value>
+  </data>
+  <data name="Company_Inventory" xml:space="preserve">
+    <value>Inventar</value>
   </data>
   <data name="Company_Menu" xml:space="preserve">
     <value>Tvrtka</value>
@@ -126,13 +132,40 @@
   <data name="Documents_Menu" xml:space="preserve">
     <value>Dokumenti</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Uredi</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Invoices_Menu" xml:space="preserve">
+    <value>Fakture</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>en-GB</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Prijava</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Odjava</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Dalje</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ne</value>
+  </data>
+  <data name="No_Data" xml:space="preserve">
+    <value>Nema podataka</value>
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registracija</value>
   </data>
   <data name="Statistics_Menu" xml:space="preserve">
     <value>Statistika</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Da</value>
   </data>
 </root>

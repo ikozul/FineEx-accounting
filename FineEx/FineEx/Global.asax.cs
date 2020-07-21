@@ -29,15 +29,11 @@ namespace FineEx
                 CultureInfo ci = (CultureInfo)Session["Culture"];
                 if (ci == null)
                 {
-                    string langName = "en";
-
-                    if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0)
-                    {
-                        langName = HttpContext.Current.Request.UserLanguages[0];
-                    }
-                    ci = new CultureInfo(langName);
+                    string langName = "en-US";
+                    ci = new CultureInfo(langName);                    
                     Session["Culture"] = ci;
                 }
+                ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
                 Thread.CurrentThread.CurrentUICulture = ci;
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
             }

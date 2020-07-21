@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = FineEx.Resources.Invoice.Invoice.Title;
+    SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
+    SelectList companyList = ViewBag.Companies as SelectList;
+}
+
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h3>
+<hr />
+
+<div class="pl-lg-0 mt-4">
+    <div class="row mb-5">
+        <div class="col-lg-4 col-md-6">
+            <div class="form-group">                
+                @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceType, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlInvoiceType", invoiceTypeList, FineEx.Resources.Invoice.Invoice.InvoiceTypePlaceholder, new { @class = "picker form-control col-lg-12" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
+                <div class="col-md-12">
+                    @Html.DropDownList("ddlCompany", companyList, FineEx.Resources.Invoice.Invoice.CompanyPlaceholder, new { @class = "picker form-control col-lg-12" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="createInvoice" href="Invoice/Create" class="btn btn-success my-2 ml- font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.ShowInvoices</a>
+        </div>
+    </div>
+</div>
+
+<div id="container" class="main-table-container bg-light p-2" hidden>
+
+</div>
+
+<div>
+    @if (Convert.ToBoolean(ViewBag.NoInvoiceFoundError))
+    {
+        <label class="text-danger font-weight-bold">@ViewBag.NoInvoiceFoundMessage</label>
+    }
+</div>
+
+@section scripts {
+    <script>
+
+        $(".picker").on("change", function () {
+            var $sels = $('.picker option:selected[value=""]');
+            var companyBusinessNumber = $("#ddlCompany").val();
+            $("#createInvoice").attr('href', '/Invoice/Create?businessNumber=' + companyBusinessNumber)
+            if ($sels.length == 0) {
+                $("#showTable").removeClass("disabled");
+                $("#createInvoice").removeClass("disabled");
+            } else {
+                $("#showTable").addClass("disabled");
+                $("#createInvoice").addClass("disabled");
+            }
+        });
+
+        $("#showTable").on("click", function (e) {
+            e.preventDefault();
+            var invoiceTypeVal = $("#ddlInvoiceType").val();
+            var companyBusinessNumber = $("#ddlCompany").val();
+            $.ajax({
+                url: '/invoice/partial?invoiceType=' + invoiceTypeVal + '&businessNumber=' + companyBusinessNumber,
+                type: 'POST',
+                success: function (data) {
+                    $("#container").prop("hidden", false);
+                    $("#container").html(data);
+                    $('#invoices').DataTable({
+                        "scrollX": true,
+                        "rowCallback": function (row, data, index) {
+                            console.log(data[1]);
+                            if (data[1] == "Yes" || data[1] == "Da") {
+                                $(row).find('td:eq(1)').css('background-color', 'lightgreen');
+                            }
+                            else {
+                                $(row).find('td:eq(1)').css('background-color', 'tomato');
+                            }
+                        }
+                    });
+                    mainGrid = document.getElementById("invoices");
+                    mainGrid.addEventListener("wheel", scrollHorizontally, false);
+                }
+            })
+        });
+
+        function scrollHorizontally(e) {
+            e = window.event || e;
+            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+            $(".dataTables_scrollBody").scrollLeft($(".dataTables_scrollBody").scrollLeft() - delta * 60);
+            e.preventDefault();
+        }
+
+    </script>
+}
+

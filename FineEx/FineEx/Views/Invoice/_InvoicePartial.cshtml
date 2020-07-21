@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FineEx.BusinessLayer.Models.InvoiceModels.InvoiceViewModel>
+
+<table id="invoices" class="table text-nowrap">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Approved</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Sender</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Recipient</th>
+            <th>@FineEx.Resources.Invoice.Invoice.PaymentMethod</th>
+            <th>@FineEx.Resources.Invoice.Invoice.InvoiceDate</th>
+            <th>@FineEx.Resources.Invoice.Invoice.DueDate</th>
+            <th>@FineEx.Resources.Invoice.Invoice.UniqueInvoiceID</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatNumber</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatSwiftNumberClient</th>
+            <th>@FineEx.Resources.Invoice.Invoice.PriceWithoutVat</th>
+            <th>@FineEx.Resources.Invoice.Invoice.VatPercentage</th>
+            <th>@FineEx.Resources.Invoice.Invoice.TotalPrice</th>
+            <th>@FineEx.Resources.Invoice.Invoice.InvoiceNumber</th>
+            <th>@FineEx.Resources.Invoice.Invoice.Issuer</th>
+            <th>PDF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Id)
+                </td>
+                <td>
+                    @(invoice.Approved ? FineEx.Resources.Common.Yes : FineEx.Resources.Common.No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Sender.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Receiver.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.PaymentMethod)
+                </td>
+                <td>
+                    @invoice.InvoiceDate.ToShortDateString()
+                </td>
+                <td>
+                    @invoice.DueDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.UniqueIdentifierOfInvoice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatSwiftBankClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.PriceWithoutVat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.VatPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.InvoiceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => invoice.Sender.Name)
+                </td>
+                <td>
+                    <a href="@Url.Action("DownloadPDF", "Invoice", new { id = invoice.Id })" class="btn btn-outline-success fa fa-download"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

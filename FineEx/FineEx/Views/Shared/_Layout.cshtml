@@ -6,40 +6,40 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-        @Html.ActionLink("FineEx", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a href="/invoices"> <img style="width: 40px" src="~/Content/Images/Logo.png" alt="X" /></a>
+
+        <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse flex-column" id="navbarNav">
-            <ul class="navbar-nav" id="nav">
+        <div class="collapse navbar-collapse flex-row" id="navbarNav">
+            <ul class="navbar-nav mx-auto" id="nav">
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Company_Menu, "Index", "Company", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Documents_Menu, "Index", "Document", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Statistics_Menu, "Index", "Statistics", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink(FineEx.Resources.Common.Invoices_Menu, "Index", "Invoice", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        @FineEx.Resources.Common.Account_Dropdown
+                        @{ FineEx.BusinessLayer.Models.UserModels.UserViewModel user = (FineEx.BusinessLayer.Models.UserModels.UserViewModel)Session["user"]; }
+                        @((Session["user"] == null) ? @FineEx.Resources.Common.Account_Dropdown : user.Email)
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink(FineEx.Resources.Common.Login, "Login", "Account", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                        @((Session["user"] == null) ? @Html.ActionLink(FineEx.Resources.Common.Login, "Login", "Account", new { area = "" }, new { @class = "dropdown-item" }) : @Html.ActionLink(FineEx.Resources.Common.Logout, "Logout", "Account", new { area = "" }, new { @class = "dropdown-item" }))
+                        @((Session["user"] == null) ? @Html.ActionLink(FineEx.Resources.Common.Registration, "Registration", "Account", new { area = "" }, new { @class = "dropdown-item" }) : null)
                     </div>
                 </li>
             </ul>
-        </div>
-        <div>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    @Html.ActionLink("English", "ChangeCulture", "Base",
-                    new { lang = "en", returnUrl = this.Request.RawUrl }, new { @class = "nav-link" })
-                </li>
-                <span class="text-white py-2">/</span>
-                <li class="nav-item">
-                    @Html.ActionLink("Hrvatski", "ChangeCulture", "Base",
-                    new { lang = "hr", returnUrl = this.Request.RawUrl }, new { @class = "nav-link" })
+            <hr class="m-0 mb-2" />
+            <ul class="navbar-nav ml-md-5">
+                <li class="nav-item d-inline-block">
+                    @Html.ActionLink(" ", "ChangeCulture", "Base",
+                    new { lang = FineEx.Resources.Common.Language, returnUrl = this.Request.RawUrl }, new { @class = "nav-link", @style = "background: url('../../Resources/language.png') no-repeat center right;display:block; height:32px; width:32px;" })
                 </li>
             </ul>
         </div>
@@ -92,5 +92,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/javascript")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
 </body>
 </html>

@@ -8,6 +8,8 @@ namespace FineEx.Controllers
 {
     public class DocumentController : BaseController
     {
+        [HttpGet]
+        [Route("documents")]
         public ActionResult Index()
         {
             if (Session["user"] != null)

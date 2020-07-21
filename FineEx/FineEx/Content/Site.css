@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: linear-gradient(90deg, rgb(0, 85, 197) 10%, rgb(0, 139, 167) 100%);
+    background: linear-gradient(90deg, #6eaeb8 10%, #8cc0c8 100%);
 }
 
 /* Set padding to keep content from hitting the edges */

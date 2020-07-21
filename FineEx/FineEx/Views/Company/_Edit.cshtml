@@ -1,0 +1,59 @@
+﻿@model FineEx.BusinessLayer.Models.CompanyModels.CompanyViewModel
+<div class="container" style="padding: 26px">
+@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false)
+
+    @Html.Hidden("Id", Model.Id)
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.BusinessNumber)
+            <br/>
+            @Html.EditorFor(x => x.BusinessNumber)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.CompanyName)
+            <br/>
+            @Html.EditorFor(x => x.CompanyName)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.Address)
+            <br/>
+            @Html.EditorFor(x => x.Address)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.City)
+            <br/>
+            @Html.EditorFor(x => x.City)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.IBAN)
+            <br/>
+            @Html.EditorFor(x => x.IBAN)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.Phone)
+            <br/>
+            @Html.EditorFor(x => x.Phone)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(x => x.BusinessUnit)
+            <br/>
+            @Html.EditorFor(x => x.BusinessUnit)
+        </div>
+    </div>
+
+    <br/>
+    <div class="col-md-4">
+        <input type="submit" value="@FineEx.Resources.Company.Company.Update" class="btn btn-info btn-block" />
+    </div>
+}
+</div>

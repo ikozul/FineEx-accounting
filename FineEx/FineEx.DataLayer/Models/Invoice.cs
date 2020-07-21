@@ -12,44 +12,38 @@ namespace FineEx.DataLayer.Models
 {
     public class Invoice
     {
-        public Invoice() => Items = new HashSet<Item>();
+        public Invoice() => InvoiceItems = new HashSet<InvoiceItems>();
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public bool Approved { get; set; }
+        public string PdfPath { get; set; }
 
-        public bool Incoming { get; set; }
+        [ForeignKey("Sender")]
+        public int SenderId { get; set; }
+        public virtual Company Sender { get; set; }
 
-        [ForeignKey("SenderId")]
-        public virtual Company Sender
-        {
-            get; set;
-        }
+        [ForeignKey("Receiver")]
+        public int ReceiverId { get; set; }
+        public virtual Company Receiver { get; set; }
 
-        [ForeignKey("ReceiverId")]
-        public virtual Company Receiver
-        {
-            get; set;
-        }
-        [ForeignKey("PaymentMethodId")]
+        [ForeignKey("PaymentMethod")]
+        public int PaymentMethodId { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
 
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
 
-        public string ProtectedCodeOfSupplier { get; set; }
         public string UniqueIdentifierOfInvoice { get; set; }
         public string VatNumber { get; set; }
         public string VatSwiftBankClient { get; set; }
-
-        [ForeignKey("LocationId")]  
-        public virtual Location Location { get; set; }
-
+        public decimal PriceWithoutVat { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal VatPercentage { get; set; }
         public string InvoiceNumber { get; set; }
-
         public virtual User User { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
 
     }
 }
