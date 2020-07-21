@@ -126,6 +126,14 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="RequiredPriceWithoutVat" xml:space="preserve">
+    <value>Unesite cijenu bez poreza</value>
+  </data>
+  <data name="RequiredSwift" xml:space="preserve">
+    <value>Unesite Swift</value>
+  </data>
+  <data name="RequiredUniqueInvoiceID" xml:space="preserve">
+    <value>Unesite jedinstveni ID</value>
   <data name="NewItem" xml:space="preserve">
     <value>New Item</value>
   </data>

@@ -120,6 +120,12 @@
   <data name="Account_Dropdown" xml:space="preserve">
     <value>Korisnički Račun</value>
   </data>
+  <data name="Company_Data" xml:space="preserve">
+    <value>Uredi tvrtku</value>
+  </data>
+  <data name="Company_Inventory" xml:space="preserve">
+    <value>Inventar</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
@@ -131,6 +137,9 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Uredi</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="Invoices_Menu" xml:space="preserve">
     <value>Fakture</value>
