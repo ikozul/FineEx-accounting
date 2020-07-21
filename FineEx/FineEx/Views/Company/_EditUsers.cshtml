@@ -1,0 +1,38 @@
+﻿@using System.Globalization
+@using GridMvc.Html
+@model  List<FineEx.BusinessLayer.Models.UserModels.UserViewModel>
+
+@{
+    ViewBag.Edit = FineEx.Resources.Common.Edit;
+}
+
+<div class="container" style="background: aliceblue">
+    @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
+    {
+        columns.Add(c => c.Id).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.Id.ToString())
+            .Titled(FineEx.Resources.User.User.Id).Sortable(true);
+
+        columns.Add(c => c.FirstName).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.FirstName)
+            .Titled(FineEx.Resources.User.User.FirstName).Sortable(true);
+
+        columns.Add(c => c.LastName).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.LastName)
+            .Titled(FineEx.Resources.User.User.LastName).Sortable(true);
+
+        columns.Add(c => c.Email).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.Email)
+            .Titled(FineEx.Resources.User.User.Email).Sortable(true);
+
+
+        columns.Add().SetWidth("10%")
+            .Sanitized(false).Encoded(false)
+            .RenderValueAs(c => @<a class="button" href="@Url.RouteUrl(new { action = "EditUser", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
+    })
+</div>
+

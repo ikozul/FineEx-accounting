@@ -11,6 +11,17 @@ namespace FineEx.BusinessLayer.Models.UserModels
     {
         private const int _adminRoleId = 90;
 
+        public UserViewModel(User user)
+        {
+            Id = user.Id;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Email = user.Email;
+            Role = user.Role;
+            Password = user.Password;
+        }
+
+
         public UserViewModel(int id, string firstName, string lastName, string email, Role role)
         {
             Id = id;
@@ -25,6 +36,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public Role Role { get; set; }
+        public string Password { get; set; }
 
         public bool IsSiteAdmin => Role.Id >= _adminRoleId;
 

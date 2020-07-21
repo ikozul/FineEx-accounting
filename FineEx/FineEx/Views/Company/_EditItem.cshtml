@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using GridMvc.Html
-@model  IQueryable<FineEx.DataLayer.Models.Item>
+@model  List<FineEx.BusinessLayer.Models.ItemModels.ItemViewModel>
 
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>

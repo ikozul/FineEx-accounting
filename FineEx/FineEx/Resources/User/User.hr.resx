@@ -117,31 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Item_Name" xml:space="preserve">
-    <value>Naziv artikla</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Naziv tvrtke</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ime</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>Ažuriraj</value>
+  <data name="Id" xml:space="preserve">
+    <value>ID korisnika</value>
   </data>
-  <data name="Edit_Item" xml:space="preserve">
-    <value>Uredi artikl</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Prezime</value>
   </data>
-  <data name="Address" xml:space="preserve">
-    <value>Adresa</value>
+  <data name="Password" xml:space="preserve">
+    <value>Lozinka</value>
   </data>
-  <data name="Business_Unit" xml:space="preserve">
-    <value>Poslovnica</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Grad</value>
-  </data>
-  <data name="Iban" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Broj telefona</value>
+  <data name="Users" xml:space="preserve">
+    <value>Korisnici</value>
   </data>
 </root>

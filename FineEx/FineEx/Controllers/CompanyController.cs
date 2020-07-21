@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FineEx.BusinessLayer.Models.CompanyModels;
+using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.DataLayer.Context;
 using FineEx.Resources.Company;
@@ -51,5 +52,18 @@ namespace FineEx.Controllers
         }
 
 
+
+        public ActionResult EditUser(int id)
+        {
+            var userViewModel = new UserViewModel(App.Db.Users.Single(x => x.Id == id));
+            return View(userViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(UserViewModel model)
+        {
+            _companyService.UpdateUser(model);
+            return RedirectToAction("Index", "Company");
+        }
     }
 }

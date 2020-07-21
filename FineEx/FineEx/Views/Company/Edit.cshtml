@@ -12,16 +12,21 @@
     <ul id="myTab" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a class="btn" href="#basic-data">@FineEx.Resources.Common.Company_Data</a></li>
         <li role="presentation" class="active"><a class="btn" href="#company-items">@FineEx.Resources.Common.Company_Inventory</a></li>
+        <li role="presentation" class="active"><a class="btn" href="#company-users">@FineEx.Resources.User.User.Users</a></li>
     </ul>
 
     <div id="myTabContent" class="tab-content">
 
-        <div class="tab-pane fade 12u" id="basic-data">
+        <div class="tab-pane show 12u" id="basic-data">
             @Html.Partial("_Edit", Model.Company)
         </div>
 
         <div class="tab-pane fade 12u" id="company-items">
             @Html.Partial("_EditItem", Model.CompanyItems)
+        </div>
+        
+        <div class="tab-pane fade 12u" id="company-users">
+            @Html.Partial("_EditUsers", Model.CompanyUsers)
         </div>
     </div>
 

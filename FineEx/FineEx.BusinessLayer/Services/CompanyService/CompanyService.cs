@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FineEx.BusinessLayer.Models.UserModels;
 
 namespace FineEx.BusinessLayer.Services.CompanyService
 {
@@ -56,6 +57,11 @@ namespace FineEx.BusinessLayer.Services.CompanyService
             //Todo determine what to validate
 
             return true;
+        }
+
+        public void UpdateUser(UserViewModel model)
+        {
+            var user = App.Db.Users.Single(x => x.Id == model.Id);
         }
     }
 }

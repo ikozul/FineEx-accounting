@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FineEx.Resources.Company {
+namespace FineEx.Resources.User {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FineEx.Resources.Company {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Company {
+    public class User {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Company() {
+        internal User() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FineEx.Resources.Company {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FineEx.Resources.Company.Company", typeof(Company).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FineEx.Resources.User.User", typeof(User).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,56 @@ namespace FineEx.Resources.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
-        public static string Address {
+        public static string Email {
             get {
-                return ResourceManager.GetString("Address", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Business unit.
+        ///   Looks up a localized string similar to First name.
         /// </summary>
-        public static string Business_Unit {
+        public static string FirstName {
             get {
-                return ResourceManager.GetString("Business_Unit", resourceCulture);
+                return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to User ID.
         /// </summary>
-        public static string City {
+        public static string Id {
             get {
-                return ResourceManager.GetString("City", resourceCulture);
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit item.
+        ///   Looks up a localized string similar to Surname.
         /// </summary>
-        public static string Edit_Item {
+        public static string LastName {
             get {
-                return ResourceManager.GetString("Edit_Item", resourceCulture);
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment number.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string Iban {
+        public static string Password {
             get {
-                return ResourceManager.GetString("Iban", resourceCulture);
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item name.
+        ///   Looks up a localized string similar to Users.
         /// </summary>
-        public static string Item_Name {
+        public static string Users {
             get {
-                return ResourceManager.GetString("Item_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Company name.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone number.
-        /// </summary>
-        public static string Phone {
-            get {
-                return ResourceManager.GetString("Phone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
+                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
     }
