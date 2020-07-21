@@ -88,6 +88,15 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoices.
         /// </summary>
         public static string Invoices_Menu {
@@ -97,7 +106,7 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hr.
+        ///   Looks up a localized string similar to hr-HR.
         /// </summary>
         public static string Language {
             get {
@@ -124,6 +133,33 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Data.
+        /// </summary>
+        public static string No_Data {
+            get {
+                return ResourceManager.GetString("No_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration.
         /// </summary>
         public static string Registration {
@@ -138,6 +174,15 @@ namespace FineEx.Resources {
         public static string Statistics_Menu {
             get {
                 return ResourceManager.GetString("Statistics_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

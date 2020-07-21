@@ -120,14 +120,26 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved (yes/no)</value>
   </data>
+  <data name="CashOnDelivery" xml:space="preserve">
+    <value>Cash On Delivery</value>
+  </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
   <data name="CompanyPlaceholder" xml:space="preserve">
     <value>--- Select company ---</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="CreateInvoice" xml:space="preserve">
     <value>New Invoice</value>
+  </data>
+  <data name="CreateTitle" xml:space="preserve">
+    <value>Create New Invoice</value>
+  </data>
+  <data name="CreditCard" xml:space="preserve">
+    <value>Credit Card</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
@@ -156,11 +168,17 @@
   <data name="PaymentMethod" xml:space="preserve">
     <value>Payment Method</value>
   </data>
+  <data name="PaymentMethodPlaceholder" xml:space="preserve">
+    <value>--- Select payment method ---</value>
+  </data>
   <data name="PriceWithoutVat" xml:space="preserve">
-    <value>Price Without Vat</value>
+    <value>Price Without VAT</value>
   </data>
   <data name="Recipient" xml:space="preserve">
     <value>Recipient</value>
+  </data>
+  <data name="RecipientPlaceholder" xml:space="preserve">
+    <value>--- Select recipient ---</value>
   </data>
   <data name="Sender" xml:space="preserve">
     <value>Sender</value>
@@ -177,13 +195,13 @@
   <data name="UniqueInvoiceID" xml:space="preserve">
     <value>Unique Invoice ID</value>
   </data>
-  <data name="VatNuber" xml:space="preserve">
-    <value>Vat Number</value>
+  <data name="VatNumber" xml:space="preserve">
+    <value>VAT Number</value>
   </data>
   <data name="VatPercentage" xml:space="preserve">
-    <value>Vat Percentage</value>
+    <value>VAT Percentage</value>
   </data>
   <data name="VatSwiftNumberClient" xml:space="preserve">
-    <value>Swift Vat Number Client</value>
+    <value>Swift</value>
   </data>
 </root>

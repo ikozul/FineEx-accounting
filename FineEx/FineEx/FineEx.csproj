@@ -222,10 +222,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,6 +241,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Company\Company.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Company\Company.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.hr.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Invoice\Invoice.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -272,6 +282,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Registration.hr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Required\Required.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Required.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Required\Required.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Required.hr.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -280,7 +300,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\custom\table.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -440,6 +459,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\custom\form.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\Images\Logo.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -701,9 +721,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
@@ -728,6 +745,12 @@
     <Content Include="Views\Invoice\_InvoicePartial.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\_Edit.cshtml" />
+    <Content Include="Views\Company\_EditItem.cshtml" />
+    <Content Include="Views\Invoice\CreatePart2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -748,6 +771,14 @@
     <EmbeddedResource Include="Resources\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Company\Company.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Company\Company.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Invoice\Invoice.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -772,6 +803,14 @@
     <EmbeddedResource Include="Resources\Registration\Registration.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Registration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Required\Required.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Required.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Required\Required.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Required.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -807,6 +846,8 @@
           <DevelopmentServerPort>3288</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:3288/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:3288/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

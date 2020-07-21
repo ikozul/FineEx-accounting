@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +29,11 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
             TotalPrice = invoice.TotalPrice;
             VatPercentage = invoice.VatPercentage;
             Issuer = invoice.User.FullName;
-            Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.ItemQuantity)).ToList();
+            Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.WarehouseQuantity)).ToList();
+            PdfPath = invoice.PdfPath;
         }
 
+        public string PdfPath { get; set; }
         public int Id { get; set; }
         public bool Approved { get; set; }
         public Company Sender { get; set; }

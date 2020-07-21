@@ -70,6 +70,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash On Delivery.
+        /// </summary>
+        public static string CashOnDelivery {
+            get {
+                return ResourceManager.GetString("CashOnDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string Company {
@@ -88,11 +97,38 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Invoice.
         /// </summary>
         public static string CreateInvoice {
             get {
                 return ResourceManager.GetString("CreateInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Invoice.
+        /// </summary>
+        public static string CreateTitle {
+            get {
+                return ResourceManager.GetString("CreateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        public static string CreditCard {
+            get {
+                return ResourceManager.GetString("CreditCard", resourceCulture);
             }
         }
         
@@ -178,7 +214,16 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Price Without Vat.
+        ///   Looks up a localized string similar to --- Select payment method ---.
+        /// </summary>
+        public static string PaymentMethodPlaceholder {
+            get {
+                return ResourceManager.GetString("PaymentMethodPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Without VAT.
         /// </summary>
         public static string PriceWithoutVat {
             get {
@@ -192,6 +237,15 @@ namespace FineEx.Resources.Invoice {
         public static string Recipient {
             get {
                 return ResourceManager.GetString("Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --- Select recipient ---.
+        /// </summary>
+        public static string RecipientPlaceholder {
+            get {
+                return ResourceManager.GetString("RecipientPlaceholder", resourceCulture);
             }
         }
         
@@ -241,16 +295,16 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vat Number.
+        ///   Looks up a localized string similar to VAT Number.
         /// </summary>
-        public static string VatNuber {
+        public static string VatNumber {
             get {
-                return ResourceManager.GetString("VatNuber", resourceCulture);
+                return ResourceManager.GetString("VatNumber", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vat Percentage.
+        ///   Looks up a localized string similar to VAT Percentage.
         /// </summary>
         public static string VatPercentage {
             get {
@@ -259,7 +313,7 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Swift Vat Number Client.
+        ///   Looks up a localized string similar to Swift.
         /// </summary>
         public static string VatSwiftNumberClient {
             get {

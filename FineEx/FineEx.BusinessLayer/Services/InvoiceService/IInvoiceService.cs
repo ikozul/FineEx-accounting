@@ -11,6 +11,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
     {
         List<InvoiceViewModel> GetIncomingInvoices();
         List<InvoiceViewModel> GetOutgoingInvoices();
+        InvoiceViewModel GetInvoiceById(int id);
         void GetInvoiceViewModels();
     }
 }

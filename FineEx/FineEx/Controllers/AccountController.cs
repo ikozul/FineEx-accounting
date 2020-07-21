@@ -7,12 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Services.PdfGenerator;
+using FineEx.DataLayer.Models;
+using System.Globalization;
 
 namespace FineEx.Controllers
 {
     public class AccountController : BaseController
     {
-        private LoginService loginService = new LoginService();
+        private LoginService _loginService = new LoginService();
+        private UserViewModel _user;
+
 
         [HttpGet]
         [Route("login")]
@@ -36,8 +42,9 @@ namespace FineEx.Controllers
             {
                 try
                 {
-                    UserViewModel user = loginService.GetUser(loginCredentials);
-                    Session["user"] = user;
+                    _user = _loginService.GetUser(loginCredentials);
+                    SetUserInSession(_user.Id);
+                    Session["user"] = _user;
                 }
                 catch (InvalidCredentialsException ex)
                 {
@@ -46,6 +53,10 @@ namespace FineEx.Controllers
                     return View();
                 }
             }
+
+            if (_user.IsSiteAdmin)
+                return RedirectToAction("Index", "Administration");
+
             return RedirectToAction("Index", "Invoice");
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
@@ -15,6 +16,10 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
         public InvoiceService(string businessNumber)
         {
             this._businessNumber = businessNumber;
+        }
+        public InvoiceService()
+        {
+
         }
 
         public List<InvoiceViewModel> GetIncomingInvoices()
@@ -41,6 +46,16 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             {
                 _invoicesView.Add(new InvoiceViewModel(invoice));
             }
+        }
+
+        public InvoiceViewModel GetInvoiceById(int id)
+        {
+            var invoice = App.Db.Invoices.Single(i => i.Id == id);
+            if (invoice == null)
+            {
+                throw new NoInvoiceFoundException("No invoice found with ID: " + id);
+            }
+            return new InvoiceViewModel(invoice);
         }
     }
 }

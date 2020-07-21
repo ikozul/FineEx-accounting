@@ -9,17 +9,15 @@ namespace FineEx.BusinessLayer.Models.ItemModels
 {
     public class ItemViewModel
     {
-        public ItemViewModel(int id, string itemName, decimal itemPrice, decimal itemQuantity)
+        public ItemViewModel(Item item)
         {
-            Id = id;
-            ItemName = itemName;
-            ItemPrice = itemPrice;
-            ItemQuantity = itemQuantity;
+            Id = item.Id;
+            ItemName = item.ItemName;
+            ItemPrice = item.ItemPrice;
         }
 
         public int Id { get; set; }
         public string ItemName { get; set; }
         public decimal ItemPrice { get; set; }
-        public decimal ItemQuantity { get; set; }
     }
 }

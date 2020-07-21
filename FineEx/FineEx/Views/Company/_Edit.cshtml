@@ -1,0 +1,19 @@
+﻿@model FineEx.BusinessLayer.Models.CompanyModels.CompanyViewModel
+
+    <form action="@Url.Action("Edit", "Company", new { id = Model.Id })" method="post">
+        <div class="row">
+            <div class="4u">
+                @Html.LabelFor(x => x.BusinessNumber)
+                    @Html.EditorFor(x => x.BusinessNumber)
+                    @*@Html.ValidationMessageFor(x => x.Oib)*@
+
+            </div>
+            <div class="8u">
+                @Html.LabelFor(x => x.CompanyName)
+                @Html.EditorFor(x => x.CompanyName)
+
+                @*@Html.ValidationMessageFor(x => x.Naziv)*@
+            </div>
+        </div>
+        
+    </form>

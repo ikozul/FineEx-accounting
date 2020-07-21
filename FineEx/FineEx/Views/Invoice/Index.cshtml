@@ -1,18 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = FineEx.Resources.Invoice.Invoice.Title;
     SelectList invoiceTypeList = ViewBag.InvoiceTypes as SelectList;
     SelectList companyList = ViewBag.Companies as SelectList;
 }
 
-<link href="~/Content/custom/table.css" rel="stylesheet" />
-
 <br />
-<h2 class="ml-2 p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h2>
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.Title</h3>
+<hr />
 
-<div class="pl-lg-0 mt-lg-4">
+<div class="pl-lg-0 mt-4">
     <div class="row mb-5">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceType, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -20,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
@@ -28,49 +27,66 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <button id="showTable" href="Invoice/Partial" class="btn btn-warning mx-3 my-2 mr-lg-5 font-weight-bold" disabled>@FineEx.Resources.Invoice.Invoice.ShowInvoices</button>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="createInvoice" href="Invoice/Create" class="btn btn-success my-2 ml- font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.CreateInvoice</a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6 mt-4 mx-lg-0">
+            <a id="showTable" href="Invoice/Partial" class="btn btn-warning my-2 font-weight-bold disabled text-nowrap w-100">@FineEx.Resources.Invoice.Invoice.ShowInvoices</a>
         </div>
     </div>
 </div>
 
-<div id="container" class="main-table-container bg-light ml-2 py-2" hidden>
+<div id="container" class="main-table-container bg-light p-2" hidden>
 
 </div>
 
 <div>
-    <button id="createInvoice" href="Invoice/Create" class="btn btn-success mx-3 my-2 mr-lg-5" disabled>@FineEx.Resources.Invoice.Invoice.CreateInvoice</button>
+    @if (Convert.ToBoolean(ViewBag.NoInvoiceFoundError))
+    {
+        <label class="text-danger font-weight-bold">@ViewBag.NoInvoiceFoundMessage</label>
+    }
 </div>
 
 @section scripts {
     <script>
-        $(document).ready(function () {
-            mainGrid = document.getElementById("container");
-            mainGrid.addEventListener("wheel", scrollHorizontally, false);
-        })
 
         $(".picker").on("change", function () {
             var $sels = $('.picker option:selected[value=""]');
-            console.log($("#ddlInvoiceType").val());
-            console.log($("#ddlCompany").val());
+            var companyBusinessNumber = $("#ddlCompany").val();
+            $("#createInvoice").attr('href', '/Invoice/Create?businessNumber=' + companyBusinessNumber)
             if ($sels.length == 0) {
-                $("#showTable").prop("disabled", false);
+                $("#showTable").removeClass("disabled");
+                $("#createInvoice").removeClass("disabled");
             } else {
-                $("#showTable").prop("disabled", true);
+                $("#showTable").addClass("disabled");
+                $("#createInvoice").addClass("disabled");
             }
         });
 
-        $("#showTable").on("click", function () {
+        $("#showTable").on("click", function (e) {
+            e.preventDefault();
             var invoiceTypeVal = $("#ddlInvoiceType").val();
             var companyBusinessNumber = $("#ddlCompany").val();
-            //console.log(invoiceTypeVal);
-            //console.log(companyBusinessNumber);
             $.ajax({
                 url: '/invoice/partial?invoiceType=' + invoiceTypeVal + '&businessNumber=' + companyBusinessNumber,
                 type: 'POST',
                 success: function (data) {
                     $("#container").prop("hidden", false);
-                    $("#container").html(data)
+                    $("#container").html(data);
+                    $('#invoices').DataTable({
+                        "scrollX": true,
+                        "rowCallback": function (row, data, index) {
+                            console.log(data[1]);
+                            if (data[1] == "Yes" || data[1] == "Da") {
+                                $(row).find('td:eq(1)').css('background-color', 'lightgreen');
+                            }
+                            else {
+                                $(row).find('td:eq(1)').css('background-color', 'tomato');
+                            }
+                        }
+                    });
+                    mainGrid = document.getElementById("invoices");
+                    mainGrid.addEventListener("wheel", scrollHorizontally, false);
                 }
             })
         });
@@ -78,7 +94,7 @@
         function scrollHorizontally(e) {
             e = window.event || e;
             var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-            $("#container").scrollLeft($("#container").scrollLeft() - delta * 50);
+            $(".dataTables_scrollBody").scrollLeft($(".dataTables_scrollBody").scrollLeft() - delta * 60);
             e.preventDefault();
         }
 
