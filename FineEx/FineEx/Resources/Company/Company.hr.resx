@@ -126,4 +126,7 @@
   <data name="Update" xml:space="preserve">
     <value>Ažuriraj</value>
   </data>
+  <data name="Edit_Item" xml:space="preserve">
+    <value>Uredi artikl</value>
+  </data>
 </root>

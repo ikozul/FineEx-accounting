@@ -36,11 +36,8 @@
                         WarehouseQuantity = c.Decimal(nullable: false, precision: 18, scale: 2),
                         ItemName = c.String(),
                         CompanyId = c.Int(nullable: false),
-                        Invoice_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Invoices", t => t.Invoice_Id)
-                .Index(t => t.Invoice_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Invoices",
@@ -72,6 +69,21 @@
                 .Index(t => t.ReceiverId)
                 .Index(t => t.PaymentMethodId)
                 .Index(t => t.User_Id);
+            
+            CreateTable(
+                "dbo.InvoiceItems",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        InvoiceId = c.Int(nullable: false),
+                        ItemId = c.Int(nullable: false),
+                        ItemQuantity = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
+                .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: true)
+                .Index(t => t.InvoiceId)
+                .Index(t => t.ItemId);
             
             CreateTable(
                 "dbo.PaymentMethods",
@@ -116,21 +128,6 @@
                         TwoLettercountryCode = c.String(maxLength: 2),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.InvoiceItems",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        InvoiceId = c.Int(nullable: false),
-                        ItemId = c.Int(nullable: false),
-                        ItemQuantity = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
-                .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: true)
-                .Index(t => t.InvoiceId)
-                .Index(t => t.ItemId);
             
             CreateTable(
                 "dbo.Locations",
@@ -180,8 +177,6 @@
         public override void Down()
         {
             DropForeignKey("dbo.Locations", "CountryId", "dbo.Countries");
-            DropForeignKey("dbo.InvoiceItems", "ItemId", "dbo.Items");
-            DropForeignKey("dbo.InvoiceItems", "InvoiceId", "dbo.Invoices");
             DropForeignKey("dbo.Invoices", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Users", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.UsersCompanies", "CompanyId", "dbo.Companies");
@@ -189,7 +184,8 @@
             DropForeignKey("dbo.Invoices", "SenderId", "dbo.Companies");
             DropForeignKey("dbo.Invoices", "ReceiverId", "dbo.Companies");
             DropForeignKey("dbo.Invoices", "PaymentMethodId", "dbo.PaymentMethods");
-            DropForeignKey("dbo.Items", "Invoice_Id", "dbo.Invoices");
+            DropForeignKey("dbo.InvoiceItems", "ItemId", "dbo.Items");
+            DropForeignKey("dbo.InvoiceItems", "InvoiceId", "dbo.Invoices");
             DropForeignKey("dbo.ItemCompanies", "Company_Id", "dbo.Companies");
             DropForeignKey("dbo.ItemCompanies", "Item_Id", "dbo.Items");
             DropIndex("dbo.UsersCompanies", new[] { "CompanyId" });
@@ -197,23 +193,22 @@
             DropIndex("dbo.ItemCompanies", new[] { "Company_Id" });
             DropIndex("dbo.ItemCompanies", new[] { "Item_Id" });
             DropIndex("dbo.Locations", new[] { "CountryId" });
+            DropIndex("dbo.Users", new[] { "RoleId" });
             DropIndex("dbo.InvoiceItems", new[] { "ItemId" });
             DropIndex("dbo.InvoiceItems", new[] { "InvoiceId" });
-            DropIndex("dbo.Users", new[] { "RoleId" });
             DropIndex("dbo.Invoices", new[] { "User_Id" });
             DropIndex("dbo.Invoices", new[] { "PaymentMethodId" });
             DropIndex("dbo.Invoices", new[] { "ReceiverId" });
             DropIndex("dbo.Invoices", new[] { "SenderId" });
-            DropIndex("dbo.Items", new[] { "Invoice_Id" });
             DropIndex("dbo.Companies", new[] { "BusinessNumber" });
             DropTable("dbo.UsersCompanies");
             DropTable("dbo.ItemCompanies");
             DropTable("dbo.Locations");
-            DropTable("dbo.InvoiceItems");
             DropTable("dbo.Countries");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.PaymentMethods");
+            DropTable("dbo.InvoiceItems");
             DropTable("dbo.Invoices");
             DropTable("dbo.Items");
             DropTable("dbo.Companies");

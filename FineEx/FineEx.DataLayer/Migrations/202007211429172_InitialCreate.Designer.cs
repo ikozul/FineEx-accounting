@@ -13,7 +13,7 @@ namespace FineEx.DataLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202007210541277_InitialCreate"; }
+            get { return "202007211429172_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -61,6 +61,15 @@ namespace FineEx.Resources.Company {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit item.
+        /// </summary>
+        public static string Edit_Item {
+            get {
+                return ResourceManager.GetString("Edit_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item name.
         /// </summary>
         public static string Item_Name {
