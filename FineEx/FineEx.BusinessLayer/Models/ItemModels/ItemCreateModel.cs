@@ -9,9 +9,6 @@ namespace FineEx.BusinessLayer.Models.ItemModels
 {
     public class ItemCreateModel
     {
-        public List<int> SelectedItemIds { get; set; }
-        public List<ItemViewModel> Items { get; set; }
-
         [Required(ErrorMessage = "*")]
         public int SelectedItemID { get; set; }
         public int SelectedQuantity { get; set; }
