@@ -11,6 +11,7 @@ namespace FineEx.BusinessLayer.Services.CompanyService
 {
     public class CompanyService : ICompanyService
     {
+        private Company _company;
         private IQueryable<Company> _companies;
         private readonly List<CompanyViewModel> _companiesView = new List<CompanyViewModel>();
         public List<CompanyViewModel> GetCompanies()
@@ -36,6 +37,25 @@ namespace FineEx.BusinessLayer.Services.CompanyService
                 _companiesView.Add(new CompanyViewModel(company));
             }
 
+        }
+
+        public void UpdateCompany(CompanyViewModel model)
+        {
+            _company = App.Db.Companies.Single(x => x.Id == model.Id);
+            _company.Address = model.Address;
+            _company.BusinessNumber = model.BusinessNumber;
+            _company.City = model.City;
+            _company.County = model.Country;
+            _company.IBAN = model.IBAN;
+            _company.Phone = model.Phone;
+            App.Db.SaveChanges();
+        }
+
+        public bool ValidateInput(CompanyViewModel model)
+        {
+            //Todo determine what to validate
+
+            return true;
         }
     }
 }

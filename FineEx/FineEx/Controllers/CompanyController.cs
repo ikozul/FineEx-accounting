@@ -28,16 +28,28 @@ namespace FineEx.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
-
         public ActionResult Edit(int id)
         {
             _companyControlPanel = new CompanyControlPanelModel(id);
             return View(_companyControlPanel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CompanyViewModel model)
+        {
+            if (_companyService.ValidateInput(model))
+            {
+                _companyService.UpdateCompany(model);
+            }
+            return RedirectToAction("Edit", "Company", new { Id = model.Id});
+        }
+
         public PartialViewResult _Edit(CompanyViewModel model)
         {
             return PartialView(model);
         }
+
+
     }
 }
