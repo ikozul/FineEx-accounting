@@ -2,10 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/FineEx/FineEx/.vs
-/FineEx/.vs
-/FineEx/FineEx/.vs/
-/FineEx/.vs/
+.vs/
+/FineEx/FineExApi/bin
+/FineEx/FineExApi/obj
 /FineEx/FineEx/bin
 /FineEx/FineEx/obj
 /FineEx/FineEx/App_Start/RouteConfig.vb
