@@ -29,6 +29,16 @@
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="form-group">
+                    @Html.Label(FineEx.Resources.Invoice.Invoice.PriceWithoutVat, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PriceWithoutVat, new { htmlAttributes = new { @class = "total-factor form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.PriceWithoutVat, "", new { @class = "text-danger font-weight-bold" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.VatPercentage, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.VatPercentage, new { htmlAttributes = new { @class = "total-factor form-control", autocomplete = "off" } })
@@ -39,31 +49,20 @@
 
             <div class="col-12 col-md-4">
                 <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.TotalPrice, htmlAttributes: new { @class = "control-label font-weight-bold col-md-2 text-nowrap" })
+                    @Html.Label(FineEx.Resources.Invoice.Invoice.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.TextBox("TotalPrice", Model.TotalPrice, new { @class = "form-control font-weight-bold", @readonly = "readonly" })
+                        @Html.TextBox("TotalPrice", Model.TotalPrice, new { @class = "form-control", @readonly = "readonly" })
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-offset-2 my-3 col-6 col-sm-4 col-md-3 col-lg-2">
-            <button id="add-item" class="btn btn-success w-100">@FineEx.Resources.Item.Item.AddItem</button>
+            <button id="add-item" class="btn btn-success w-100">Add Item</button>
         </div>
 
         <div id="items" class="bg-light p-2">
-            <table id="items-table" class="table table-light table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>@FineEx.Resources.Item.Item.ItemID</th>
-                        <th>@FineEx.Resources.Item.Item.Name</th>
-                        <th>@FineEx.Resources.Item.Item.Quantity</th>
-                        <th>@FineEx.Resources.Item.Item.Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+
         </div>
 
         <div class="form-group">
@@ -78,42 +77,40 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">@FineEx.Resources.Item.Item.NewItem</h5>
+                <h5 class="modal-title">New Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="item-form">
-                    <table id="item" class="table table-light table-striped table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>@FineEx.Resources.Item.Item.Name</th>
-                                <th>@FineEx.Resources.Item.Item.Quantity</th>
-                                <th>@FineEx.Resources.Item.Item.Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
-                                    @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
-                                </td>
-                                <td>
-                                    @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
-                                    @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
-                                </td>
-                                <td>
-                                    @Html.EditorFor(model => model.InvoiceItems.SelectedPrice, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", id = "price" } })
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+                <table id="item" class="table table-light table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.TextBox("SelectedPrice", Model.InvoiceItems.SelectedPrice, new { @class = "form-control", disabled = "disabled", id = "price" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
-                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">@FineEx.Resources.Common.Close</button>
-                <button id="btn-add" type="button" class="btn btn-success" disabled>@FineEx.Resources.Item.Item.AddItem</button>
+                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>            
+                <button id="btn-add" type="button" class="btn btn-success" data-dismiss="modal" disabled>Add Item</button>
             </div>
         </div>
     </div>
@@ -124,7 +121,8 @@
         $(document).ready(function () {
             $("#PriceWithoutVat").val("");
             $("#VatPercentage").val("");
-        });
+            var model = @Html.Raw(Json.Encode(Model));
+        })
 
         $('.total-factor').on('input propertychange paste', function () {
             var price = parseFloat($("#PriceWithoutVat").val());
@@ -135,23 +133,14 @@
 
         $("#add-item").on("click", function (e) {
             e.preventDefault();
-            $("#quantity").val("");
-            $("#price").val("");
+            var model = @Html.Raw(Json.Encode(Model));
             $("#item-modal").modal("show");
-        });
+        })
 
-        $("#item-modal").on("hidden.bs.modal", function () {
-            $(".picker").val("");
-            $("#quantity").val("");
-            $("#quantity").prop("disabled", true);
-            $("#price").val("");
-            $("#btn-add").prop("disabled", true);
-        });
-
-        var selectedItemPrice;
         $(".picker").on("change", function () {
             $("#quantity").val(1);
             var itemId = $(".picker").val();
+            console.log(itemId);
 
             if (itemId == 0) {
                 $("#quantity").val("");
@@ -165,29 +154,15 @@
                 var maxQuantity = model.InvoiceItems.Items.filter(function (item) {
                    return item.Id == itemId;
                 });
+                console.log(maxQuantity[0].WarehouseQuantity);
+                console.log(maxQuantity[0].ItemPrice);
                 $("#quantity").attr("max", maxQuantity[0].WarehouseQuantity);
                 $("#price").val(maxQuantity[0].ItemPrice);
-                selectedItemPrice = maxQuantity[0].ItemPrice;
             }
         });
 
         $('#quantity').on('input', function () {
-            var quantity = parseInt($('#quantity').val());
-            var newPrice = quantity * selectedItemPrice;
-            $("#price").val(newPrice.toFixed(2));
-        });
-
-        var totalPrice;
-        $("#btn-add").on("click", function () {
-            var data = $("#item-form").serialize();
-            console.log(data);
-            //totalPrice = parseFloat($("#TotalPrice").val()) + selectedItemPrice;
-            //var selectedItemId = $(".picker").val();
-            //var selectedItemName = $(".picker option:selected").text();
-            //var selectedQuantity = $("#quantity").val();
-            //var selectedItemPrice = $("#price").val();
-            //$('#items-table > tbody').append('<tr><td>' + selectedItemId + '</td><td>' + selectedItemName + '</td><td>' + selectedQuantity + '</td><td>' + selectedItemPrice + '</td></tr>');
-
+            $('#mirror').text($('#alice').val());
         });
 
     </script>
