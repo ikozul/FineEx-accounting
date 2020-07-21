@@ -49,5 +49,7 @@ namespace FineEx.Controllers
         {
             return PartialView(model);
         }
+
+
     }
 }

@@ -1,2 +1,27 @@
-﻿@model  IQueryable<FineEx.DataLayer.Models.Item>
-    
+﻿@using System.Globalization
+@using GridMvc.Html
+@model  IQueryable<FineEx.DataLayer.Models.Item>
+
+<div class="container" style="background: aliceblue">
+    @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
+    {
+        columns.Add(c => c.Id).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.Id.ToString())
+            .Titled(FineEx.Resources.Common.Id).Sortable(true);
+
+        columns.Add(c => c.ItemName).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.ItemName)
+            .Titled(FineEx.Resources.Company.Company.Item_Name).Sortable(true);
+
+        columns.Add(c => c.WarehouseQuantity).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.WarehouseQuantity.ToString(CultureInfo.CurrentCulture))
+            .Titled(FineEx.Resources.Invoice.Invoice.VatNumber).Sortable(true);
+
+        columns.Add().SetWidth("5%")
+            .Sanitized(false).Encoded(false)
+            .RenderValueAs(c => @<a href="@Url.RouteUrl(new { action = "Edit", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
+    })
+</div>
