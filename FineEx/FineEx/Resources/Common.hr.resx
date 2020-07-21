@@ -168,4 +168,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Da</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
 </root>

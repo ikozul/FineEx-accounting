@@ -259,6 +259,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Invoice.hr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Item\Item.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Item.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Item\Item.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Item.hr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Login\Login.hr.Designer.cs">
       <DependentUpon>Login.hr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -770,6 +780,14 @@
     <EmbeddedResource Include="Resources\Invoice\Invoice.hr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Invoice.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Item\Item.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Item.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Item\Item.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Item.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Login\Login.hr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
