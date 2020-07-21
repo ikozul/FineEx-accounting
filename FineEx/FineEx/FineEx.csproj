@@ -262,6 +262,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Invoice.hr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Item\Item.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Item.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Item\Item.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Item.hr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Login\Login.hr.Designer.cs">
       <DependentUpon>Login.hr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -281,16 +291,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Registration.hr.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Required\Required.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Required.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Required\Required.hr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Required.hr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -788,6 +788,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Invoice.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Item\Item.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Item.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Item\Item.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Item.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Login\Login.hr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.hr.Designer.cs</LastGenOutput>
@@ -803,14 +811,6 @@
     <EmbeddedResource Include="Resources\Registration\Registration.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Registration.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Required\Required.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Required.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Required\Required.hr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Required.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

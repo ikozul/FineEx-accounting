@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RequiredDueDate" xml:space="preserve">
-    <value>Odaberite datum dospijeća</value>
+  <data name="AddItem" xml:space="preserve">
+    <value>Add Item</value>
   </data>
-  <data name="RequiredInvoiceNumber" xml:space="preserve">
-    <value>Unesite broj fakture</value>
+  <data name="ItemID" xml:space="preserve">
+    <value>Item ID</value>
   </data>
-  <data name="RequiredIssuer" xml:space="preserve">
-    <value>Unesite izdavatelja</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="RequiredPriceWithoutVat" xml:space="preserve">
     <value>Unesite cijenu bez poreza</value>
@@ -134,11 +134,13 @@
   </data>
   <data name="RequiredUniqueInvoiceID" xml:space="preserve">
     <value>Unesite jedinstveni ID</value>
+  <data name="NewItem" xml:space="preserve">
+    <value>New Item</value>
   </data>
-  <data name="RequiredVatNumber" xml:space="preserve">
-    <value>Unesite broj poreza</value>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
   </data>
-  <data name="RequiredVatPercentage" xml:space="preserve">
-    <value>Unesite postotak poreza</value>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
   </data>
 </root>
