@@ -196,6 +196,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to --- Select item ---.
+        /// </summary>
+        public static string ItemPlaceholder {
+            get {
+                return ResourceManager.GetString("ItemPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outgoing.
         /// </summary>
         public static string OutgoingInvoice {
