@@ -1,9 +1,11 @@
 ﻿using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Models.ItemModels;
 using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
+using FineEx.BusinessLayer.Services.ItemService;
 using FineEx.BusinessLayer.Services.PaymentMethodService;
 using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Context;
@@ -23,8 +25,10 @@ namespace FineEx.Controllers
         private InvoiceService _invoiceService;
         private CompanyService _companyService;
         private PaymentMethodService _paymentMethodService;
+        private ItemService _itemService;
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
+        private List<ItemViewModel> _items;
         private IEnumerable<SelectListItem> _selectList;
         private PdfGenerator _pdfGenerator;
 
@@ -105,6 +109,15 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult CreatePart2(InvoiceCreateModel invoiceCreateModel)
         {
+            _itemService = new ItemService();
+            _items = _itemService.GetItemsForCompany(invoiceCreateModel.SenderID);
+            _selectList = from i in _items
+                          select new SelectListItem
+                          {
+                              Value = i.Id.ToString(),
+                              Text = i.ItemName
+                          };
+            ViewBag.Items = new SelectList(_selectList, "Value", "Text");
             return View(invoiceCreateModel);
         }
 
