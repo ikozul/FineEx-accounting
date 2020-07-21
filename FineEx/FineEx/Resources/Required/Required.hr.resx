@@ -130,7 +130,7 @@
     <value>Unesite cijenu bez poreza</value>
   </data>
   <data name="RequiredSwift" xml:space="preserve">
-    <value>Unesite Swift </value>
+    <value>Unesite Swift</value>
   </data>
   <data name="RequiredUniqueInvoiceID" xml:space="preserve">
     <value>Unesite jedinstveni ID</value>

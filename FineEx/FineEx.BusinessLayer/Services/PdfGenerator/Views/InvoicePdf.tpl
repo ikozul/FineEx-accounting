@@ -230,15 +230,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{for item in items }}
+                            {{for item in invoice_items }}
                                 <tr>
                                     <td class="no">{{item.id}}</td>
                                     <td class="text-left">
-                                        {{item.item_name}}
+                                        {{item.item.item_name}}
                                     </td>
-                                    <td class="unit">{{item.item_price}}</td>
+                                    <td class="unit">{{item.item.item_price}}</td>
                                     <td class="qty">{{item.item_quantity}}</td>
-                                    <td class="total">{{item.item_price* item.item_quantity}}</td>
+                                    <td class="total">{{item.item.item_price* item.item_quantity}}</td>
                                 </tr>
                             {{end}}
                         </tbody>

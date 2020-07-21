@@ -30,7 +30,7 @@ namespace FineEx.BusinessLayer.Services.Billing
             invoice.Receiver = _receiverCompany;
             invoice.InvoiceDate = DateTime.Now;
             invoice.DueDate = DateTime.Now.AddDays(Config.PaymentDueDateDays);
-            invoice.Items.Add(GetBillingItems());
+            invoice.InvoiceItems.Add(GetBillingItems());
             invoice.Approved = false;
 
             invoice.InvoiceNumber = "Test invoice number";
@@ -40,25 +40,27 @@ namespace FineEx.BusinessLayer.Services.Billing
             invoice.UniqueIdentifierOfInvoice = Guid.NewGuid().ToString();
             invoice.VatNumber = "Test invoice vat number";
             invoice.VatPercentage = 10m;
-            invoice.VatSwiftBankClient = "Test invoice vat swift bank client";
+            invoice.VatSwiftBankClient = _senderCrompany.IBAN;
 
             App.Db.Invoices.Add(invoice);
             App.Db.SaveChanges();
 
-
-
-
-
             var viewModel = new InvoiceViewModel(invoice);
         }
 
-        private Item GetBillingItems()
+        private InvoiceItems GetBillingItems()
         {
+            Item item;
             if (_userCount < (int)BillingPackages.Packages.Small)
             {
-                return App.Db.Items.First(x => x.Id == 1);
+                item =  App.Db.Items.First(x => x.Id == 1);
             }
-            return _userCount < (int)BillingPackages.Packages.Medium ? App.Db.Items.First(x => x.Id == 2) : App.Db.Items.First(x => x.Id == 3);
+            item = _userCount < (int)BillingPackages.Packages.Medium ? App.Db.Items.First(x => x.Id == 2) : App.Db.Items.First(x => x.Id == 3);
+            InvoiceItems invoiceItems = new InvoiceItems();
+            invoiceItems.Item = item;
+            invoiceItems.ItemQuantity = 1;
+            return invoiceItems;
+
         }
     }
 }

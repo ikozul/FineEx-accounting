@@ -12,7 +12,7 @@ namespace FineEx.DataLayer.Models
 {
     public class Invoice
     {
-        public Invoice() => Items = new HashSet<Item>();
+        public Invoice() => InvoiceItems = new HashSet<InvoiceItems>();
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -43,7 +43,7 @@ namespace FineEx.DataLayer.Models
         public string InvoiceNumber { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<InvoiceItems> InvoiceItems { get; set; }
 
     }
 }

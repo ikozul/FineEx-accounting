@@ -29,7 +29,7 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
             TotalPrice = invoice.TotalPrice;
             VatPercentage = invoice.VatPercentage;
             Issuer = invoice.User.FullName;
-            Items = invoice.Items.Select(i => new ItemViewModel(i)).ToList();
+            InvoiceItems = invoice.InvoiceItems.Select(i => new InvoiceItemViewModel(i)).ToList();
             PdfPath = invoice.PdfPath;
         }
 
@@ -49,6 +49,6 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public decimal TotalPrice { get; set; }
         public decimal VatPercentage { get; set; }
         public string Issuer { get; set; }
-        public List<ItemViewModel> Items { get; set; }
+        public List<InvoiceItemViewModel> InvoiceItems { get; set; }
     }
 }
