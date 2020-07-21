@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineEx", "FineEx.csproj", "{CF163094-55BB-4DA2-8B94-0B3348E1F357}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineEx.BusinessLayer", "..\FineEx.BusinessLayer\FineEx.BusinessLayer.csproj", "{6F8EFEF0-D41C-4E05-8660-DF15161D2863}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineEx.Testing", "..\FineEx.Testing\FineEx.Testing.csproj", "{4D8A2E63-209F-4A17-96E8-C6ED1823A27F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineExApi", "..\FineExApi\FineExApi.csproj", "{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{4D8A2E63-209F-4A17-96E8-C6ED1823A27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D8A2E63-209F-4A17-96E8-C6ED1823A27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D8A2E63-209F-4A17-96E8-C6ED1823A27F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
