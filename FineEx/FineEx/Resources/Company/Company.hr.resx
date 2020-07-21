@@ -120,4 +120,7 @@
   <data name="Name" xml:space="preserve">
     <value>Naziv Tvrtke</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Ažuriraj</value>
+  </data>
 </root>

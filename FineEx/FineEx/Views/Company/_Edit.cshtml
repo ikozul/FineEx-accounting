@@ -1,19 +1,52 @@
 ﻿@model FineEx.BusinessLayer.Models.CompanyModels.CompanyViewModel
+<div>
+@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
 
-    <form action="@Url.Action("Edit", "Company", new { id = Model.Id })" method="post">
-        <div class="row">
-            <div class="4u">
-                @Html.LabelFor(x => x.BusinessNumber)
-                    @Html.EditorFor(x => x.BusinessNumber)
-                    @*@Html.ValidationMessageFor(x => x.Oib)*@
+    @Html.AntiForgeryToken()
 
-            </div>
-            <div class="8u">
-                @Html.LabelFor(x => x.CompanyName)
-                @Html.EditorFor(x => x.CompanyName)
+    @Html.ValidationSummary(false)
 
-                @*@Html.ValidationMessageFor(x => x.Naziv)*@
-            </div>
+    @Html.Hidden("Id", Model.Id)
+    <div class="row">
+        <div class="4u">
+            @Html.LabelFor(x => x.BusinessNumber)
+            @Html.EditorFor(x => x.BusinessNumber)
         </div>
-        
-    </form>
+        <div class="4u">
+            @Html.LabelFor(x => x.CompanyName)
+            @Html.EditorFor(x => x.CompanyName)
+        </div>
+        <div class="4u">
+            @Html.LabelFor(x => x.Address)
+            @Html.EditorFor(x => x.Address)
+        </div>
+    </div>
+    <div class="row">
+        <div class="4u">
+            @Html.LabelFor(x => x.City)
+            @Html.EditorFor(x => x.City)
+        </div>
+        <div class="4u">
+            @Html.LabelFor(x => x.IBAN)
+            @Html.EditorFor(x => x.IBAN)
+        </div>
+        <div class="4u">
+            @Html.LabelFor(x => x.Phone)
+            @Html.EditorFor(x => x.Phone)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="4u">
+            @Html.LabelFor(x => x.BusinessUnit)
+            @Html.EditorFor(x => x.BusinessUnit)
+        </div>
+        <div class="4u">
+            <input type="submit" value="@FineEx.Resources.Company.Company.Update" class="btn btn-info btn-block"/>
+        </div>
+    </div>
+
+
+}
+</div>

@@ -9,6 +9,10 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
 {
     public class CompanyViewModel
     {
+        public CompanyViewModel()
+        {
+            
+        }
         public CompanyViewModel(Company company)
         {
             Id = company.Id;
