@@ -21,25 +21,13 @@ export default class Secured extends Component {
                 {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
                 <NavigationContainer linking={LinkingConfiguration}>
                     <Stack.Navigator>
-                        <Stack.Screen name="Root" component={BottomTabNavigator} />
+                        <Stack.Screen name="Root">
+                            {(stackScreenProps) => <BottomTabNavigator {...stackScreenProps} {...this.props} />}
+                        </Stack.Screen>
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
         )
-
-        // return (
-        //     <ScrollView style={{ padding: 20 }}>
-        //         <Text
-        //             style={{ fontSize: 27 }}>
-        //             Welcome
-        //         </Text>
-        //         <View style={{ margin: 20 }} />
-        //         <Button
-        //             onPress={this.props.onLogoutPress}
-        //             title="Logout"
-        //         />
-        //     </ScrollView>
-        // )
     }
 }
 

@@ -15,11 +15,15 @@ import bgImage from '../assets/images/bgImage.jpg'
 export default class Login extends Component {
 
     render() {
+        const { email, password, hasLoginError } = this.props;
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
                 <ScrollView style={styles.container}>
+                    
                     <View style={styles.inputContainer}>
                         <TextInput
+                            value={email}
+                            onChange={event => {this.props.onEmailChange(event.nativeEvent.text)}}
                             style={styles.input}
                             placeholder={'Email'}
                             placeholderTextColor={'rgba(255,255,255,0.3)'}
@@ -28,6 +32,8 @@ export default class Login extends Component {
                     </View>
                     <View style={styles.inputContainer}>
                         <TextInput
+                            value={password}
+                            onChange={event => {this.props.onPasswordChange(event.nativeEvent.text)}}
                             style={styles.input}
                             placeholder={'Password'}
                             secureTextEntry={true}
@@ -35,11 +41,14 @@ export default class Login extends Component {
                             underlineColorAndroid='transparent'
                         />
                     </View>
+                    {hasLoginError && <Text style={styles.loginError}>Incorrect credentials!</Text>}
                     <View style={styles.buttonContainer} >
-                        <Button title='Login' style={styles.loginButton} onPress={this.props.onLoginPress}>
-                        </Button>
-                        <Button title='Register' style={styles.registerButton}>
-                        </Button>
+                        <TouchableOpacity style={styles.buttonStyle} onPress={this.props.onLoginPress}>
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonStyle}>
+                            <Text style={styles.buttonText}>Register</Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </ImageBackground>
@@ -59,7 +68,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     buttonContainer: {
-        marginTop: 100,
+        marginTop: 60,
+        alignItems: "center"
     },
     container: {
         padding: 20,
@@ -79,29 +89,28 @@ const styles = StyleSheet.create({
         paddingLeft: 45,
         backgroundColor: 'rgba(0,0,0,0.3)',
         color: 'rgba(255,255,255,1)',
-        marginHorizontal: 25,
         marginTop: 40,
         justifyContent: 'center'
     },
-    loginButton: {
-        width: 100,
+    buttonStyle: {
+        width: 200,
         height: 45,
         borderRadius: 45,
         fontSize: 16,
-        marginHorizontal: 50,
-        marginBottom: 50,
+        marginBottom: 20,
         justifyContent: 'center',
+        alignItems: 'center',
         color: 'rgba(255,255,255,1)',
         backgroundColor: 'rgba(120,120,120,0.5)',
     },
-    registerButton: {
-        width: 100,
-        height: 45,
-        borderRadius: 45,
-        fontSize: 16,
-        marginHorizontal: 50,
-        justifyContent: 'center',
-        color: 'rgba(255,255,255,1)',
-        backgroundColor: 'rgba(150,150,150,0.5)',
+    buttonText: {
+        color: "white",
+        fontSize: 18
+    },
+    loginError: {
+        textAlign: "center",
+        color: "#b71540",
+        marginTop: 20,
+        fontSize: 18
     }
 });
