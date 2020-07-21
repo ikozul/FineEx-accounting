@@ -51,7 +51,7 @@ export default class ProfileScreen extends Component {
                         <TouchableOpacity style={styles.editButton} onPress={async () => {
                             onNameChange(this.state.tempFirstName, this.state.tempLastName);
                             this.setState({ isInEditMode: false });
-                            const result = await put({id, firstName, lastName}, `users/${id}`)
+                            const result = await put({id, firstName, lastName}, `users/${id}?id=${id}&firstName=${this.state.tempFirstName}&lastName=${this.state.tempLastName}`)
                         }}>
                             <Text style={styles.buttonText}>Save</Text>
                         </TouchableOpacity>
