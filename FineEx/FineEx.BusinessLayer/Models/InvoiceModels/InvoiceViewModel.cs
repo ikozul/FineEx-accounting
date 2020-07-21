@@ -29,7 +29,7 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
             TotalPrice = invoice.TotalPrice;
             VatPercentage = invoice.VatPercentage;
             Issuer = invoice.User.FullName;
-            Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.ItemQuantity)).ToList();
+            Items = invoice.Items.Select(i => new ItemViewModel(i.Id, i.ItemName, i.ItemPrice, i.WarehouseQuantity)).ToList();
             PdfPath = invoice.PdfPath;
         }
 

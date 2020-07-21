@@ -128,15 +128,16 @@
     <Compile Include="Context\App.cs" />
     <Compile Include="Context\DbFineEx.cs" />
     <Compile Include="Context\DbFineExInitializer.cs" />
-    <Compile Include="Migrations\202007141443084_InitialCreate.cs" />
-    <Compile Include="Migrations\202007141443084_InitialCreate.designer.cs">
-      <DependentUpon>202007141443084_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202007210541277_InitialCreate.cs" />
+    <Compile Include="Migrations\202007210541277_InitialCreate.designer.cs">
+      <DependentUpon>202007210541277_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\InvoiceItems.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
@@ -148,8 +149,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007141443084_InitialCreate.resx">
-      <DependentUpon>202007141443084_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007210541277_InitialCreate.resx">
+      <DependentUpon>202007210541277_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
