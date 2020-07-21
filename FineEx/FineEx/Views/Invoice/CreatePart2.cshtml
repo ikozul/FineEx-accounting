@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = FineEx.Resources.Invoice.Invoice.CreateTitle;
+    SelectList items = ViewBag.Items as SelectList;
 }
 
 <br />
@@ -24,6 +25,7 @@
         @Html.HiddenFor(model => model.VatSwiftBankClient)
         @Html.HiddenFor(model => model.InvoiceNumber)
         @Html.HiddenFor(model => model.Issuer)
+        @Html.HiddenFor(model => model.InvoiceItems)
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="form-group">
@@ -91,15 +93,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>
-                                @Html.DropDownListFor(model => model.Items., new SelectList(Model.Recipients, "Id", "CompanyName"), FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
-                            </th>
+                            <td>
+                                @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.TextBox("SelectedPrice", Model.InvoiceItems.SelectedPrice, new { @class = "form-control", disabled = "disabled", id = "price" })
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>            
+                <button id="btn-add" type="button" class="btn btn-success" data-dismiss="modal" disabled>Add Item</button>
             </div>
         </div>
     </div>
@@ -110,6 +121,7 @@
         $(document).ready(function () {
             $("#PriceWithoutVat").val("");
             $("#VatPercentage").val("");
+            var model = @Html.Raw(Json.Encode(Model));
         })
 
         $('.total-factor').on('input propertychange paste', function () {
@@ -121,9 +133,37 @@
 
         $("#add-item").on("click", function (e) {
             e.preventDefault();
-            console.log("test");
+            var model = @Html.Raw(Json.Encode(Model));
             $("#item-modal").modal("show");
         })
+
+        $(".picker").on("change", function () {
+            $("#quantity").val(1);
+            var itemId = $(".picker").val();
+            console.log(itemId);
+
+            if (itemId == 0) {
+                $("#quantity").val("");
+                $("#quantity").prop("disabled", true);
+                $("#price").val("");
+                $("#btn-add").prop("disabled", true);
+            } else {
+                $("#quantity").prop("disabled", false);
+                $("#btn-add").prop("disabled", false);
+                var model = @Html.Raw(Json.Encode(Model));
+                var maxQuantity = model.InvoiceItems.Items.filter(function (item) {
+                   return item.Id == itemId;
+                });
+                console.log(maxQuantity[0].WarehouseQuantity);
+                console.log(maxQuantity[0].ItemPrice);
+                $("#quantity").attr("max", maxQuantity[0].WarehouseQuantity);
+                $("#price").val(maxQuantity[0].ItemPrice);
+            }
+        });
+
+        $('#quantity').on('input', function () {
+            $('#mirror').text($('#alice').val());
+        });
 
     </script>
 }
