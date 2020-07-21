@@ -126,9 +126,6 @@
   <data name="Company_Inventory" xml:space="preserve">
     <value>Inventar</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Zatvori</value>
-  </data>
   <data name="Company_Menu" xml:space="preserve">
     <value>Tvrtka</value>
   </data>

@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddItem" xml:space="preserve">
-    <value>Dodaj stavku</value>
+  <data name="RequiredDueDate" xml:space="preserve">
+    <value>Select due date</value>
   </data>
-  <data name="ItemID" xml:space="preserve">
-    <value>ID Stavke</value>
+  <data name="RequiredInvoiceNumber" xml:space="preserve">
+    <value>Enter invoice number</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Naziv</value>
+  <data name="RequiredIssuer" xml:space="preserve">
+    <value>Enter issuer</value>
   </data>
-  <data name="NewItem" xml:space="preserve">
-    <value>Nova stavka</value>
+  <data name="RequiredPriceWithoutVat" xml:space="preserve">
+    <value>Enter price without vat</value>
   </data>
-  <data name="Price" xml:space="preserve">
-    <value>Cijena</value>
+  <data name="RequiredSwift" xml:space="preserve">
+    <value>Enter Swift</value>
   </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Količina</value>
+  <data name="RequiredUniqueInvoiceID" xml:space="preserve">
+    <value>Enter unique invoice ID</value>
+  </data>
+  <data name="RequiredVatNumber" xml:space="preserve">
+    <value>Enter VAT number</value>
+  </data>
+  <data name="RequiredVatPercentage" xml:space="preserve">
+    <value>Enter VAT percentage</value>
   </data>
 </root>
