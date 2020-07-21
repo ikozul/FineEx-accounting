@@ -162,6 +162,9 @@
   <data name="Issuer" xml:space="preserve">
     <value>Izdavatelj</value>
   </data>
+  <data name="ItemPlaceholder" xml:space="preserve">
+    <value>--- Odaberi stavku ---</value>
+  </data>
   <data name="OutgoingInvoice" xml:space="preserve">
     <value>Izlazne</value>
   </data>

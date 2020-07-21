@@ -162,6 +162,9 @@
   <data name="Issuer" xml:space="preserve">
     <value>Issuer</value>
   </data>
+  <data name="ItemPlaceholder" xml:space="preserve">
+    <value>--- Select item ---</value>
+  </data>
   <data name="OutgoingInvoice" xml:space="preserve">
     <value>Outgoing</value>
   </data>
