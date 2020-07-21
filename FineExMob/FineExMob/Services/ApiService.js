@@ -37,7 +37,7 @@ export async function get(url) {
 export async function put(body, url) {
     const result = await Axios({
         method: 'put',
-        url: `${API_URI}${url}/`,
+        url: `${API_URI}${url}`,
         headers: {
             Accept: '*/*',
             'Content-Type': 'application/json'

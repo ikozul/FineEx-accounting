@@ -1,5 +1,4 @@
 export function loginResponseSetter(response) {
-    console.log("response", response)
     const {
         Email:email,
         FirstName: firstName,

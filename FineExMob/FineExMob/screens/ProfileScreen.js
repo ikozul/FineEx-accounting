@@ -12,6 +12,8 @@ import bgImage from '../assets/images/bgImage.jpg'
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 
+import { put } from '../Services/ApiService';
+
 export default class ProfileScreen extends Component {
 
     state = {
@@ -21,7 +23,7 @@ export default class ProfileScreen extends Component {
     }
 
     render() {
-        const { firstName, lastName, email, companies, onLogoutPress, onNameChange } = this.props;
+        const { firstName, lastName, email, id, companies, onLogoutPress, onNameChange } = this.props;
         const { isInEditMode } = this.state;
 
         return (
@@ -48,8 +50,8 @@ export default class ProfileScreen extends Component {
                         <TextInput style={styles.text} onChangeText={(text) => this.setState({tempLastName:text})}>{lastName}</TextInput>
                         <TouchableOpacity style={styles.editButton} onPress={async () => {
                             onNameChange(this.state.tempFirstName, this.state.tempLastName);
-
                             this.setState({ isInEditMode: false });
+                            const result = await put({id, firstName, lastName}, `users/${id}`)
                         }}>
                             <Text style={styles.buttonText}>Save</Text>
                         </TouchableOpacity>
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     backButton: {
-        
+
     },
     buttonText: {
         color: "white",

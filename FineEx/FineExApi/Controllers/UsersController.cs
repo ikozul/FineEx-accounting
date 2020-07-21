@@ -40,19 +40,16 @@ namespace FineExApi.Controllers
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        public async Task<IHttpActionResult> PutUser(int id, string firstName, string lastName)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            user.Password = PasswordHelper.HashPassword(user.Password);
+            User user = await db.Users.FindAsync(id);
+            user.FirstName = firstName;
+            user.LastName = lastName;
 
             db.Entry(user).State = EntityState.Modified;
 

@@ -5,24 +5,36 @@ import { Ionicons } from '@expo/vector-icons';
 
 import bgImage from '../assets/images/bgImage.jpg'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { get } from '../Services/ApiService';
+import { ReceiptResponseSetter } from '../Services/ReceiptResponseSetter';
+import { Receipt } from '../components/Receipt';
 
 export default class CompanyScreen extends React.Component {
 
     state = {
-        selectedCompanyId: undefined
+        selectedCompanyId: undefined,
+        receipts: []
     }
 
     render() {
-        const { companies } = this.props;
-        const { selectedCompanyId } = this.state;
+        const { companies, id: userId } = this.props;
+        const { selectedCompanyId, receipts } = this.state;
+        console.log("render", this.state.receipts)
 
+        const senderReceipts = receipts.filter(item => item.sender.Id === selectedCompanyId);
+        const receiverReceipts = receipts.filter(item => item.receiver.Id === selectedCompanyId);
         return (
             !selectedCompanyId ? (
                 <ImageBackground source={bgImage} style={styles.backgroundContainer}>
                     <ScrollView>
                         {
                             companies.map((company) => (
-                                <TouchableOpacity key={company.Id} style={styles.companyContainer} onPress={() => this.setState({ selectedCompanyId: company.Id })}>
+                                <TouchableOpacity key={company.Id} style={styles.companyContainer} onPress={async () => {
+                                    this.setState({ selectedCompanyId: company.Id })
+                                    const result = await get(`Invoices/${company.Id}`)
+                                    const receipts = result.map(item => ReceiptResponseSetter(item))
+                                    this.setState({receipts})
+                                }}>
                                     <Text style={styles.text} >{company.County}</Text>
                                     <Text style={styles.text} >{company.Name}</Text>
                                     <Text style={styles.text} >{company.City}</Text>
@@ -44,7 +56,14 @@ export default class CompanyScreen extends React.Component {
                         </View>
 
                         <ScrollView>
-
+                            <Text style={styles.receiptHeader}>As a Sender:</Text>
+                            {senderReceipts.length > 0 ? senderReceipts.map(item => (
+                                <Receipt item={item} key={item.id} />
+                            )) : <Text style={styles.placeholderText}>No receipts</Text>}
+                            <Text style={styles.receiptHeader}>As a Receiver:</Text>
+                            {receiverReceipts.length > 0 ? receiverReceipts.map(item => (
+                                <Receipt item={item} key={item.id} />
+                            )): <Text style={styles.placeholderText}>No receipts</Text>}
                         </ScrollView>
                     </ImageBackground>
                 )
@@ -71,6 +90,17 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 14
+    },
+    receiptHeader: {
+        color: "white",
+        fontSize: 14,
+        marginVertical: 5
+    },
+    placeholderText: {
+        color: "white",
+        fontSize: 14,
+        marginVertical: 5,
+        opacity: 0.6,
     },
     backButton: {
         width: "100%",
