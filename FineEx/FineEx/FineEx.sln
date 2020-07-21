@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineEx.Testing", "..\FineEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineExApi", "..\FineExApi\FineExApi.csproj", "{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FineEx.WebApi", "FineEx.WebApi\FineEx.WebApi.csproj", "{1511FB2D-342A-447D-A979-A2CD021C711C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3BA4F9-FFD4-46F5-909C-AF74EFB55F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1511FB2D-342A-447D-A979-A2CD021C711C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1511FB2D-342A-447D-A979-A2CD021C711C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1511FB2D-342A-447D-A979-A2CD021C711C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1511FB2D-342A-447D-A979-A2CD021C711C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
