@@ -120,6 +120,9 @@
   <data name="Account_Dropdown" xml:space="preserve">
     <value>Korisnički Račun</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
   <data name="Company_Menu" xml:space="preserve">
     <value>Tvrtka</value>
   </data>

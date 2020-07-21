@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FineEx.Resources.Required {
+namespace FineEx.Resources.Item {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FineEx.Resources.Required {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Required {
+    public class Item {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Required() {
+        internal Item() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FineEx.Resources.Required {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FineEx.Resources.Required.Required", typeof(Required).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FineEx.Resources.Item.Item", typeof(Item).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,56 @@ namespace FineEx.Resources.Required {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select due date.
+        ///   Looks up a localized string similar to Add Item.
         /// </summary>
-        public static string RequiredDueDate {
+        public static string AddItem {
             get {
-                return ResourceManager.GetString("RequiredDueDate", resourceCulture);
+                return ResourceManager.GetString("AddItem", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter invoice number.
+        ///   Looks up a localized string similar to Item ID.
         /// </summary>
-        public static string RequiredInvoiceNumber {
+        public static string ItemID {
             get {
-                return ResourceManager.GetString("RequiredInvoiceNumber", resourceCulture);
+                return ResourceManager.GetString("ItemID", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter issuer.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string RequiredIssuer {
+        public static string Name {
             get {
-                return ResourceManager.GetString("RequiredIssuer", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter price without vat.
+        ///   Looks up a localized string similar to New Item.
         /// </summary>
-        public static string RequiredPriceWithoutVat {
+        public static string NewItem {
             get {
-                return ResourceManager.GetString("RequiredPriceWithoutVat", resourceCulture);
+                return ResourceManager.GetString("NewItem", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Swift.
+        ///   Looks up a localized string similar to Price.
         /// </summary>
-        public static string RequiredSwift {
+        public static string Price {
             get {
-                return ResourceManager.GetString("RequiredSwift", resourceCulture);
+                return ResourceManager.GetString("Price", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter unique invoice ID.
+        ///   Looks up a localized string similar to Quantity.
         /// </summary>
-        public static string RequiredUniqueInvoiceID {
+        public static string Quantity {
             get {
-                return ResourceManager.GetString("RequiredUniqueInvoiceID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter VAT number.
-        /// </summary>
-        public static string RequiredVatNumber {
-            get {
-                return ResourceManager.GetString("RequiredVatNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter VAT percentage.
-        /// </summary>
-        public static string RequiredVatPercentage {
-            get {
-                return ResourceManager.GetString("RequiredVatPercentage", resourceCulture);
+                return ResourceManager.GetString("Quantity", resourceCulture);
             }
         }
     }
