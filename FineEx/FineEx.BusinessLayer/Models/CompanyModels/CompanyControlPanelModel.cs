@@ -11,6 +11,7 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
     public class CompanyControlPanelModel
     {
         private Company _company;
+        public IQueryable<Item> CompanyItems { get; set; }
         //private 
         public CompanyControlPanelModel(int id)
         {
@@ -19,7 +20,8 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
             CompanyItems = App.Db.Items.Where(x => x.CompanyId == id);
         }
 
-        public IQueryable<Item> CompanyItems { get; set; }
+
+        
 
         public CompanyViewModel Company { get; set; }
     }

@@ -31,7 +31,7 @@ insert into Users ( [FirstName], [LastName], [Email], [Password], [IsActive], [R
 insert into Users ( [FirstName], [LastName], [Email], [Password], [IsActive], [RoleId]) values (
 'Test', 'Test', 'test1@test.com', 'eaf900ea8035356e17e0d443e21cf868c0824d3b', 1, 100)
 
-insert into Items ([ItemPrice], [ItemQuantity], [ItemName], [CompanyId]) values
+insert into Items ([ItemPrice], [WarehouseQuantity], [ItemName], [CompanyId]) values
 (5.99, 3, 'Paket Mikro', 1),
 (10.99, 3, 'Paket Srednji', 1),
 (25.99, 3, 'Paket Veliki', 1),
@@ -46,11 +46,11 @@ insert into Invoices ([SenderId], [ReceiverId], [PaymentMethodId], [InvoiceDate]
 (2, 3, 2, '20200404', '20200430', '10320099', '592488913737', 'HUHW239F923', 100, 110, 10, 'GHJK24SJL-2089', 2, 0, NULL),
 (2, 3, 3, '20200715', '20200810', '48822200', '849809240498', 'OD4948FWJWB', 12000, 15000, 25, 'OPRS349FB-9220', 2, 1, NULL)
 
-insert into InvoiceItems ([InvoiceId], [ItemId]) values
-(1, 4),
-(1, 4),
-(2, 5),
-(2, 5),
-(3, 6)
+insert into InvoiceItems ([InvoiceId], [ItemId], [ItemQuantity]) values
+(1, 4, 2),
+(1, 4, 3),
+(2, 5, 4),
+(2, 5, 2),
+(3, 6, 2)
 
 insert into UsersCompanies ([UserId], [CompanyId]) values (2,1), (1,2), (1,3)

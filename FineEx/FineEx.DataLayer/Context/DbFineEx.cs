@@ -40,18 +40,19 @@ namespace FineEx.DataLayer.Context
                     cs.ToTable("UsersCompanies");
                 });
 
-            modelBuilder.Entity<Item>()
-                .HasMany<Invoice>(s => s.Invoices)
-                .WithMany(c => c.Items)
-                .Map(cs =>
-                {
-                    cs.MapLeftKey("InvoiceId");
-                    cs.MapRightKey("ItemId");
-                    cs.ToTable("InvoiceItems");
-                });
+            //modelBuilder.Entity<Item>()
+            //    .HasMany<Invoice>(s => s.Invoices)
+            //    .WithMany(c => c.Items)
+            //    .Map(cs =>
+            //    {
+            //        cs.MapLeftKey("InvoiceId");
+            //        cs.MapRightKey("ItemId");
+            //        cs.ToTable("InvoiceItems");
+            //    });
         }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<InvoiceItems> InvoiceItems { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
