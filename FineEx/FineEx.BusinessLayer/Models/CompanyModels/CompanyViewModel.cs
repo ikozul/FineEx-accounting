@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FineEx.BusinessLayer.Models.CompanyModels
 {
-    public class CompanyViewModel
+    public class CompanyViewModel 
     {
         public CompanyViewModel()
         {
@@ -27,11 +27,6 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
             Phone = company.Phone;
             PricePrecision = company.PricePrecision;
             QuantityPrecision = company.QuantityPrecision;
-        }
-
-        public CompanyViewModel()
-        {
-
         }
 
         public int Id { get; set; }
