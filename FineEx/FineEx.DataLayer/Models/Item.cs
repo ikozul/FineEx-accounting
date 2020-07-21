@@ -16,12 +16,11 @@ namespace FineEx.DataLayer.Models
         public int Id { get; set; }
 
         public decimal ItemPrice { get; set; }
-        public decimal ItemQuantity { get; set; }
+        public decimal WarehouseQuantity { get; set; }
         public string ItemName { get; set; }
 
         public int CompanyId { get; set; }
         public ICollection<Company> Companies { get; set; }
-        public ICollection<Invoice> Invoices { get; set; }
 
         public IQueryable<Item> Search()
         {
@@ -33,7 +32,6 @@ namespace FineEx.DataLayer.Models
         public Item()
         {
             Companies = new HashSet<Company>();
-            Invoices = new HashSet<Invoice>();
         }
     }
 }

@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace FineEx.BusinessLayer.Models.ItemModels
 {
-    public class ItemViewModel
+    public class ItemViewModel : Item
     {
-        public ItemViewModel(int id, string itemName, decimal itemPrice, decimal itemQuantity)
+        public ItemViewModel(int id, string itemName, decimal itemPrice, decimal warehouseQuantity)
         {
             Id = id;
             ItemName = itemName;
             ItemPrice = itemPrice;
-            ItemQuantity = itemQuantity;
+            WarehouseQuantity = warehouseQuantity;
         }
 
-        public int Id { get; set; }
-        public string ItemName { get; set; }
-        public decimal ItemPrice { get; set; }
-        public decimal ItemQuantity { get; set; }
     }
 }

@@ -11,24 +11,31 @@
 <div class="container" style="background: aliceblue">
     <ul id="myTab" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#basic-data">Osnovni podaci</a></li>
-        <li role="presentation" class="active"><a href="#user-data">Inventar</a></li>
+        <li role="presentation" class="active"><a href="#company-items">Inventar</a></li>
     </ul>
 
+    <div id="myTabContent" class="tab-content">
 
+        <div class="tab-pane fade 12u" id="basic-data">
+            @Html.Partial("_Edit", Model.Company)
+        </div>
 
-    <div class="tab-pane fade 12u" id="basic-data">
-        @Html.Partial("_Edit", Model.Company)
-    </div>
-
-    <div class="tab-pane fade 12u" id="company-items">
-        @Html.Partial("_EditItem", Model.CompanyItems)
+        <div class="tab-pane fade 12u" id="company-items">
+            @Html.Partial("_EditItem", Model.CompanyItems)
+        </div>
     </div>
 
 </div>
-<script>
-    $(document).on('click', '#myTab a', function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-</script>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#myTab a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        })
+    </script>
+
+}
