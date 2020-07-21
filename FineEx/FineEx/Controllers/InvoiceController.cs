@@ -1,8 +1,12 @@
 ﻿using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Models.ItemModels;
+using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.BusinessLayer.Services.InvoiceService;
+using FineEx.BusinessLayer.Services.ItemService;
+using FineEx.BusinessLayer.Services.PaymentMethodService;
 using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
@@ -20,8 +24,11 @@ namespace FineEx.Controllers
         private const string PAYPAL = "PayPal";
         private InvoiceService _invoiceService;
         private CompanyService _companyService;
+        private PaymentMethodService _paymentMethodService;
+        private ItemService _itemService;
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
+        private List<ItemViewModel> _items;
         private IEnumerable<SelectListItem> _selectList;
         private PdfGenerator _pdfGenerator;
 
@@ -34,6 +41,7 @@ namespace FineEx.Controllers
                 new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.OutgoingInvoice }
             }, "Value", "Text");
 
+            _paymentMethodService = new PaymentMethodService();
             _companyService = new CompanyService();
             _companies = _companyService.GetCompanies(App.UserId);
             _selectList = from c in _companies
@@ -80,14 +88,11 @@ namespace FineEx.Controllers
             InvoiceCreateModel invoiceCreateModel = new InvoiceCreateModel();
             var currentCompany = _companyService.GetCompanies().First(c => c.BusinessNumber == businessNumber);
             invoiceCreateModel.SenderID = currentCompany.Id;
-            ViewBag.Sender = currentCompany.CompanyName;
-            ViewBag.Recipients = new SelectList(_companyService.GetCompanies().Where(c => c.BusinessNumber != businessNumber), "Id", "CompanyName");
-            ViewBag.PaymentMethods = new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = FineEx.Resources.Invoice.Invoice.CreditCard },
-                new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.CashOnDelivery },
-                new SelectListItem { Value = "3", Text = PAYPAL }
-            }, "Value", "Text");
+            invoiceCreateModel.Sender = currentCompany.CompanyName;
+            invoiceCreateModel.Recipients = _companyService.GetCompanies().Where(c => c.BusinessNumber != businessNumber).ToList();
+            invoiceCreateModel.PaymentMethods = _paymentMethodService.GetPaymentMethods();
+            UserViewModel currentUser = (UserViewModel)Session["user"];
+            invoiceCreateModel.Issuer = currentUser.ToString();
             return View(invoiceCreateModel);
         }
 
@@ -96,7 +101,27 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
+                return RedirectToAction("CreatePart2", "Invoice", invoiceCreateModel);
+            }
+            return View(invoiceCreateModel);
+        }
 
+        [HttpGet]
+        public ActionResult CreatePart2(InvoiceCreateModel invoiceCreateModel)
+        {
+            _itemService = new ItemService();
+            invoiceCreateModel.InvoiceItems = new ItemCreateModel();
+            invoiceCreateModel.InvoiceItems.Items = _itemService.GetItemsForCompany(invoiceCreateModel.SenderID);
+            return View(invoiceCreateModel);
+        }
+
+        [HttpPost]
+        [ActionName("CreatePart2")]
+        public ActionResult CreatePart2Post(InvoiceCreateModel invoiceCreateModel)
+        {
+            if (ModelState.IsValid)
+            {
+                
             }
             return View(invoiceCreateModel);
         }

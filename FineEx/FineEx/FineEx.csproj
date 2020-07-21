@@ -223,7 +223,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,6 +278,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Registration.hr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Required\Required.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Required.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Required\Required.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Required.hr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -697,9 +706,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -724,6 +730,7 @@
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\_Edit.cshtml" />
     <Content Include="Views\Company\_EditItem.cshtml" />
+    <Content Include="Views\Invoice\CreatePart2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -779,6 +786,14 @@
     <EmbeddedResource Include="Resources\Registration\Registration.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Registration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Required\Required.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Required.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Required\Required.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Required.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

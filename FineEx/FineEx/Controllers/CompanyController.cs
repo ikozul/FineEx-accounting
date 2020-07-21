@@ -14,6 +14,9 @@ namespace FineEx.Controllers
     {
         private CompanyService _companyService = new CompanyService();
         private CompanyControlPanelModel _companyControlPanel;
+
+        [HttpGet]
+        [Route("company")]
         public ActionResult Index()
         {
             if (Session["user"] != null)

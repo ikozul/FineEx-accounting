@@ -8,6 +8,8 @@ namespace FineEx.Controllers
 {
     public class StatisticsController : BaseController
     {
+        [HttpGet]
+        [Route("statistics")]
         public ActionResult Index()
         {
             if (Session["user"] != null)

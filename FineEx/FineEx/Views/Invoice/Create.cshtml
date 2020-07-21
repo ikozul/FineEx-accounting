@@ -2,27 +2,39 @@
 
 @{
     ViewBag.Title = FineEx.Resources.Invoice.Invoice.CreateTitle;
-    SelectList recipientsList = ViewBag.Recipients as SelectList;
-    SelectList paymentMethodsList = ViewBag.PaymentMethods as SelectList;
 }
 
 <br />
-<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.CreateTitle</h3>
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.CreateTitle #1</h3>
 <hr />
 
 @using (Html.BeginForm("Create", "Invoice", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SenderID)
+        @Html.HiddenFor(model => model.Sender)
+        @Html.HiddenFor(model => model.Issuer)
+        @for (int i = 0; i < Model.Recipients.Count; i++)
+        {
+            @Html.HiddenFor(model => model.Recipients[i].Id)
+            @Html.HiddenFor(model => model.Recipients[i].CompanyName)
+        }
+        @for (int i = 0; i < Model.PaymentMethods.Count; i++)
+        {
+            @Html.HiddenFor(model => model.PaymentMethods[i].Id)
+            @Html.HiddenFor(model => model.PaymentMethods[i].PaymentType)
+        }
+
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Sender, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.SenderID, new { @class = "form-control", @readonly = "readonly", @Value = @ViewBag.Sender })
+                        @Html.TextBox("SenderCompany", Model.Sender, new { @class = "form-control", @readonly = "readonly" })
                     </div>
                 </div>
             </div>
@@ -31,7 +43,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Recipient, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.ReceiverID, recipientsList, FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.DropDownListFor(model => model.ReceiverID, new SelectList(Model.Recipients, "Id", "CompanyName"), FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.ValidationMessageFor(model => model.ReceiverID, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -40,7 +53,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.PaymentMethodID, paymentMethodsList, FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.DropDownListFor(model => model.PaymentMethodID, new SelectList(Model.PaymentMethods, "Id", "PaymentType"), FineEx.Resources.Invoice.Invoice.PaymentMethodPlaceholder, new { @class = "picker form-control col-lg-12" })
+                        @Html.ValidationMessageFor(model => model.PaymentMethodID, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -49,8 +63,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.DueDate, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -59,8 +73,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.UniqueInvoiceID, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.UniqueIdentifierOfInvoice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.UniqueIdentifierOfInvoice, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.UniqueIdentifierOfInvoice, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.UniqueIdentifierOfInvoice, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -69,8 +83,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.VatNumber, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.VatNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.VatNumber, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.VatNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.VatNumber, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -79,8 +93,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.VatSwiftNumberClient, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.VatSwiftBankClient, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.VatSwiftBankClient, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.VatSwiftBankClient, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.VatSwiftBankClient, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -89,8 +103,8 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.InvoiceNumber, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.InvoiceNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.InvoiceNumber, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.InvoiceNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.InvoiceNumber, "", new { @class = "text-danger font-weight-bold" })
                     </div>
                 </div>
             </div>
@@ -99,47 +113,30 @@
                 <div class="form-group">
                     @Html.Label(FineEx.Resources.Invoice.Invoice.Issuer, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Issuer, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Issuer, "", new { @class = "text-danger" })
+                        @Html.TextBox("CurrentUser", Model.Issuer, new { @class = "form-control", @readonly = "readonly" })
                     </div>
                 </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.PriceWithoutVat, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PriceWithoutVat, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PriceWithoutVat, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.VatPercentage, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.VatPercentage, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.VatPercentage, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
+            </div>            
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 mt-3 col-6 col-sm-4 col-md-3 col-lg-2">
-                <input type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" />
+                <input type="submit" value="@FineEx.Resources.Common.Next &#8250;" class="btn btn-warning font-weight-bold w-100" />
             </div>
         </div>
     </div>
 }
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                yearRange: '-50:+0'
+            });            
+        })
+       
+    </script>
+}

@@ -106,7 +106,7 @@ namespace FineEx.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hr.
+        ///   Looks up a localized string similar to hr-HR.
         /// </summary>
         public static string Language {
             get {
@@ -129,6 +129,15 @@ namespace FineEx.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         

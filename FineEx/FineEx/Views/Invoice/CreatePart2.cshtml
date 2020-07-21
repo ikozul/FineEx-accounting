@@ -1,0 +1,169 @@
+﻿@model FineEx.BusinessLayer.Models.InvoiceModels.InvoiceCreateModel
+
+@{
+    ViewBag.Title = FineEx.Resources.Invoice.Invoice.CreateTitle;
+    SelectList items = ViewBag.Items as SelectList;
+}
+
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Invoice.Invoice.CreateTitle #2</h3>
+<hr />
+
+@using (Html.BeginForm("CreatePart2", "Invoice", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SenderID)
+        @Html.HiddenFor(model => model.Sender)
+        @Html.HiddenFor(model => model.PaymentMethodID)
+        @Html.HiddenFor(model => model.ReceiverID)
+        @Html.Hidden("DueDate", Model.DueDate)
+        @Html.HiddenFor(model => model.UniqueIdentifierOfInvoice)
+        @Html.HiddenFor(model => model.VatNumber)
+        @Html.HiddenFor(model => model.VatSwiftBankClient)
+        @Html.HiddenFor(model => model.InvoiceNumber)
+        @Html.HiddenFor(model => model.Issuer)
+        @Html.HiddenFor(model => model.InvoiceItems)
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="form-group">
+                    @Html.Label(FineEx.Resources.Invoice.Invoice.PriceWithoutVat, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PriceWithoutVat, new { htmlAttributes = new { @class = "total-factor form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.PriceWithoutVat, "", new { @class = "text-danger font-weight-bold" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-group">
+                    @Html.Label(FineEx.Resources.Invoice.Invoice.VatPercentage, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VatPercentage, new { htmlAttributes = new { @class = "total-factor form-control", autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.VatPercentage, "", new { @class = "text-danger font-weight-bold" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-group">
+                    @Html.Label(FineEx.Resources.Invoice.Invoice.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
+                    <div class="col-md-10">
+                        @Html.TextBox("TotalPrice", Model.TotalPrice, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-offset-2 my-3 col-6 col-sm-4 col-md-3 col-lg-2">
+            <button id="add-item" class="btn btn-success w-100">Add Item</button>
+        </div>
+
+        <div id="items" class="bg-light p-2">
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 mt-3 col-6 col-sm-4 col-md-3 col-lg-2">
+                <input type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" disabled />
+            </div>
+        </div>
+    </div>
+}
+
+<div id="item-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="item" class="table table-light table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.TextBox("SelectedPrice", Model.InvoiceItems.SelectedPrice, new { @class = "form-control", disabled = "disabled", id = "price" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>            
+                <button id="btn-add" type="button" class="btn btn-success" data-dismiss="modal" disabled>Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#PriceWithoutVat").val("");
+            $("#VatPercentage").val("");
+            var model = @Html.Raw(Json.Encode(Model));
+        })
+
+        $('.total-factor').on('input propertychange paste', function () {
+            var price = parseFloat($("#PriceWithoutVat").val());
+            var percentage = parseFloat($("#VatPercentage").val());
+            var total = (price + (price * percentage / 100));
+            $("#TotalPrice").val(total);
+        });
+
+        $("#add-item").on("click", function (e) {
+            e.preventDefault();
+            var model = @Html.Raw(Json.Encode(Model));
+            $("#item-modal").modal("show");
+        })
+
+        $(".picker").on("change", function () {
+            $("#quantity").val(1);
+            var itemId = $(".picker").val();
+            console.log(itemId);
+
+            if (itemId == 0) {
+                $("#quantity").val("");
+                $("#quantity").prop("disabled", true);
+                $("#price").val("");
+                $("#btn-add").prop("disabled", true);
+            } else {
+                $("#quantity").prop("disabled", false);
+                $("#btn-add").prop("disabled", false);
+                var model = @Html.Raw(Json.Encode(Model));
+                var maxQuantity = model.InvoiceItems.Items.filter(function (item) {
+                   return item.Id == itemId;
+                });
+                console.log(maxQuantity[0].WarehouseQuantity);
+                console.log(maxQuantity[0].ItemPrice);
+                $("#quantity").attr("max", maxQuantity[0].WarehouseQuantity);
+                $("#price").val(maxQuantity[0].ItemPrice);
+            }
+        });
+
+        $('#quantity').on('input', function () {
+            $('#mirror').text($('#alice').val());
+        });
+
+    </script>
+}

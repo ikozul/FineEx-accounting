@@ -28,5 +28,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
 
         public bool IsSiteAdmin => Role.Id >= _adminRoleId;
 
+        public override string ToString() => $"{FirstName} {LastName}";
+
     }
 }

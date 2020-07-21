@@ -196,6 +196,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to --- Select item ---.
+        /// </summary>
+        public static string ItemPlaceholder {
+            get {
+                return ResourceManager.GetString("ItemPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outgoing.
         /// </summary>
         public static string OutgoingInvoice {
@@ -223,7 +232,7 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Price Without Vat.
+        ///   Looks up a localized string similar to Price Without VAT.
         /// </summary>
         public static string PriceWithoutVat {
             get {
@@ -295,7 +304,7 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vat Number.
+        ///   Looks up a localized string similar to VAT Number.
         /// </summary>
         public static string VatNumber {
             get {
@@ -304,7 +313,7 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vat Percentage.
+        ///   Looks up a localized string similar to VAT Percentage.
         /// </summary>
         public static string VatPercentage {
             get {
