@@ -54,26 +54,75 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-offset-2 my-3 col-6 col-sm-4 col-md-3 col-lg-2">
+            <button id="add-item" class="btn btn-success w-100">Add Item</button>
+        </div>
+
+        <div id="items" class="bg-light p-2">
+
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 mt-3 col-6 col-sm-4 col-md-3 col-lg-2">
-                <input type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" />
+                <input type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" disabled />
             </div>
         </div>
     </div>
 }
+
+<div id="item-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="item" class="table table-light table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                @Html.DropDownListFor(model => model.Items., new SelectList(Model.Recipients, "Id", "CompanyName"), FineEx.Resources.Invoice.Invoice.RecipientPlaceholder, new { @class = "picker form-control col-lg-12" })
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script>
         $(document).ready(function () {
             $("#PriceWithoutVat").val("");
             $("#VatPercentage").val("");
+        })
 
-            $('.total-factor').on('input propertychange paste', function () {
-                var price = parseFloat($("#PriceWithoutVat").val());
-                var percentage = parseFloat($("#VatPercentage").val());
-                var total = (price + (price * percentage / 100));
-                $("#TotalPrice").val(total);
-            });
+        $('.total-factor').on('input propertychange paste', function () {
+            var price = parseFloat($("#PriceWithoutVat").val());
+            var percentage = parseFloat($("#VatPercentage").val());
+            var total = (price + (price * percentage / 100));
+            $("#TotalPrice").val(total);
+        });
+
+        $("#add-item").on("click", function (e) {
+            e.preventDefault();
+            console.log("test");
+            $("#item-modal").modal("show");
         })
 
     </script>
