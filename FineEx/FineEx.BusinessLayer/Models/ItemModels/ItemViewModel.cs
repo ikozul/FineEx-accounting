@@ -17,6 +17,11 @@ namespace FineEx.BusinessLayer.Models.ItemModels
             WarehouseQuantity = item.WarehouseQuantity;
         }
 
+        public ItemViewModel()
+        {
+
+        }
+
         public int Id { get; set; }
         public string ItemName { get; set; }
         public decimal ItemPrice { get; set; }

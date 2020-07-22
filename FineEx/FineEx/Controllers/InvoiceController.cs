@@ -120,7 +120,9 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                invoiceCreateModel.TotalPrice = invoiceCreateModel.PriceWithoutVat + (invoiceCreateModel.PriceWithoutVat * invoiceCreateModel.VatPercentage);                
+
+
             }
             return View(invoiceCreateModel);
         }

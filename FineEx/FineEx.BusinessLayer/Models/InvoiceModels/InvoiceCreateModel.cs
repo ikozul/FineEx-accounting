@@ -56,8 +56,8 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         public string Issuer { get; set; }
 
         public List<ItemCreateModel> InvoiceItems { get; set; }
-        public List<ItemViewModel> Items { get; set; }
 
+        public List<ItemViewModel> Items { get; set; }
         public List<CompanyViewModel> Recipients { get; set; }
         public List<PaymentMethodViewModel> PaymentMethods { get; set; }
     }
