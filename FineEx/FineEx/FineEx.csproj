@@ -756,6 +756,7 @@
     <Content Include="Views\Invoice\CreatePart2.cshtml" />
     <Content Include="Views\Company\_EditUsers.cshtml" />
     <Content Include="Views\Company\EditUser.cshtml" />
+    <Content Include="Views\Company\EditItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,5 +26,10 @@ namespace FineEx.BusinessLayer.Models.ItemModels
         public string ItemName { get; set; }
         public decimal ItemPrice { get; set; }
         public decimal WarehouseQuantity { get; set; }
+
+        public void UpdateItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

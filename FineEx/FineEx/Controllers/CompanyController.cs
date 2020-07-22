@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FineEx.BusinessLayer.Models.CompanyModels;
+using FineEx.BusinessLayer.Models.ItemModels;
 using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
 using FineEx.DataLayer.Context;
@@ -76,6 +77,20 @@ namespace FineEx.Controllers
         public ActionResult CreateUser(UserViewModel model)
         {
             model.UpdateUser();
+            return RedirectToAction("Index", "Company");
+        }
+
+        [HttpGet]
+        public ActionResult EditItem(int id)
+        {
+            var itemViewModel = new ItemViewModel(App.Db.Items.Single(x => x.Id == id));
+            return View(itemViewModel);
+        }
+
+
+        public ActionResult EditItem(ItemViewModel model)
+        {
+            model.UpdateItem();
             return RedirectToAction("Index", "Company");
         }
     }
