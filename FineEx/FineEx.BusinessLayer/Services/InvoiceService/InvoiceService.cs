@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.InvoiceModels;
@@ -64,7 +65,9 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             Invoice newInvoice = new Invoice();
             newInvoice.SenderId = invoiceCreateModel.SenderID;
             newInvoice.ReceiverId = invoiceCreateModel.ReceiverID;
+            newInvoice.Receiver = App.Db.Companies.Single(x => x.Id == invoiceCreateModel.ReceiverID);
             newInvoice.PaymentMethodId = invoiceCreateModel.PaymentMethodID;
+            newInvoice.PaymentMethod = App.Db.PaymentMethods.Single(x => x.Id == invoiceCreateModel.PaymentMethodID);
             newInvoice.InvoiceDate = invoiceCreateModel.InvoiceDate;
             newInvoice.DueDate = invoiceCreateModel.DueDate;
             newInvoice.UniqueIdentifierOfInvoice = invoiceCreateModel.UniqueIdentifierOfInvoice;
@@ -76,13 +79,17 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             newInvoice.InvoiceNumber = invoiceCreateModel.InvoiceNumber;
             newInvoice.User = GetCurrentUser(invoiceCreateModel.IssuerID);
             newInvoice.PdfPath = null;
-            //foreach (var invoiceItem in invoiceCreateModel.InvoiceItems)
-            //{
-            //    newInvoice.InvoiceItems.Add(invoiceItem);
-            //}
+
             App.Db.Invoices.Add(newInvoice);
             App.Db.SaveChanges();
-            InvoiceViewModel invoiceViewModel = GetInvoiceById(newInvoice.Id);
+
+            foreach (var invoiceItem in invoiceCreateModel.InvoiceItems)
+            {
+                newInvoice.InvoiceItems.Add(invoiceItem.GetInvoiceItemModel(newInvoice.Id));
+            }
+            App.Db.Entry(newInvoice).State = EntityState.Modified;
+            App.Db.SaveChanges();
+            var invoiceViewModel = GetInvoiceById(newInvoice.Id);
             _pdfGenerator = new PdfGenerator.PdfGenerator(invoiceViewModel);
             _pdfGenerator.GeneratePdfBytes();
         }

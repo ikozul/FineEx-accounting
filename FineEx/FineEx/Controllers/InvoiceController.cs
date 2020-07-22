@@ -126,9 +126,8 @@ namespace FineEx.Controllers
                 invoiceCreateModel.TotalPrice = invoiceCreateModel.PriceWithoutVat + (invoiceCreateModel.PriceWithoutVat * (invoiceCreateModel.VatPercentage / 100));
                 invoiceCreateModel.InvoiceDate = DateTime.Now;
                 invoiceCreateModel.DueDate = DateTime.Now.AddBusinessDays(invoiceCreateModel.DueDays);
-                //int invoiceId = _invoiceService.CreateNewInvoice(invoiceCreateModel);
-                //_itemService.CreateInvoiceItems(invoiceId, invoiceCreateModel.InvoiceItems);
-
+                _invoiceService.CreateNewInvoice(invoiceCreateModel);
+                return RedirectToAction("Index", "Invoice");
             }
             return View(invoiceCreateModel);
         }
