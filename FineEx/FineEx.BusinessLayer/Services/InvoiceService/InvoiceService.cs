@@ -76,10 +76,10 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             newInvoice.InvoiceNumber = invoiceCreateModel.InvoiceNumber;
             newInvoice.User = GetCurrentUser(invoiceCreateModel.IssuerID);
             newInvoice.PdfPath = null;
-            foreach (var invoiceItem in invoiceCreateModel.InvoiceItems)
-            {
-                newInvoice.InvoiceItems.Add(invoiceItem);
-            }
+            //foreach (var invoiceItem in invoiceCreateModel.InvoiceItems)
+            //{
+            //    newInvoice.InvoiceItems.Add(invoiceItem);
+            //}
             App.Db.Invoices.Add(newInvoice);
             App.Db.SaveChanges();
             InvoiceViewModel invoiceViewModel = GetInvoiceById(newInvoice.Id);
