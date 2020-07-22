@@ -112,7 +112,7 @@
                                     @Html.ValidationMessage("SelectedQuantity", "", new { @class = "text-danger font-weight-bold" })
                                 </td>
                                 <td>
-                                    @Html.Editor("SelectedPrice", new { htmlAttributes = new { @class = "form -control", @readonly = "readonly", id = "price" } })
+                                    @Html.Editor("SelectedPrice", null, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", id = "price" } })
                                 </td>
                             </tr>
                         </tbody>
@@ -178,34 +178,37 @@
             $("#price").val(newPrice.toFixed(2));
         });
 
-        //$('#vat-percent').on('input', function () {
-        //    var price = parseFloat($("#PriceWithoutVat").val());
-        //    var percentage = parseFloat($("#VatPercentage").val());
-        //    var total = (price + (price * percentage / 100));
-        //    $("#TotalPrice").val(total);
-        //});
-
-        var priceWithoutVat;
         $("#btn-add").on("click", function () {
             var selectedItemName = $(".picker option:selected").text();
             var item = $("#item-form").serializeArray();
             item.push({ name: "SelectedItemName", value: selectedItemName });
             itemsArray.push(item);
             makeRowChanges()
-        });
+        });        
 
+        var priceWithoutVat;
         function makeRowChanges() {
+            $('#items-table > tbody').html("");
+            $("#PriceWithoutVat").val(0);
+            for (var i = 0; i < itemsArray.length; i++) {
+                $('#items-table > tbody').append('<tr><td>' + itemsArray[i][0].value + '</td><td>' + itemsArray[i][3].value + '</td><td>' + itemsArray[i][1].value + '</td><td>' + itemsArray[i][2].value + '</td><td><button class="remove-item btn btn-outline-danger fa fa-trash" type="button" value="' + itemsArray[i][0].value + '"></button></td></tr>');
+                priceWithoutVat = parseFloat($("#PriceWithoutVat").val()) + parseFloat(itemsArray[i][2].value);
+                $("#PriceWithoutVat").val(priceWithoutVat.toFixed(2));
+            }
             if (itemsArray.length == 0) {
                 $("#btn-create").prop("disabled", true);
             } else {
                 $("#btn-create").prop("disabled", false);
-            }
-            $('#items-table > tbody').html("");
-            $("#PriceWithoutVat").val(0);
-            for (var i = 0; i < itemsArray.length; i++) {
-                $('#items-table > tbody').append('<tr><td>' + itemsArray[i][0].value + '</td><td>' + itemsArray[i][3].value + '</td><td>' + itemsArray[i][1].value + '</td><td>' + itemsArray[i][2].value + '</td><td><button class="btn btn-outline-danger fa fa-trash" value="' + itemsArray[i][0].value + '"></button></td></tr>');
-                priceWithoutVat = parseFloat($("#PriceWithoutVat").val()) + parseFloat(itemsArray[i][2].value);
-                $("#PriceWithoutVat").val(priceWithoutVat.toFixed(2));
+                $(".remove-item").on("click", function (e) {
+                    var itemId = $(this).val();
+                    console.log(itemId);
+                    itemsArray = itemsArray.filter(function (i) {
+                        console.log(i[0]);
+                        return i[0].value != itemId;
+                    })
+                    console.log(itemsArray);
+                    makeRowChanges();
+                });
             }
         }
 
@@ -231,7 +234,7 @@
                 type: "POST",
                 data: invoice,
                 success: function (data) {
-                    alert('Ok');
+                    alert('OK');
                 }
             });
         });
