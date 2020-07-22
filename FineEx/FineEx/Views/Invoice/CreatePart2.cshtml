@@ -13,65 +13,73 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.SenderID)
-        @Html.HiddenFor(model => model.Sender)
-        @Html.HiddenFor(model => model.PaymentMethodID)
-        @Html.HiddenFor(model => model.ReceiverID)
-        @Html.Hidden("DueDate", Model.DueDate)
-        @Html.HiddenFor(model => model.UniqueIdentifierOfInvoice)
-        @Html.HiddenFor(model => model.VatNumber)
-        @Html.HiddenFor(model => model.VatSwiftBankClient)
-        @Html.HiddenFor(model => model.InvoiceNumber)
-        @Html.HiddenFor(model => model.Issuer)
-        @Html.HiddenFor(model => model.Items)
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.VatPercentage, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.VatPercentage, new { htmlAttributes = new { @class = "total-factor form-control", autocomplete = "off" } })
-                        @Html.ValidationMessageFor(model => model.VatPercentage, "", new { @class = "text-danger font-weight-bold" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Invoice.Invoice.TotalPrice, htmlAttributes: new { @class = "control-label font-weight-bold col-md-2 text-nowrap" })
-                    <div class="col-md-10">
-                        @Html.TextBox("TotalPrice", Model.TotalPrice, new { @class = "form-control font-weight-bold", @readonly = "readonly" })
-                    </div>
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.SenderID)
+    @Html.HiddenFor(model => model.Sender)
+    @Html.HiddenFor(model => model.PaymentMethodID)
+    @Html.HiddenFor(model => model.ReceiverID)
+    @Html.HiddenFor(model => model.DueDays)
+    @Html.HiddenFor(model => model.UniqueIdentifierOfInvoice)
+    @Html.HiddenFor(model => model.VatNumber)
+    @Html.HiddenFor(model => model.VatSwiftBankClient)
+    @Html.HiddenFor(model => model.InvoiceNumber)
+    @Html.HiddenFor(model => model.IssuerID)
+    @Html.HiddenFor(model => model.Issuer)
+    @for (int i = 0; i < Model.Items.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Items[i].Id)
+        @Html.HiddenFor(model => model.Items[i].ItemName)
+        @Html.HiddenFor(model => model.Items[i].ItemPrice)
+        @Html.HiddenFor(model => model.Items[i].WarehouseQuantity)
+    }
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.VatPercentage, htmlAttributes: new { @class = "control-label col-md-2 text-nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VatPercentage, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", id = "vat-percent" } })
+                    @Html.ValidationMessageFor(model => model.VatPercentage, "", new { @class = "text-danger font-weight-bold" })
                 </div>
             </div>
         </div>
 
-        <div class="col-md-offset-2 my-3 col-6 col-sm-4 col-md-3 col-lg-2">
-            <button id="add-item" class="btn btn-success w-100">@FineEx.Resources.Item.Item.AddItem</button>
-        </div>
-
-        <div id="items" class="bg-light p-2">
-            <table id="items-table" class="table table-light table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>@FineEx.Resources.Item.Item.ItemID</th>
-                        <th>@FineEx.Resources.Item.Item.Name</th>
-                        <th>@FineEx.Resources.Item.Item.Quantity</th>
-                        <th>@FineEx.Resources.Item.Item.Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 mt-3 col-6 col-sm-4 col-md-3 col-lg-2">
-                <input id="btn-create" type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" disabled />
+        <div class="col-12 col-md-4">
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.PriceWithoutVat, htmlAttributes: new { @class = "control-label font-weight-bold col-md-2 text-nowrap" })
+                <div class="col-md-10">
+                    @Html.TextBox("PriceWithoutVat", Model.PriceWithoutVat, new { @class = "form-control font-weight-bold", @readonly = "readonly" })
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="col-md-offset-2 my-3 col-6 col-sm-4 col-md-3 col-lg-2">
+        <button id="add-item" class="btn btn-success w-100">@FineEx.Resources.Item.Item.AddItem</button>
+    </div>
+
+    <div id="items" class="bg-light p-2">
+        <table id="items-table" class="table table-light table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@FineEx.Resources.Item.Item.ItemID</th>
+                    <th>@FineEx.Resources.Item.Item.Name</th>
+                    <th>@FineEx.Resources.Item.Item.Quantity</th>
+                    <th>@FineEx.Resources.Item.Item.Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 mt-3 col-6 col-sm-4 col-md-3 col-lg-2">
+            <input id="btn-create" type="submit" value="@FineEx.Resources.Invoice.Invoice.Create" class="btn btn-warning font-weight-bold w-100" disabled />
+        </div>
+    </div>
+</div>
 }
 
 <div id="item-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -124,7 +132,7 @@
         var itemsArray = [];
         $(document).ready(function () {
             $("#PriceWithoutVat").val("");
-            $("#VatPercentage").val("");
+            $("#vat-percent").val("");
         });
 
         $("#add-item").on("click", function (e) {
@@ -170,13 +178,19 @@
             $("#price").val(newPrice.toFixed(2));
         });
 
-        var totalPrice;
+        //$('#vat-percent').on('input', function () {
+        //    var price = parseFloat($("#PriceWithoutVat").val());
+        //    var percentage = parseFloat($("#VatPercentage").val());
+        //    var total = (price + (price * percentage / 100));
+        //    $("#TotalPrice").val(total);
+        //});
+
+        var priceWithoutVat;
         $("#btn-add").on("click", function () {
             var selectedItemName = $(".picker option:selected").text();
             var item = $("#item-form").serializeArray();
             item.push({ name: "SelectedItemName", value: selectedItemName });
             itemsArray.push(item);
-            console.log(itemsArray);
             makeRowChanges()
         });
 
@@ -187,15 +201,15 @@
                 $("#btn-create").prop("disabled", false);
             }
             $('#items-table > tbody').html("");
-            $("#TotalPrice").val(0);
+            $("#PriceWithoutVat").val(0);
             for (var i = 0; i < itemsArray.length; i++) {
-                $('#items-table > tbody').append('<tr><td>' + itemsArray[i][0].value + '</td><td>' + itemsArray[i][3].value + '</td><td>' + itemsArray[i][1].value + '</td><td>' + itemsArray[i][2].value + '</td></tr>');
-                totalPrice = parseFloat($("#TotalPrice").val()) + parseFloat(itemsArray[i][2].value);
-                $("#TotalPrice").val(totalPrice);
+                $('#items-table > tbody').append('<tr><td>' + itemsArray[i][0].value + '</td><td>' + itemsArray[i][3].value + '</td><td>' + itemsArray[i][1].value + '</td><td>' + itemsArray[i][2].value + '</td><td><button class="btn btn-outline-danger fa fa-trash" value="' + itemsArray[i][0].value + '"></button></td></tr>');
+                priceWithoutVat = parseFloat($("#PriceWithoutVat").val()) + parseFloat(itemsArray[i][2].value);
+                $("#PriceWithoutVat").val(priceWithoutVat.toFixed(2));
             }
         }
 
-        $("#btn-create").on("click", function (e) {
+        $("#invoice-form").on("submit", function (e) {
             e.preventDefault();
             var invoiceItems = [];
             itemsArray.forEach(i => {
@@ -211,13 +225,13 @@
                 invoice[p.name] = p.value;
             });
             invoice.invoiceItems = invoiceItems;
-            console.log(invoice);
+
             $.ajax({
                 url: '@Url.Action("CreatePart2")',
                 type: "POST",
                 data: invoice,
                 success: function (data) {
-                    alert(data);
+                    console.log(data);
                 }
             });
         });

@@ -28,9 +28,10 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         
         public DateTime InvoiceDate { get; set; }
 
-        [Required(ErrorMessage = "*")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
+
+        [Required(ErrorMessage = "*")]        
+        public int DueDays { get; set; }
 
         [Required(ErrorMessage = "*")]
         public string UniqueIdentifierOfInvoice { get; set; }
@@ -54,10 +55,11 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
 
         [Required(ErrorMessage = "*")]
         public string Issuer { get; set; }
+        public int IssuerID { get; set; }
 
         public List<ItemCreateModel> InvoiceItems { get; set; }
-        public List<ItemViewModel> Items { get; set; }
 
+        public List<ItemViewModel> Items { get; set; }
         public List<CompanyViewModel> Recipients { get; set; }
         public List<PaymentMethodViewModel> PaymentMethods { get; set; }
     }
