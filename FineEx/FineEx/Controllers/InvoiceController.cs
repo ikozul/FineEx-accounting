@@ -110,8 +110,7 @@ namespace FineEx.Controllers
         public ActionResult CreatePart2(InvoiceCreateModel invoiceCreateModel)
         {
             _itemService = new ItemService();
-            invoiceCreateModel.InvoiceItems = new ItemCreateModel();
-            invoiceCreateModel.InvoiceItems.Items = _itemService.GetItemsForCompany(invoiceCreateModel.SenderID);
+            invoiceCreateModel.Items = _itemService.GetItemsForCompany(invoiceCreateModel.SenderID);
             return View(invoiceCreateModel);
         }
 

@@ -61,7 +61,7 @@ namespace FineEx.Resources.Item {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add item.
+        ///   Looks up a localized string similar to Add Item.
         /// </summary>
         public static string AddItem {
             get {
@@ -70,7 +70,7 @@ namespace FineEx.Resources.Item {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item Id.
+        ///   Looks up a localized string similar to Item ID.
         /// </summary>
         public static string ItemID {
             get {
@@ -88,7 +88,7 @@ namespace FineEx.Resources.Item {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New item.
+        ///   Looks up a localized string similar to New Item.
         /// </summary>
         public static string NewItem {
             get {
