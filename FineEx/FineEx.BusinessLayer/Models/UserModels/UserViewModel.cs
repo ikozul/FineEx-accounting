@@ -1,14 +1,18 @@
 ﻿using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FineEx.BusinessLayer.Utils;
+using FineEx.DataLayer.Context;
 
 namespace FineEx.BusinessLayer.Models.UserModels
 {
     public class UserViewModel
     {
+        private int _companyAdminRoldId = 50;
         private const int _adminRoleId = 90;
 
         public UserViewModel(User user)
@@ -19,6 +23,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
             Email = user.Email;
             Role = user.Role;
             Password = user.Password;
+            PasswordRepeat = user.Password;
         }
 
 
@@ -36,11 +41,25 @@ namespace FineEx.BusinessLayer.Models.UserModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public Role Role { get; set; }
-        public string Password { get; set; }
+        [DataType(DataType.Password)] public string Password { get; set; }
+        [DataType(DataType.Password)] public string PasswordRepeat { get; set; }
 
         public bool IsSiteAdmin => Role.Id >= _adminRoleId;
+        public bool IsCompanyAdmin => Role.Id >= _companyAdminRoldId;
 
         public override string ToString() => $"{FirstName} {LastName}";
+
+        public bool UpdateUser()
+        {
+            if (!PasswordRepeat.Equals(Password) && Password.Length > 8)
+                return false;
+            var user = App.Db.Users.Single(x => x.Id == Id);
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Password = PasswordHelper.HashPassword(Password);
+            user.Email = Email;
+             return App.Db.SaveChanges() > 0;
+        }
 
     }
 }
