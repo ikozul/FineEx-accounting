@@ -171,4 +171,7 @@
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Ukloni</value>
+  </data>
 </root>
