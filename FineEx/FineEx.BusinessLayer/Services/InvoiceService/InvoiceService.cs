@@ -2,6 +2,7 @@
 using System.Linq;
 using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.InvoiceModels;
+using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
 
@@ -10,6 +11,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
     public class InvoiceService : IInvoiceService
     {
         private IQueryable<Invoice> _invoices;
+        private User _currentUser;
         private readonly List<InvoiceViewModel> _invoicesView = new List<InvoiceViewModel>();
         private readonly string _businessNumber;
 
@@ -56,6 +58,33 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
                 throw new NoInvoiceFoundException("No invoice found with ID: " + id);
             }
             return new InvoiceViewModel(invoice);
+        }
+
+        public int CreateNewInvoice(InvoiceCreateModel invoiceCreateModel)
+        {
+            Invoice newInvoice = new Invoice();
+            newInvoice.SenderId = invoiceCreateModel.SenderID;
+            newInvoice.ReceiverId = invoiceCreateModel.ReceiverID;
+            newInvoice.PaymentMethodId = invoiceCreateModel.PaymentMethodID;
+            newInvoice.InvoiceDate = invoiceCreateModel.InvoiceDate;
+            newInvoice.DueDate = invoiceCreateModel.DueDate;
+            newInvoice.UniqueIdentifierOfInvoice = invoiceCreateModel.UniqueIdentifierOfInvoice;
+            newInvoice.VatNumber = invoiceCreateModel.VatNumber;
+            newInvoice.VatSwiftBankClient = invoiceCreateModel.VatSwiftBankClient;
+            newInvoice.PriceWithoutVat = invoiceCreateModel.PriceWithoutVat;
+            newInvoice.VatPercentage = invoiceCreateModel.VatPercentage;
+            newInvoice.TotalPrice = invoiceCreateModel.TotalPrice;
+            newInvoice.InvoiceNumber = invoiceCreateModel.InvoiceNumber;
+            newInvoice.User = GetCurrentUser(invoiceCreateModel.IssuerID);
+            newInvoice.PdfPath = null;
+            App.Db.Invoices.Add(newInvoice);
+            App.Db.SaveChanges();
+            return newInvoice.Id;
+        }
+
+        public User GetCurrentUser(int id)
+        {
+            return App.Db.Users.Single(u => u.Id == id);
         }
     }
 }

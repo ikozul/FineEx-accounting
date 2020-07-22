@@ -10,8 +10,10 @@ using FineEx.BusinessLayer.Services.PaymentMethodService;
 using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
+using FluentDateTime;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -21,7 +23,6 @@ namespace FineEx.Controllers
 {
     public class InvoiceController : Controller
     {
-        private const string PAYPAL = "PayPal";
         private InvoiceService _invoiceService;
         private CompanyService _companyService;
         private PaymentMethodService _paymentMethodService;
@@ -41,6 +42,8 @@ namespace FineEx.Controllers
                 new SelectListItem { Value = "2", Text = FineEx.Resources.Invoice.Invoice.OutgoingInvoice }
             }, "Value", "Text");
 
+            _itemService = new ItemService();
+            _invoiceService = new InvoiceService();
             _paymentMethodService = new PaymentMethodService();
             _companyService = new CompanyService();
             _companies = _companyService.GetCompanies(App.UserId);
@@ -93,6 +96,7 @@ namespace FineEx.Controllers
             invoiceCreateModel.PaymentMethods = _paymentMethodService.GetPaymentMethods();
             UserViewModel currentUser = (UserViewModel)Session["user"];
             invoiceCreateModel.Issuer = currentUser.ToString();
+            invoiceCreateModel.IssuerID = currentUser.Id;
             return View(invoiceCreateModel);
         }
 
@@ -109,7 +113,6 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult CreatePart2(InvoiceCreateModel invoiceCreateModel)
         {
-            _itemService = new ItemService();
             invoiceCreateModel.Items = _itemService.GetItemsForCompany(invoiceCreateModel.SenderID);
             return View(invoiceCreateModel);
         }
@@ -120,8 +123,11 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                invoiceCreateModel.TotalPrice = invoiceCreateModel.PriceWithoutVat + (invoiceCreateModel.PriceWithoutVat * invoiceCreateModel.VatPercentage);                
-
+                invoiceCreateModel.TotalPrice = invoiceCreateModel.PriceWithoutVat + (invoiceCreateModel.PriceWithoutVat * (invoiceCreateModel.VatPercentage / 100));
+                invoiceCreateModel.InvoiceDate = DateTime.Now;
+                invoiceCreateModel.DueDate = DateTime.Now.AddBusinessDays(invoiceCreateModel.DueDays);
+                int invoiceId = _invoiceService.CreateNewInvoice(invoiceCreateModel);
+                //_itemService.CreateInvoiceItems(invoiceId);
 
             }
             return View(invoiceCreateModel);
