@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FineEx.BusinessLayer.Services.Billing;
+using FineEx.DataLayer.Context;
 
 namespace FineEx.Controllers
 {
@@ -13,8 +14,12 @@ namespace FineEx.Controllers
         [Route("administration")]
         public ActionResult Index()
         {
-            BillingService service = new BillingService(2);
-            service.BillCompany();
+            foreach (var model in App.Db.Companies.Where(x=>x.Id > 1))
+            {
+                BillingService service = new BillingService(model.Id);
+                service.BillCompany();
+            }
+           
             return View();
         }
 

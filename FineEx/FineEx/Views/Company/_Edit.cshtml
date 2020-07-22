@@ -10,42 +10,42 @@
     @Html.Hidden("Id", Model.Id)
     <div class="row">
         <div class="col-md-4">
-            @Html.LabelFor(x => x.BusinessNumber)
-            <br/>
+            @Html.Label(FineEx.Resources.Invoice.Invoice.VatNumber, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+            <br />
             @Html.EditorFor(x => x.BusinessNumber)
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(x => x.CompanyName)
+            @Html.Label(FineEx.Resources.Company.Company.Name, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
             <br/>
             @Html.EditorFor(x => x.CompanyName)
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(x => x.Address)
-            <br/>
+            @Html.Label(FineEx.Resources.Company.Company.Address, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+            <br />
             @Html.EditorFor(x => x.Address)
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            @Html.LabelFor(x => x.City)
-            <br/>
+            @Html.Label(FineEx.Resources.Company.Company.City, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+            <br />
             @Html.EditorFor(x => x.City)
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(x => x.IBAN)
-            <br/>
+            @Html.Label(FineEx.Resources.Company.Company.Iban, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+            <br />
             @Html.EditorFor(x => x.IBAN)
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(x => x.Phone)
-            <br/>
+            @Html.Label(FineEx.Resources.Company.Company.Phone, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+            <br />
             @Html.EditorFor(x => x.Phone)
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            @Html.LabelFor(x => x.BusinessUnit)
+            @Html.Label(FineEx.Resources.Company.Company.Business_Unit, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
             <br/>
             @Html.EditorFor(x => x.BusinessUnit)
         </div>

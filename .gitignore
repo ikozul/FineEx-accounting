@@ -27,3 +27,5 @@
 /FineEx/FineEx.DataLayer/bin/Release
 /FineEx/FineEx.Testing/obj/Release
 /FineEx/FineEx/Properties/PublishProfiles
+/FineEx/FineEx.Api/bin
+/FineEx/FineEx.Api/obj/Debug

@@ -61,11 +61,47 @@ namespace FineEx.Resources.Company {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business unit.
+        /// </summary>
+        public static string Business_Unit {
+            get {
+                return ResourceManager.GetString("Business_Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit item.
         /// </summary>
         public static string Edit_Item {
             get {
                 return ResourceManager.GetString("Edit_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment number.
+        /// </summary>
+        public static string Iban {
+            get {
+                return ResourceManager.GetString("Iban", resourceCulture);
             }
         }
         
@@ -84,6 +120,15 @@ namespace FineEx.Resources.Company {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
             }
         }
         
