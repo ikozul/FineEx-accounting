@@ -2,7 +2,7 @@
 using System.Linq;
 using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.InvoiceModels;
-using FineEx.BusinessLayer.Models.UserModels;
+using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Context;
 using FineEx.DataLayer.Models;
 
@@ -11,7 +11,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
     public class InvoiceService : IInvoiceService
     {
         private IQueryable<Invoice> _invoices;
-        private User _currentUser;
+        private PdfGenerator.PdfGenerator _pdfGenerator;
         private readonly List<InvoiceViewModel> _invoicesView = new List<InvoiceViewModel>();
         private readonly string _businessNumber;
 
@@ -29,7 +29,6 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             _invoices = App.Db.Invoices.Where(x => x.Receiver.BusinessNumber == _businessNumber);
             GetInvoiceViewModels();
             return _invoicesView;
-
         }
 
         public List<InvoiceViewModel> GetOutgoingInvoices()
@@ -60,7 +59,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             return new InvoiceViewModel(invoice);
         }
 
-        public int CreateNewInvoice(InvoiceCreateModel invoiceCreateModel)
+        public void CreateNewInvoice(InvoiceCreateModel invoiceCreateModel)
         {
             Invoice newInvoice = new Invoice();
             newInvoice.SenderId = invoiceCreateModel.SenderID;
@@ -77,9 +76,15 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             newInvoice.InvoiceNumber = invoiceCreateModel.InvoiceNumber;
             newInvoice.User = GetCurrentUser(invoiceCreateModel.IssuerID);
             newInvoice.PdfPath = null;
+            foreach (var invoiceItem in invoiceCreateModel.InvoiceItems)
+            {
+                newInvoice.InvoiceItems.Add(invoiceItem);
+            }
             App.Db.Invoices.Add(newInvoice);
             App.Db.SaveChanges();
-            return newInvoice.Id;
+            InvoiceViewModel invoiceViewModel = GetInvoiceById(newInvoice.Id);
+            _pdfGenerator = new PdfGenerator.PdfGenerator(invoiceViewModel);
+            _pdfGenerator.GeneratePdfBytes();
         }
 
         public User GetCurrentUser(int id)

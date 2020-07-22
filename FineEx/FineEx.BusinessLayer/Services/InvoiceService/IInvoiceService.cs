@@ -15,7 +15,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
         List<InvoiceViewModel> GetOutgoingInvoices();
         InvoiceViewModel GetInvoiceById(int id);
         void GetInvoiceViewModels();
-        int CreateNewInvoice(InvoiceCreateModel invoiceCreateModel);
+        void CreateNewInvoice(InvoiceCreateModel invoiceCreateModel);
         User GetCurrentUser(int id);
     }
 }

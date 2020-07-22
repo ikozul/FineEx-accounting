@@ -10,5 +10,7 @@ namespace FineEx.BusinessLayer.Services.ItemService
     public interface IItemService
     {
         List<ItemViewModel> GetItemsForCompany(int companyId);
+
+        void CreateInvoiceItems(int invoiceId, List<ItemCreateModel> invoiceItems)
     }
 }

@@ -56,7 +56,6 @@ namespace FineEx.BusinessLayer.Models.InvoiceModels
         [Required(ErrorMessage = "*")]
         public string Issuer { get; set; }
         public int IssuerID { get; set; }
-
         public List<ItemCreateModel> InvoiceItems { get; set; }
 
         public List<ItemViewModel> Items { get; set; }
