@@ -70,6 +70,15 @@ namespace FineEx.Resources.Company {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business number.
+        /// </summary>
+        public static string Business_Number {
+            get {
+                return ResourceManager.GetString("Business_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business unit.
         /// </summary>
         public static string Business_Unit {
@@ -138,6 +147,15 @@ namespace FineEx.Resources.Company {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouse quantity.
+        /// </summary>
+        public static string Warehouse_Quantity {
+            get {
+                return ResourceManager.GetString("Warehouse_Quantity", resourceCulture);
             }
         }
     }

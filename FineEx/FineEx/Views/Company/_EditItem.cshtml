@@ -18,7 +18,7 @@
         columns.Add(c => c.WarehouseQuantity).SetWidth("5%")
             .Encoded(false).Sanitized(false)
             .RenderValueAs(c => c.WarehouseQuantity.ToString(CultureInfo.CurrentCulture))
-            .Titled(FineEx.Resources.Invoice.Invoice.VatNumber).Sortable(true);
+            .Titled(FineEx.Resources.Company.Company.Warehouse_Quantity).Sortable(true);
 
         columns.Add().SetWidth("5%")
             .Sanitized(false).Encoded(false)

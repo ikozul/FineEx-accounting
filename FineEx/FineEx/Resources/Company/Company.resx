@@ -144,4 +144,10 @@
   <data name="Business_Unit" xml:space="preserve">
     <value>Business unit</value>
   </data>
+  <data name="Business_Number" xml:space="preserve">
+    <value>Business number</value>
+  </data>
+  <data name="Warehouse_Quantity" xml:space="preserve">
+    <value>Warehouse quantity</value>
+  </data>
 </root>
