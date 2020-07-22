@@ -15,6 +15,10 @@ namespace FineEx.BusinessLayer.Models.UserModels
         private int _companyAdminRoldId = 50;
         private const int _adminRoleId = 90;
 
+        public UserViewModel()
+        {
+            
+        }
         public UserViewModel(User user)
         {
             Id = user.Id;
@@ -44,8 +48,8 @@ namespace FineEx.BusinessLayer.Models.UserModels
         [DataType(DataType.Password)] public string Password { get; set; }
         [DataType(DataType.Password)] public string PasswordRepeat { get; set; }
 
-        public bool IsSiteAdmin => Role.Id >= _adminRoleId;
-        public bool IsCompanyAdmin => Role.Id >= _companyAdminRoldId;
+        public bool IsSiteAdmin => Role?.Id >= _adminRoleId;
+        public bool IsCompanyAdmin => Role?.Id >= _companyAdminRoldId;
 
         public override string ToString() => $"{FirstName} {LastName}";
 

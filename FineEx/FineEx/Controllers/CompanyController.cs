@@ -51,18 +51,31 @@ namespace FineEx.Controllers
             return PartialView(model);
         }
 
-
-
+        [HttpGet]
         public ActionResult EditUser(int id)
         {
             var userViewModel = new UserViewModel(App.Db.Users.Single(x => x.Id == id));
             return View(userViewModel);
         }
 
-        [HttpPost]
+  
         public ActionResult EditUser(UserViewModel model)
         {
-            _companyService.UpdateUser(model);
+            model.UpdateUser();
+            return RedirectToAction("Index", "Company");
+        }
+
+
+        [HttpGet]
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
+
+
+        public ActionResult CreateUser(UserViewModel model)
+        {
+            model.UpdateUser();
             return RedirectToAction("Index", "Company");
         }
     }

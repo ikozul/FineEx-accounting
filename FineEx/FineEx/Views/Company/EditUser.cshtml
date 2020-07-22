@@ -2,51 +2,68 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = FineEx.Resources.User.User.Edit_User;
 }
 
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.User.User.Edit_User</h3>
+<hr />
+
 <div class="container" style="background: aliceblue">
-    
-    @using (Html.BeginForm())
+
+    @using (Html.BeginForm("EditUser", "Company", FormMethod.Post, new {enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
 
+        @Html.ValidationSummary(false)
+
+        @Html.Hidden("Id", Model.Id)
+
         <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.Label(FineEx.Resources.User.User.FirstName, htmlAttributes: new {@class = "control-label col-md-4 text-nowrap"})
+                @Html.Label(FineEx.Resources.User.User.FirstName, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.Label(FineEx.Resources.User.User.LastName, htmlAttributes: new {@class = "control-label col-md-4 text-nowrap"})
+                @Html.Label(FineEx.Resources.User.User.LastName, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.Label(FineEx.Resources.User.User.Email, htmlAttributes: new {@class = "control-label col-md-4 text-nowrap"})
+                @Html.Label(FineEx.Resources.User.User.Email, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.Label(FineEx.Resources.User.User.Password, htmlAttributes: new {@class = "control-label col-md-4 text-nowrap"})
+                @Html.Label(FineEx.Resources.User.User.Password, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.Label(FineEx.Resources.User.User.Repeat_Password, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PasswordRepeat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PasswordRepeat, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="@FineEx.Resources.Common.Edit" class="btn btn-info"/>
+                    <input type="submit" value="@FineEx.Resources.Common.Edit" class="btn btn-info" />
                 </div>
             </div>
         </div>
