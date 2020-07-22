@@ -31,12 +31,12 @@ namespace FineEx.BusinessLayer.Services.ItemService
             }
         }
 
-        public void CreateInvoiceItem(ItemCreateModel invoiceItem)
-        {
-            InvoiceItems invoiceItem = new InvoiceItems();
-            invoiceItem.InvoiceId = invoiceId;
-            invoiceItem.ItemId = item.SelectedItemID;
-            invoiceItem.ItemQuantity = item.SelectedQuantity;
-        }
+        //public void CreateInvoiceItem(ItemCreateModel invoiceItem)
+        //{
+        //    InvoiceItems invoiceItem = new InvoiceItems();
+        //    invoiceItem.InvoiceId = invoiceId;
+        //    invoiceItem.ItemId = item.SelectedItemID;
+        //    invoiceItem.ItemQuantity = item.SelectedQuantity;
+        //}
     }
 }
