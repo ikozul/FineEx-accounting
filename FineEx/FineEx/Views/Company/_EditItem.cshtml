@@ -23,49 +23,53 @@
         columns.Add().SetWidth("5%")
             .Sanitized(false).Encoded(false)
             .RenderValueAs(c => @<a href="@Url.RouteUrl(new { action = "Edit", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
+
+        columns.Add().SetWidth("10%")
+        .Sanitized(false).Encoded(false)
+        .RenderValueAs(c => @<a class="button" href="@Url.RouteUrl(new { action = "EditItem", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
 })
 </div>
 
 
 @*<div id="item-modal" class="modal fade" tabindex="-1" role="dialog">
-<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">New Item</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <table id="item" class="table table-light table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
-                            @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
-                        </td>
-                        <td>
-                            @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
-                            @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
-                        </td>
-                        <td>
-                            @Html.TextBox("SelectedPrice", Model.InvoiceItems.SelectedPrice, new { @class = "form-control", disabled = "disabled", id = "price" })
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="btn-add" type="button" class="btn btn-success" data-dismiss="modal" disabled>Add Item</button>
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="item" class="table table-light table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(model => model.InvoiceItems.SelectedItemID, new SelectList(Model.InvoiceItems.Items, "Id", "ItemName"), FineEx.Resources.Invoice.Invoice.ItemPlaceholder, new { @class = "picker form-control col-lg-12" })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedItemID, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.InvoiceItems.SelectedQuantity, new { htmlAttributes = new { @class = "form-control", id = "quantity", type = "number", min = "1", disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.InvoiceItems.SelectedQuantity, "", new { @class = "text-danger font-weight-bold" })
+                            </td>
+                            <td>
+                                @Html.TextBox("SelectedPrice", Model.InvoiceItems.SelectedPrice, new { @class = "form-control", disabled = "disabled", id = "price" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-add" type="button" class="btn btn-success" data-dismiss="modal" disabled>Add Item</button>
+            </div>
         </div>
     </div>
-</div>
-</div>*@
+    </div>*@
