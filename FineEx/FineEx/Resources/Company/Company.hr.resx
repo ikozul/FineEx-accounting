@@ -144,4 +144,10 @@
   <data name="Phone" xml:space="preserve">
     <value>Broj telefona</value>
   </data>
+  <data name="Business_Number" xml:space="preserve">
+    <value>Broj tvrtke</value>
+  </data>
+  <data name="Warehouse_Quantity" xml:space="preserve">
+    <value>Na skladištu</value>
+  </data>
 </root>
