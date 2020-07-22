@@ -127,7 +127,7 @@ namespace FineEx.Controllers
                 invoiceCreateModel.InvoiceDate = DateTime.Now;
                 invoiceCreateModel.DueDate = DateTime.Now.AddBusinessDays(invoiceCreateModel.DueDays);
                 int invoiceId = _invoiceService.CreateNewInvoice(invoiceCreateModel);
-                //_itemService.CreateInvoiceItems(invoiceId);
+                _itemService.CreateInvoiceItems(invoiceId, invoiceCreateModel.InvoiceItems);
 
             }
             return View(invoiceCreateModel);
