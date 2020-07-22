@@ -61,6 +61,15 @@ namespace FineEx.Resources.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User edit.
+        /// </summary>
+        public static string Edit_User {
+            get {
+                return ResourceManager.GetString("Edit_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -102,6 +111,15 @@ namespace FineEx.Resources.User {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat Password.
+        /// </summary>
+        public static string Repeat_Password {
+            get {
+                return ResourceManager.GetString("Repeat_Password", resourceCulture);
             }
         }
         

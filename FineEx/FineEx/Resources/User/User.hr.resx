@@ -135,4 +135,10 @@
   <data name="Users" xml:space="preserve">
     <value>Korisnici</value>
   </data>
+  <data name="Edit_User" xml:space="preserve">
+    <value>Uređivanje korisnika</value>
+  </data>
+  <data name="Repeat_Password" xml:space="preserve">
+    <value>Ponovite lozinku</value>
+  </data>
 </root>

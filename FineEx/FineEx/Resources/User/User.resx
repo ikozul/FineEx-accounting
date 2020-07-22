@@ -115,4 +115,10 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="Edit_User" xml:space="preserve">
+    <value>User edit</value>
+  </data>
+  <data name="Repeat_Password" xml:space="preserve">
+    <value>Repeat Password</value>
+  </data>
 </root>
