@@ -1,54 +1,132 @@
-﻿@model FineEx.BusinessLayer.Models.UserCreateModel
+﻿@model FineEx.BusinessLayer.Models.Registration.RegistrationViewModel
 
 @{
     ViewBag.Title = "Registration";
-    SelectList companies = ViewBag.Companies as SelectList;
 }
 
-<link href="~/Content/custom/form.css" rel="stylesheet" />
+<link href="~/Content/custom/registration.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Registration", "Account", FormMethod.Post))
 {
-    <h2>@FineEx.Resources.Registration.Registration.Title</h2>
-    @Html.AntiForgeryToken()
+    <div class="">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-lg-4">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label(FineEx.Resources.Registration.Registration.FirstName, htmlAttributes: new { @class = "label-txt" })
+                    @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.Label(FineEx.Resources.Registration.Registration.LastName, htmlAttributes: new { @class = "label-txt" })
+                    @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.Label(FineEx.Resources.Login.Login.Email, htmlAttributes: new { @class = "label-txt" })
+                    @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row form-group px-3">
 
-    <div class="col">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label(FineEx.Resources.Registration.Registration.FirstName, htmlAttributes: new { @class = "label-txt" })
-            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-            <div class="line-box">
-                <div class="line"></div>
+            <div class="col-lg-4">
+                @Html.Label(FineEx.Resources.Login.Login.Password, htmlAttributes: new { @class = "label-txt" })
+                @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+                @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
             </div>
-            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            <div class="col-lg-4">
+                @Html.Label(FineEx.Resources.User.User.Repeat_Password, htmlAttributes: new { @class = "label-txt" })
+                @Html.EditorFor(model => model.User.PasswordRepeat, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+                @Html.ValidationMessageFor(model => model.User.PasswordRepeat, "", new { @class = "text-danger" })
+            </div>
         </div>
     </div>
-    <div class="col">
-        <div class="form-group">
-            @Html.Label(FineEx.Resources.Registration.Registration.LastName, htmlAttributes: new { @class = "label-txt" })
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-            <div class="line-box">
-                <div class="line"></div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Invoice.Invoice.VatNumber, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.BusinessNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.Name, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.CompanyName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.Address, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.Address, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row form-group px-3">
-        <div class="col-md-6">
-            @Html.Label(FineEx.Resources.Login.Login.Email, htmlAttributes: new { @class = "label-txt" })
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-            <div class="line-box">
-                <div class="line"></div>
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.City, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.City, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.Iban, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.IBAN, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.Phone, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.Phone, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            @Html.Label(FineEx.Resources.Login.Login.Password, htmlAttributes: new { @class = "label-txt" })
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
-            <div class="line-box">
-                <div class="line"></div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label(FineEx.Resources.Company.Company.Business_Unit, htmlAttributes: new { @class = "label-txt" })
+                <br />
+                @Html.EditorFor(x => x.Company.BusinessUnit, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
 
