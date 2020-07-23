@@ -7,4 +7,7 @@
 
 <h2>Administration</h2>
 
-@Url.("StartBilling", "Administration")
+
+<a href="@Url.Action("StartBilling", "Administration")" class="btn btn-info">Bill subjects for current month</a>
+<a href="@Url.Action("ExportData", "Administration")" class="btn btn-info">Export stats for Vat</a>
+
