@@ -39,6 +39,17 @@ namespace FineEx.BusinessLayer.Services.ItemService
             item.WarehouseQuantity = itemViewModel.WarehouseQuantity;
             App.Db.SaveChanges();
         }
+
+        public void CreateItem(ItemAddModel itemAddModel)
+        {
+            Item item = new Item();
+            item.CompanyId = itemAddModel.CompanyId;
+            item.ItemName = itemAddModel.ItemName;
+            item.ItemPrice = itemAddModel.SelectedPrice;
+            item.WarehouseQuantity = itemAddModel.SelectedQuantity;
+            App.Db.Items.Add(item);
+            App.Db.SaveChanges();
+        }
     }
 }
 

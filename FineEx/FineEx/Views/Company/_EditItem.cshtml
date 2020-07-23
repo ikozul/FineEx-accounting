@@ -6,6 +6,9 @@
     ViewBag.Edit = FineEx.Resources.Common.Edit;
 }
 
+<br />
+<a class="btn badge-primary ml-4" href="@Url.RouteUrl(new { action = "CreateItem", controller = "Company", })">@FineEx.Resources.Item.Item.Create</a>
+
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
     {

@@ -120,6 +120,12 @@
   <data name="AddItem" xml:space="preserve">
     <value>Add Item</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create new item</value>
+  </data>
+  <data name="Create_Item" xml:space="preserve">
+    <value>Create item</value>
+  </data>
   <data name="EditItem" xml:space="preserve">
     <value>Item Edit</value>
   </data>

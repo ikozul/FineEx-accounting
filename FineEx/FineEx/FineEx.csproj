@@ -759,6 +759,7 @@
     <Content Include="Views\Company\EditUser.cshtml" />
     <Content Include="Views\Company\EditItem.cshtml" />
     <Content Include="Views\Company\CreateUser.cshtml" />
+    <Content Include="Views\Company\CreateItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

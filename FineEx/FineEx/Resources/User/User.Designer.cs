@@ -70,6 +70,15 @@ namespace FineEx.Resources.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create user.
+        /// </summary>
+        public static string Create_User {
+            get {
+                return ResourceManager.GetString("Create_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User edit.
         /// </summary>
         public static string Edit_User {

@@ -11,5 +11,6 @@ namespace FineEx.BusinessLayer.Services.ItemService
     {
         List<ItemViewModel> GetItemsForCompany(int companyId);
         void UpdateItem(ItemViewModel itemViewModel);
+        void CreateItem(ItemAddModel itemAddModel);
     }
 }

@@ -68,7 +68,7 @@ namespace FineEx.Controllers
             if (ModelState.IsValid)
             {
                 model.UpdateUser();
-                return RedirectToAction("Index", "Company");
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             return View(model);
         }
@@ -86,7 +86,7 @@ namespace FineEx.Controllers
             if (ModelState.IsValid)
             {
                 model.CreateUser();
-                return RedirectToAction("Index", "Company");
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             else
             {
@@ -110,6 +110,26 @@ namespace FineEx.Controllers
                 return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult CreateItem()
+        {
+            var itemAddModel = new ItemAddModel { CompanyId = App.CompanyId };
+            return View(itemAddModel);
+        }
+
+        public ActionResult CreateItem(ItemAddModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.CreateItem(model);
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

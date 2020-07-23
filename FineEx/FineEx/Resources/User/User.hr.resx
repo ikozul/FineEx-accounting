@@ -144,4 +144,7 @@
   <data name="Create" xml:space="preserve">
     <value>Kreiraj novog korisnika</value>
   </data>
+  <data name="Create_User" xml:space="preserve">
+    <value>Dodavanje korisnika</value>
+  </data>
 </root>
