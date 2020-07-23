@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FineEx.BusinessLayer.Services.Export;
 
 namespace FineEx.Controllers
 {
@@ -67,6 +68,13 @@ namespace FineEx.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        [HttpPost]
+        public FileContentResult ExportData(int id) 
+        {
+            var invoiceExport = new ExportInvoices(1);
+            return File(fileContents: invoiceExport.ExportData(), "text/csv", "export.csv");
         }
 
         [HttpPost]
