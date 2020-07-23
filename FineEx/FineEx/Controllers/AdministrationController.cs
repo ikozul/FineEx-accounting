@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CsvHelper;
+using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.Billing;
+using FineEx.BusinessLayer.Services.Export;
 using FineEx.DataLayer.Context;
 
 namespace FineEx.Controllers
@@ -14,19 +19,25 @@ namespace FineEx.Controllers
         [Route("administration")]
         public ActionResult Index()
         {
-            foreach (var model in App.Db.Companies.Where(x=>x.Id > 1))
-            {
-                BillingService service = new BillingService(model.Id);
-                service.BillCompany();
-            }
-           
             return View();
         }
 
         public ActionResult StartBilling()
         {
+            foreach (var model in App.Db.Companies.Where(x => x.Id > 1))
+            {
+                BillingService service = new BillingService(model.Id);
+                service.BillCompany();
+            }
 
-            return null;
+            App.Db.SaveChanges();
+            return RedirectToAction("Index", "Administration");
+        }
+
+        public FileContentResult ExportData()
+        {
+            var invoiceExport = new ExportInvoices(1);
+            return File(fileContents: invoiceExport.ExportData(), "text/csv", "export.csv");
         }
     }
 }

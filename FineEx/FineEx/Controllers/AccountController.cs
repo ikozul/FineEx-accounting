@@ -83,6 +83,17 @@ namespace FineEx.Controllers
             return View(registration);
         }
 
+        /// <summary>
+        /// This is important for registration
+        /// </summary>
+        /// <param name="EmailRegistration"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public JsonResult IsUserEmailAvailable(string EmailRegistration)
+        {
+            return Json(!App.Db.Users.Any(x => x.Email == EmailRegistration), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Logout()
         {
