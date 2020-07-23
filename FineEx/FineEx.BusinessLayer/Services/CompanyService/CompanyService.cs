@@ -46,6 +46,7 @@ namespace FineEx.BusinessLayer.Services.CompanyService
             _company.Address = model.Address;
             _company.Name = model.CompanyName;
             _company.BusinessNumber = model.BusinessNumber;
+            _company.BusinessUnit = model.BusinessUnit;
             _company.City = model.City;
             _company.County = model.Country;
             _company.IBAN = model.IBAN;
@@ -55,14 +56,7 @@ namespace FineEx.BusinessLayer.Services.CompanyService
 
         public bool ValidateInput(CompanyViewModel model)
         {
-            //Todo determine what to validate
-
             return true;
-        }
-
-        public void UpdateUser(UserViewModel model)
-        {
-            var user = App.Db.Users.Single(x => x.Id == model.Id);
         }
     }
 }
