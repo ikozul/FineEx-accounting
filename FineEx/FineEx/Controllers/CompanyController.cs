@@ -32,6 +32,7 @@ namespace FineEx.Controllers
         }
         public ActionResult Edit(int id)
         {
+            SetCompanyInSession(id);
             _companyControlPanel = new CompanyControlPanelModel(id);
             return View(_companyControlPanel);
         }
@@ -74,10 +75,11 @@ namespace FineEx.Controllers
         [HttpGet]
         public ActionResult CreateUser()
         {
-            return View();
+            var userCreateModel = new UserCreateModel {CompanyId = App.CompanyId};
+            return View(userCreateModel);
         }
 
-        public ActionResult CreateUser(UserViewModel model)
+        public ActionResult CreateUser(UserCreateModel model)
         {
             if (ModelState.IsValid)
             {

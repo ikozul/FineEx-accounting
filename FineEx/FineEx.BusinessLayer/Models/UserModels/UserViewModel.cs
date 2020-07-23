@@ -63,6 +63,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
 
         [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "*")]
         public string PasswordRepeat { get; set; }
 
         public int CompanyId { get; set; }
@@ -77,15 +78,9 @@ namespace FineEx.BusinessLayer.Models.UserModels
             var user = App.Db.Users.Single(x => x.Id == Id);
             user.FirstName = FirstName;
             user.LastName = LastName;
-            if (!PasswordRepeat.Equals(Password) && Password.Length > 8)
-                user.Password = PasswordHelper.HashPassword(Password);
+            user.Password = PasswordHelper.HashPassword(Password);
             user.Email = Email;
              return App.Db.SaveChanges() > 0;
-        }
-
-        public void CreateUser()
-        {
-            throw new NotImplementedException();
         }
     }
 }
