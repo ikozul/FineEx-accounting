@@ -20,7 +20,7 @@ namespace FineEx.Controllers
     {
         private LoginService _loginService = new LoginService();
         private UserViewModel _user;
-        private readonly RegistrationService _registrationService = new RegistrationService();
+        private RegistrationService _registrationService;
 
 
         [HttpGet]
@@ -76,7 +76,8 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                _registrationService.RegisterBusinessUser(registration)
+                _registrationService = new RegistrationService(registration);
+                _registrationService.RegisterBusinessUser();
                 return RedirectToAction("Login");
             }
             return View(registration);
