@@ -11,6 +11,7 @@ using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Models;
 using System.Globalization;
+using FineEx.BusinessLayer.Models.Registration;
 
 namespace FineEx.Controllers
 {
@@ -69,14 +70,14 @@ namespace FineEx.Controllers
 
         [HttpPost]
         [Route("registration")]
-        public ActionResult Registration(UserCreateModel user)
+        public ActionResult Registration(RegistrationViewModel registration)
         {
             if (ModelState.IsValid)
             {
                 // registriraj usera
                 return RedirectToAction("Login");
             }
-            return View(user);
+            return View(registration);
         }
 
         [HttpGet]
