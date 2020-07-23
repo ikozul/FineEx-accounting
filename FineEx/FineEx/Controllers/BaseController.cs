@@ -22,5 +22,10 @@ namespace FineEx.Controllers
         {
             App.UserId = id;
         }
+
+        protected void SetCompanyInSession(int id)
+        {
+            App.CompanyId = id;
+        }
     }
 }
