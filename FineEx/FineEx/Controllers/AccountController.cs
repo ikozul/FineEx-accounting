@@ -12,6 +12,7 @@ using FineEx.BusinessLayer.Services.PdfGenerator;
 using FineEx.DataLayer.Models;
 using System.Globalization;
 using FineEx.BusinessLayer.Models.Registration;
+using FineEx.BusinessLayer.Services.Registration;
 
 namespace FineEx.Controllers
 {
@@ -19,6 +20,7 @@ namespace FineEx.Controllers
     {
         private LoginService _loginService = new LoginService();
         private UserViewModel _user;
+        private readonly RegistrationService _registrationService = new RegistrationService();
 
 
         [HttpGet]
@@ -74,7 +76,7 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                // registriraj usera
+                _registrationService.RegisterBusinessUser(registration)
                 return RedirectToAction("Login");
             }
             return View(registration);

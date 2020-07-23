@@ -44,6 +44,7 @@ namespace FineEx.BusinessLayer.Services.CompanyService
         {
             _company = App.Db.Companies.Single(x => x.Id == model.Id);
             _company.Address = model.Address;
+            _company.Name = model.CompanyName;
             _company.BusinessNumber = model.BusinessNumber;
             _company.City = model.City;
             _company.County = model.Country;
