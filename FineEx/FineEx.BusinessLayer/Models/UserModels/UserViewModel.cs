@@ -45,16 +45,25 @@ namespace FineEx.BusinessLayer.Models.UserModels
         }
 
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "*")]
         public string FirstName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "*")]
         public string LastName { get; set; }
-        [Required]
-        [DataType(DataType.EmailAddress, ErrorMessage = "*")]
+
+        [Required(ErrorMessage = "*")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public Role Role { get; set; }
-        [DataType(DataType.Password)] public string Password { get; set; }
-        [DataType(DataType.Password)] public string PasswordRepeat { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [DataType(DataType.Password)]
+        public string PasswordRepeat { get; set; }
 
         public int CompanyId { get; set; }
 

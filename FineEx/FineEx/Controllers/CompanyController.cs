@@ -44,7 +44,7 @@ namespace FineEx.Controllers
             {
                 _companyService.UpdateCompany(model);
             }
-            return RedirectToAction("Edit", "Company", new { Id = model.Id});
+            return RedirectToAction("Edit", "Company", new { Id = model.Id });
         }
 
         public PartialViewResult _Edit(CompanyViewModel model)
@@ -59,11 +59,15 @@ namespace FineEx.Controllers
             return View(userViewModel);
         }
 
-  
+
         public ActionResult EditUser(UserViewModel model)
         {
-            model.UpdateUser();
-            return RedirectToAction("Index", "Company");
+            if (ModelState.IsValid)
+            {
+                model.UpdateUser();
+                return RedirectToAction("Index", "Company");
+            }
+            return View(model);
         }
 
 
@@ -101,7 +105,6 @@ namespace FineEx.Controllers
                 model.UpdateItem();
                 return RedirectToAction("Index", "Company");
             }
-
             return View(model);
         }
     }
