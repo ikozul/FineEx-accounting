@@ -77,30 +77,10 @@
             <td>
                 @if (!invoice.Approved)
                 {
-                    <a href="#" onclick="ApproveInvoice()" class="btn btn-outline-success fa fa-thumbs-up"></a>
+                    <a href="#" onclick="ApproveInvoice(@invoice.Id)" class="btn btn-outline-success fa fa-thumbs-up"></a>
                 }
             </td>
         </tr>
     }
     </tbody>
 </table>
-
-<script>
-    function ApproveInvoice() {
-    var url = '@Url.Action("ApproveInvoice", "Invoice", new { id =  })';
-    $.ajax({
-        url: url,
-        data: { },
-        type: 'POST',
-        success: function (response) {
-            if (response.Status == 'true') {
-                window.location.reload();
-            }
-            else
-                alert(response.Status);
-        }
-    });
-
-    }
-
-</script>

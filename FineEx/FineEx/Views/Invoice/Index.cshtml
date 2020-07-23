@@ -98,6 +98,20 @@
             e.preventDefault();
         }
 
+        function ApproveInvoice(id) {
+            console.log(id);
+            $.ajax({
+                url: '@Url.Action("ApproveInvoice")'+'/'+ id,
+                type: "POST",
+                data: id,
+                success: function (data) {
+                    if (data === true) {
+                        $('#showTable').click();
+                    }
+                }
+            });
+            
+        }
     </script>
 }
 
