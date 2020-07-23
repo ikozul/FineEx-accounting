@@ -1,7 +1,7 @@
 ﻿@model FineEx.BusinessLayer.Models.ItemModels.ItemViewModel
 
 @{
-    ViewBag.Title = "EditItem";
+    ViewBag.Title = FineEx.Resources.Item.Item.EditItem;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +10,6 @@
 <hr />
 
 <div class="container" style="background: aliceblue">
-
     @using (Html.BeginForm("EditItem", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()

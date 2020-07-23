@@ -153,6 +153,9 @@
   <data name="InvoiceNumber" xml:space="preserve">
     <value>Invoice Number</value>
   </data>
+  <data name="InvoiceSuccess" xml:space="preserve">
+    <value>Invoice successfully created!</value>
+  </data>
   <data name="InvoiceType" xml:space="preserve">
     <value>Invoice Type</value>
   </data>

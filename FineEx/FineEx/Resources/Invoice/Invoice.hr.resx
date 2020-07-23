@@ -153,6 +153,9 @@
   <data name="InvoiceNumber" xml:space="preserve">
     <value>Broj Fakture</value>
   </data>
+  <data name="InvoiceSuccess" xml:space="preserve">
+    <value>Faktura uspješno kreirana!</value>
+  </data>
   <data name="InvoiceType" xml:space="preserve">
     <value>Vrsta fakture</value>
   </data>

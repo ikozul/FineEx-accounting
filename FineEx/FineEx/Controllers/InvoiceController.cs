@@ -29,7 +29,6 @@ namespace FineEx.Controllers
         private ItemService _itemService;
         private List<CompanyViewModel> _companies;
         private List<InvoiceViewModel> _invoices;
-        private List<ItemViewModel> _items;
         private IEnumerable<SelectListItem> _selectList;
         private PdfGenerator _pdfGenerator;
 

@@ -6,6 +6,9 @@
     ViewBag.Edit = FineEx.Resources.Common.Edit;
 }
 
+<br />
+<a class="btn badge-primary ml-4" href="@Url.RouteUrl(new { action = "CreateItem", controller = "Company", })">@FineEx.Resources.Item.Item.Create</a>
+
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
     {
@@ -18,6 +21,11 @@
             .Encoded(false).Sanitized(false)
             .RenderValueAs(c => c.ItemName)
             .Titled(FineEx.Resources.Company.Company.Item_Name).Sortable(true);
+
+        columns.Add(c => c.ItemPrice).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.ItemPrice.ToString(CultureInfo.CurrentCulture))
+            .Titled(FineEx.Resources.Item.Item.Price).Sortable(true);
 
         columns.Add(c => c.WarehouseQuantity).SetWidth("5%")
             .Encoded(false).Sanitized(false)

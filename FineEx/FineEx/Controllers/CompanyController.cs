@@ -7,6 +7,7 @@ using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.ItemModels;
 using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
+using FineEx.BusinessLayer.Services.ItemService;
 using FineEx.DataLayer.Context;
 using FineEx.Resources.Company;
 
@@ -15,6 +16,7 @@ namespace FineEx.Controllers
     public class CompanyController : BaseController
     {
         private CompanyService _companyService = new CompanyService();
+        private ItemService _itemService = new ItemService();
         private CompanyControlPanelModel _companyControlPanel;
 
         [HttpGet]
@@ -66,7 +68,7 @@ namespace FineEx.Controllers
             if (ModelState.IsValid)
             {
                 model.UpdateUser();
-                return RedirectToAction("Index", "Company");
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             return View(model);
         }
@@ -84,7 +86,7 @@ namespace FineEx.Controllers
             if (ModelState.IsValid)
             {
                 model.CreateUser();
-                return RedirectToAction("Index", "Company");
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             else
             {
@@ -104,10 +106,30 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.UpdateItem();
-                return RedirectToAction("Index", "Company");
+                _itemService.UpdateItem(model);
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult CreateItem()
+        {
+            var itemAddModel = new ItemAddModel { CompanyId = App.CompanyId };
+            return View(itemAddModel);
+        }
+
+        public ActionResult CreateItem(ItemAddModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemService.CreateItem(model);
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

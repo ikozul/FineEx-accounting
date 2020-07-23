@@ -1,4 +1,5 @@
-﻿using FineEx.DataLayer.Models;
+﻿using FineEx.DataLayer.Context;
+using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace FineEx.BusinessLayer.Models.ItemModels
             Id = item.Id;
             ItemName = item.ItemName;
             ItemPrice = item.ItemPrice;
-            WarehouseQuantity = item.WarehouseQuantity;
+            WarehouseQuantity = (int)item.WarehouseQuantity;
         }
 
         public ItemViewModel()
@@ -32,11 +33,6 @@ namespace FineEx.BusinessLayer.Models.ItemModels
         public decimal ItemPrice { get; set; }
 
         [Required(ErrorMessage = "*")]
-        public decimal WarehouseQuantity { get; set; }
-
-        public void UpdateItem()
-        {
-            
-        }
+        public int WarehouseQuantity { get; set; }
     }
 }

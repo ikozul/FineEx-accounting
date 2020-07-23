@@ -70,6 +70,24 @@ namespace FineEx.Resources.Item {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new item.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create item.
+        /// </summary>
+        public static string Create_Item {
+            get {
+                return ResourceManager.GetString("Create_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item Edit.
         /// </summary>
         public static string EditItem {
