@@ -119,6 +119,9 @@
     <value>User edit</value>
   </data>
   <data name="Repeat_Password" xml:space="preserve">
-    <value>Repeat Password</value>
+    <value>Repeat password</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create new user</value>
   </data>
 </root>

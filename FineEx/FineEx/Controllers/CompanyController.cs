@@ -68,16 +68,23 @@ namespace FineEx.Controllers
 
 
         [HttpGet]
-        public ActionResult CreateUser()
+        public ActionResult CreateUser(int companyId)
         {
-            return View();
+            var model = new UserViewModel(companyId);
+            return View(model);
         }
-
 
         public ActionResult CreateUser(UserViewModel model)
         {
-            model.UpdateUser();
-            return RedirectToAction("Index", "Company");
+            if (ModelState.IsValid)
+            {
+                model.CreateUser();
+                return RedirectToAction("Index", "Company");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         [HttpGet]
@@ -90,8 +97,13 @@ namespace FineEx.Controllers
 
         public ActionResult EditItem(ItemViewModel model)
         {
-            model.UpdateItem();
-            return RedirectToAction("Index", "Company");
+            if (ModelState.IsValid)
+            {
+                model.UpdateItem();
+                return RedirectToAction("Index", "Company");
+            }
+
+            return View(model);
         }
     }
 }

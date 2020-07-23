@@ -141,4 +141,7 @@
   <data name="Repeat_Password" xml:space="preserve">
     <value>Ponovite lozinku</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Kreiraj novog korisnika</value>
+  </data>
 </root>

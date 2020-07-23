@@ -6,6 +6,9 @@
     ViewBag.Edit = FineEx.Resources.Common.Edit;
 }
 
+<br/>
+<a class="btn badge-primary" href="@Url.RouteUrl(new { action = "CreateUser", controller = "Company"})">@FineEx.Resources.User.User.Create</a>
+
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
     {
@@ -33,5 +36,5 @@
         columns.Add().SetWidth("10%")
             .Sanitized(false).Encoded(false)
             .RenderValueAs(c => @<a class="button" href="@Url.RouteUrl(new { action = "EditUser", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
-    })
+})
 </div>

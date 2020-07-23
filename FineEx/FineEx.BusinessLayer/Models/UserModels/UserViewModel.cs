@@ -30,6 +30,10 @@ namespace FineEx.BusinessLayer.Models.UserModels
             PasswordRepeat = user.Password;
         }
 
+        public UserViewModel(int companyId)
+        {
+            CompanyId = companyId;
+        }
 
         public UserViewModel(int id, string firstName, string lastName, string email, Role role)
         {
@@ -41,12 +45,18 @@ namespace FineEx.BusinessLayer.Models.UserModels
         }
 
         public int Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress, ErrorMessage = "*")]
         public string Email { get; set; }
         public Role Role { get; set; }
         [DataType(DataType.Password)] public string Password { get; set; }
         [DataType(DataType.Password)] public string PasswordRepeat { get; set; }
+
+        public int CompanyId { get; set; }
 
         public bool IsSiteAdmin => Role?.Id >= _adminRoleId;
         public bool IsCompanyAdmin => Role?.Id >= _companyAdminRoldId;
@@ -55,15 +65,18 @@ namespace FineEx.BusinessLayer.Models.UserModels
 
         public bool UpdateUser()
         {
-            if (!PasswordRepeat.Equals(Password) && Password.Length > 8)
-                return false;
             var user = App.Db.Users.Single(x => x.Id == Id);
             user.FirstName = FirstName;
             user.LastName = LastName;
-            user.Password = PasswordHelper.HashPassword(Password);
+            if (!PasswordRepeat.Equals(Password) && Password.Length > 8)
+                user.Password = PasswordHelper.HashPassword(Password);
             user.Email = Email;
              return App.Db.SaveChanges() > 0;
         }
 
+        public void CreateUser()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
