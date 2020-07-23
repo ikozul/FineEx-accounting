@@ -14,19 +14,19 @@ namespace FineEx.Controllers
         [Route("administration")]
         public ActionResult Index()
         {
-            foreach (var model in App.Db.Companies.Where(x=>x.Id > 1))
-            {
-                BillingService service = new BillingService(model.Id);
-                service.BillCompany();
-            }
-           
             return View();
         }
 
         public ActionResult StartBilling()
         {
+            foreach (var model in App.Db.Companies.Where(x => x.Id > 1))
+            {
+                BillingService service = new BillingService(model.Id);
+                service.BillCompany();
+            }
+            App.Db.SaveChanges();
+            return RedirectToAction("Index", "Administration");
 
-            return null;
         }
     }
 }
