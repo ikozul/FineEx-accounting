@@ -30,7 +30,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
 
         public List<InvoiceViewModel> GetIncomingInvoices()
         {
-            _invoices = App.Db.Invoices.Where(x => x.Receiver.BusinessNumber == _businessNumber);
+            _invoices = App.Db.Invoices.Where(x => x.Receiver.BusinessNumber == _businessNumber && x.Approved);
             GetInvoiceViewModels();
             return _invoicesView;
         }
