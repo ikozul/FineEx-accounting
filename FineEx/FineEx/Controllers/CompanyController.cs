@@ -7,6 +7,7 @@ using FineEx.BusinessLayer.Models.CompanyModels;
 using FineEx.BusinessLayer.Models.ItemModels;
 using FineEx.BusinessLayer.Models.UserModels;
 using FineEx.BusinessLayer.Services.CompanyService;
+using FineEx.BusinessLayer.Services.ItemService;
 using FineEx.DataLayer.Context;
 using FineEx.Resources.Company;
 
@@ -15,6 +16,7 @@ namespace FineEx.Controllers
     public class CompanyController : BaseController
     {
         private CompanyService _companyService = new CompanyService();
+        private ItemService _itemService = new ItemService();
         private CompanyControlPanelModel _companyControlPanel;
 
         [HttpGet]
@@ -104,8 +106,10 @@ namespace FineEx.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.UpdateItem();
+                _itemService.UpdateItem(model);
                 return RedirectToAction("Index", "Company");
+                //var companyItems = _itemService.GetItemsForCompany(_companyControlPanel.Company.Id);
+                //return View("_EditItem", companyItems);
             }
             return View(model);
         }

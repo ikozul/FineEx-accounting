@@ -19,6 +19,11 @@
             .RenderValueAs(c => c.ItemName)
             .Titled(FineEx.Resources.Company.Company.Item_Name).Sortable(true);
 
+        columns.Add(c => c.ItemPrice).SetWidth("5%")
+            .Encoded(false).Sanitized(false)
+            .RenderValueAs(c => c.ItemPrice.ToString(CultureInfo.CurrentCulture))
+            .Titled(FineEx.Resources.Item.Item.Price).Sortable(true);
+
         columns.Add(c => c.WarehouseQuantity).SetWidth("5%")
             .Encoded(false).Sanitized(false)
             .RenderValueAs(c => c.WarehouseQuantity.ToString(CultureInfo.CurrentCulture))
