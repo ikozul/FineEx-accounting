@@ -82,10 +82,5 @@ namespace FineEx.BusinessLayer.Models.UserModels
             user.Email = Email;
              return App.Db.SaveChanges() > 0;
         }
-
-        public void CreateUser()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
