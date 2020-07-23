@@ -201,12 +201,9 @@
                 $("#btn-create").prop("disabled", false);
                 $(".remove-item").on("click", function (e) {
                     var itemId = $(this).val();
-                    console.log(itemId);
                     itemsArray = itemsArray.filter(function (i) {
-                        console.log(i[0]);
                         return i[0].value != itemId;
                     })
-                    console.log(itemsArray);
                     makeRowChanges();
                 });
             }

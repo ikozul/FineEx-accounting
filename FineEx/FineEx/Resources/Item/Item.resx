@@ -120,6 +120,9 @@
   <data name="AddItem" xml:space="preserve">
     <value>Add Item</value>
   </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Item Edit</value>
+  </data>
   <data name="ItemID" xml:space="preserve">
     <value>Item ID</value>
   </data>
