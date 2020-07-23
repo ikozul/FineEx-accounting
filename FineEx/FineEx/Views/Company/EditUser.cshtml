@@ -11,16 +11,15 @@
 
 <div class="container" style="background: aliceblue">
 
-    @using (Html.BeginForm("EditUser", "Company", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    @using (Html.BeginForm("EditUser", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(false)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @Html.Hidden("Id", Model.Id)
 
         <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.Label(FineEx.Resources.User.User.FirstName, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">
@@ -52,7 +51,7 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
-            
+
             <div class="form-group">
                 @Html.Label(FineEx.Resources.User.User.Repeat_Password, htmlAttributes: new { @class = "control-label col-md-4 text-nowrap" })
                 <div class="col-md-10">

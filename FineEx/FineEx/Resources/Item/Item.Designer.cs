@@ -70,6 +70,15 @@ namespace FineEx.Resources.Item {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item Edit.
+        /// </summary>
+        public static string EditItem {
+            get {
+                return ResourceManager.GetString("EditItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item ID.
         /// </summary>
         public static string ItemID {

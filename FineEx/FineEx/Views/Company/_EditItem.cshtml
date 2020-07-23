@@ -2,6 +2,10 @@
 @using GridMvc.Html
 @model  List<FineEx.BusinessLayer.Models.ItemModels.ItemViewModel>
 
+@{
+    ViewBag.Edit = FineEx.Resources.Common.Edit;
+}
+
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>
     {
@@ -19,10 +23,6 @@
             .Encoded(false).Sanitized(false)
             .RenderValueAs(c => c.WarehouseQuantity.ToString(CultureInfo.CurrentCulture))
             .Titled(FineEx.Resources.Company.Company.Warehouse_Quantity).Sortable(true);
-
-        columns.Add().SetWidth("5%")
-            .Sanitized(false).Encoded(false)
-            .RenderValueAs(c => @<a href="@Url.RouteUrl(new { action = "Edit", controller = "Company", area = "", Id = @c.Id})">@ViewBag.Edit</a>);
 
         columns.Add().SetWidth("10%")
         .Sanitized(false).Encoded(false)
