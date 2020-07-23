@@ -68,10 +68,9 @@ namespace FineEx.Controllers
 
 
         [HttpGet]
-        public ActionResult CreateUser(int companyId)
+        public ActionResult CreateUser()
         {
-            var model = new UserViewModel(companyId);
-            return View(model);
+            return View();
         }
 
         public ActionResult CreateUser(UserViewModel model)

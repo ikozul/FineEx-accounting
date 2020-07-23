@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using FineEx.BusinessLayer.Exceptions;
 using FineEx.BusinessLayer.Models.InvoiceModels;
 using FineEx.BusinessLayer.Services.PdfGenerator;
@@ -11,6 +13,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
 {
     public class InvoiceService : IInvoiceService
     {
+        private InvoiceViewModel _asyncInvoiceViewModel;
         private IQueryable<Invoice> _invoices;
         private PdfGenerator.PdfGenerator _pdfGenerator;
         private readonly List<InvoiceViewModel> _invoicesView = new List<InvoiceViewModel>();
@@ -89,8 +92,13 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
             }
             App.Db.Entry(newInvoice).State = EntityState.Modified;
             App.Db.SaveChanges();
-            var invoiceViewModel = GetInvoiceById(newInvoice.Id);
-            _pdfGenerator = new PdfGenerator.PdfGenerator(invoiceViewModel);
+            _asyncInvoiceViewModel = GetInvoiceById(newInvoice.Id);
+            Task.Factory.StartNew(CreateVisualization);
+        }
+
+        private void CreateVisualization()
+        {
+            _pdfGenerator = new PdfGenerator.PdfGenerator(_asyncInvoiceViewModel);
             _pdfGenerator.GeneratePdfBytes();
         }
 
