@@ -1,6 +1,7 @@
 ﻿using FineEx.DataLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +24,19 @@ namespace FineEx.BusinessLayer.Models.ItemModels
         }
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public string ItemName { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public decimal ItemPrice { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public decimal WarehouseQuantity { get; set; }
 
         public void UpdateItem()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
