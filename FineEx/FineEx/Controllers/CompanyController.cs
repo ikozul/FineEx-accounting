@@ -107,9 +107,7 @@ namespace FineEx.Controllers
             if (ModelState.IsValid)
             {
                 _itemService.UpdateItem(model);
-                return RedirectToAction("Index", "Company");
-                //var companyItems = _itemService.GetItemsForCompany(_companyControlPanel.Company.Id);
-                //return View("_EditItem", companyItems);
+                return View("Edit", new CompanyControlPanelModel(App.CompanyId));
             }
             return View(model);
         }
