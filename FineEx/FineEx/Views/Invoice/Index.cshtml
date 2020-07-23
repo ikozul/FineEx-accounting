@@ -23,7 +23,7 @@
             <div class="form-group">
                 @Html.Label(FineEx.Resources.Invoice.Invoice.Company, htmlAttributes: new { @class = "control-label col-md-10 font-weight-bold" })
                 <div class="col-md-12">
-                    @Html.DropDownList("ddlCompany", companyList, FineEx.Resources.Invoice.Invoice.CompanyPlaceholder, new { @class = "picker form-control col-lg-12" })
+                    @Html.DropDownList("ddlCompany", companyList, FineEx.Resources.Invoice.Invoice.CompanyPlaceholder, new { @class = "picker company-selector form-control col-lg-12" })
                 </div>
             </div>
         </div>
@@ -56,9 +56,17 @@
             $("#createInvoice").attr('href', '/Invoice/Create?businessNumber=' + companyBusinessNumber)
             if ($sels.length == 0) {
                 $("#showTable").removeClass("disabled");
-                $("#createInvoice").removeClass("disabled");
             } else {
                 $("#showTable").addClass("disabled");
+            }
+        });
+
+        $("#ddlCompany").on("change", function () {
+            var companyBusinessNumber = $("#ddlCompany").val();
+            $("#createInvoice").attr('href', '/Invoice/Create?businessNumber=' + companyBusinessNumber)
+            if (!$('#ddlCompany option:selected[value=""]').length) {
+                $("#createInvoice").removeClass("disabled");
+            } else {
                 $("#createInvoice").addClass("disabled");
             }
         });
@@ -76,7 +84,6 @@
                     $('#invoices').DataTable({
                         "scrollX": true,
                         "rowCallback": function (row, data, index) {
-                            console.log(data[1]);
                             if (data[1] == "Yes" || data[1] == "Da") {
                                 $(row).find('td:eq(1)').css('background-color', 'lightgreen');
                             }

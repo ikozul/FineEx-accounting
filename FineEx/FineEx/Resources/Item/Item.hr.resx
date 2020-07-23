@@ -132,6 +132,9 @@
   <data name="ItemID" xml:space="preserve">
     <value>ID Stavke</value>
   </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Naziv stavke</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
