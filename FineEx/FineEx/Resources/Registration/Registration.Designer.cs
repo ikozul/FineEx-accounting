@@ -61,6 +61,24 @@ namespace FineEx.Resources.Registration {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter data about your company.
+        /// </summary>
+        public static string Enter_Company_Data {
+            get {
+                return ResourceManager.GetString("Enter_Company_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your personal data.
+        /// </summary>
+        public static string Enter_Personal_Data {
+            get {
+                return ResourceManager.GetString("Enter_Personal_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
@@ -75,6 +93,24 @@ namespace FineEx.Resources.Registration {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat email.
+        /// </summary>
+        public static string Repeat_Email {
+            get {
+                return ResourceManager.GetString("Repeat_Email", resourceCulture);
             }
         }
         

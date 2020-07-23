@@ -1,180 +1,137 @@
 ﻿@model FineEx.BusinessLayer.Models.Registration.RegistrationViewModel
 
 @{
-    ViewBag.Title = "Registration";
+    ViewBag.Title = @FineEx.Resources.Registration.Registration.Register;
 }
 
-<link href="~/Content/custom/registration.css" rel="stylesheet" />
-
-@using (Html.BeginForm("Registration", "Account", FormMethod.Post))
-{
-    <div class="">
-        @Html.AntiForgeryToken()
-        <div class="row">
-            <div class="col-lg-4">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Registration.Registration.FirstName, htmlAttributes: new { @class = "label-txt" })
-                    @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                    @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="form-group">
-                    @Html.Label(FineEx.Resources.Registration.Registration.LastName, htmlAttributes: new { @class = "label-txt" })
-                    @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                    @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-lg-4">
-                    @Html.Label(FineEx.Resources.Login.Login.Email, htmlAttributes: new { @class = "label-txt" })
-                    @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                    @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="row form-group px-3">
-
-            <div class="col-lg-4">
-                @Html.Label(FineEx.Resources.Login.Login.Password, htmlAttributes: new { @class = "label-txt" })
-                @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-                @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-lg-4">
-                @Html.Label(FineEx.Resources.User.User.Repeat_Password, htmlAttributes: new { @class = "label-txt" })
-                @Html.EditorFor(model => model.User.PasswordRepeat, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "password" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-                @Html.ValidationMessageFor(model => model.User.PasswordRepeat, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <div class="row">
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Invoice.Invoice.VatNumber, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.BusinessNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.Name, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.CompanyName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.Address, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.Address, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="row">
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.City, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.City, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.Iban, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.IBAN, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.Phone, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.Phone, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                @Html.Label(FineEx.Resources.Company.Company.Business_Unit, htmlAttributes: new { @class = "label-txt" })
-                <br />
-                @Html.EditorFor(x => x.Company.BusinessUnit, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <input type="submit" value="Register" class="btn btn-warning" />
-}
-
-@section Scripts {
-    <script>
-
-        $("#btn-ok").click(function () {
-            location.href = '@Url.Action("Login")';
-        });
-
-        $(".modal").on('hidden.bs.modal', function () {
-            location.href = '@Url.Action("Login")';
-        })
-
-        $("form").on('submit', function (e) {
-            e.preventDefault();
-            var data = $(this).serialize();
-            $("#success-modal").modal("show");
-
-            @*e.preventDefault();
-            var data = $(this).serialize();
-
-            if (data.InfoMessage == null) {
-                $.ajax({
-                    url: '@Url.Action("Registration")',
-                    method: 'POST',
-                    data: data,
-                    success: function (data) {
-                        if (typeof (data) == 'object' && data.InfoMessage == null) {
-                            console.log(data);
-                            $("#success-modal").modal("show");
-                        }
-                        else if (typeof (data) == 'object') {
-                            console.log(data);
-                            $("#error-modal").modal("show");
-                            $("#info-message").text(data.InfoMessage);
-                            $("#error-message").text(data.Message);
-                        }
-                    }
-                });
-            }*@
-        });
-    </script>
-
+@section scripts{
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts//slick.min.js")" type="text/ecmascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.js")" type="text/javascript"></script>
     @Scripts.Render("~/Scripts/javascript")
 
 }
+<br />
+<h3 class="p-2 bg-dark text-light">@FineEx.Resources.Registration.Registration.Register</h3>
+<hr />
+
+<div class="container" style="background: aliceblue">
+    @using (Html.BeginForm("Registration", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <header>
+            <h4>@FineEx.Resources.Registration.Registration.Enter_Personal_Data</h4>
+        </header>
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.User.FirstName, new { placeholder = FineEx.Resources.User.User.FirstName, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.User.FirstName)
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.User.LastName, new { placeholder = FineEx.Resources.User.User.LastName, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.User.LastName)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.EmailRegistration, new { placeholder = FineEx.Resources.User.User.Email, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.EmailRegistration)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.User.Email, new { placeholder = FineEx.Resources.Registration.Registration.Repeat_Email, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.User.Email)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.User.Password, new { placeholder = FineEx.Resources.User.User.Password, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.User.Password)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.User.PasswordRepeat, new { placeholder = FineEx.Resources.User.User.Repeat_Password, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.User.PasswordRepeat)
+                </div>
+            </div>
+
+        </div>
+
+        <header>
+            <h4>@FineEx.Resources.Registration.Registration.Enter_Company_Data</h4>
+        </header>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.CompanyName, new { placeholder = FineEx.Resources.Company.Company.Name, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.CompanyName)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.BusinessNumber, new { placeholder = FineEx.Resources.Company.Company.Business_Number, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.BusinessNumber)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.BusinessUnit, new { placeholder = FineEx.Resources.Company.Company.Business_Unit, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.BusinessUnit)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.Address, new { placeholder = FineEx.Resources.Company.Company.Address, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.Address)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.City, new { placeholder = FineEx.Resources.Company.Company.City, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.City)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.IBAN, new { placeholder = FineEx.Resources.Company.Company.Iban, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.IBAN)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.Phone, new { placeholder = FineEx.Resources.Company.Company.Phone, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.Phone)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Company.Country, new { placeholder = FineEx.Resources.Company.Company.Country, @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Company.Country)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Register" class="btn btn-warning" />
+    }
+</div>
+
+
+

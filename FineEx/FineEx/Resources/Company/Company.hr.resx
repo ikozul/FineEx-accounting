@@ -150,4 +150,7 @@
   <data name="Warehouse_Quantity" xml:space="preserve">
     <value>Na skladištu</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Država</value>
+  </data>
 </root>
