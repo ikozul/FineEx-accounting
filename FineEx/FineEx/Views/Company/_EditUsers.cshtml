@@ -7,7 +7,7 @@
 }
 
 <br/>
-<a class="btn badge-primary" href="@Url.RouteUrl(new { action = "CreateUser", controller = "Company", })">@FineEx.Resources.User.User.Create</a>
+<a class="btn badge-primary ml-4" href="@Url.RouteUrl(new { action = "CreateUser", controller = "Company", })">@FineEx.Resources.User.User.Create</a>
 
 <div class="container" style="background: aliceblue">
     @Html.Grid(Model).EmptyText(FineEx.Resources.Common.No_Data).Columns(columns =>

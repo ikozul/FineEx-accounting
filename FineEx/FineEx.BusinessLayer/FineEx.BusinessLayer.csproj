@@ -315,6 +315,7 @@
     <Compile Include="Models\InvoiceModels\InvoiceCreateModel.cs" />
     <Compile Include="Models\InvoiceModels\InvoiceViewModel.cs" />
     <Compile Include="Models\ItemModels\InvoiceItemViewModel.cs" />
+    <Compile Include="Models\ItemModels\ItemAddModel.cs" />
     <Compile Include="Models\ItemModels\ItemCreateModel.cs" />
     <Compile Include="Models\ItemModels\ItemViewModel.cs" />
     <Compile Include="Models\PaymentMethodModels\PaymentMethodViewModel.cs" />

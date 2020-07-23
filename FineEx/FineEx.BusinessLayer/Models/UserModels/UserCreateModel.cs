@@ -12,19 +12,19 @@ namespace FineEx.BusinessLayer.Models.UserModels
 {
     public class UserCreateModel
     {
-        [Required(ErrorMessage = "Name is required.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "*", AllowEmptyStrings = false)]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Surname is required.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "*", AllowEmptyStrings = false)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Email is required.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "*", AllowEmptyStrings = false)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required.", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "*", AllowEmptyStrings = false)]
         public string Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
+        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again!")]
         public string PasswordRepeat { get; set; }
 
         public int CompanyId { get; set; }
@@ -37,6 +37,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
             user.LastName = LastName;
             user.Email = Email;
             user.RoleId = 50;
+            user.IsActive = true;
             user.Password = PasswordHelper.HashPassword(Password);
             App.Db.Users.Add(user);
             App.Db.SaveChanges();

@@ -12,7 +12,11 @@ namespace FineEx.BusinessLayer.Models.ItemModels
     {
         [Required(ErrorMessage = "*")]
         public int SelectedItemID { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public int SelectedQuantity { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public decimal SelectedPrice { get; set; }
 
         public InvoiceItems GetInvoiceItemModel(int newInvoiceId)
