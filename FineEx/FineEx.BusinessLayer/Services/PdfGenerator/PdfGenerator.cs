@@ -40,9 +40,10 @@ namespace FineEx.BusinessLayer.Services.PdfGenerator
 
             if (string.IsNullOrEmpty(_invoiceViewModel.PdfPath))
             {
-                var invoice = App.Db.Invoices.Single(x => x.Id == _invoiceViewModel.Id);
+                DbFineEx db = new DbFineEx();
+                var invoice = db.Invoices.Single(x => x.Id == _invoiceViewModel.Id);
                 invoice.PdfPath = _basePdfPath;
-                App.Db.SaveChanges();
+                db.SaveChanges();
             }
                 
             return _basePdfPath;

@@ -18,6 +18,7 @@ namespace FineEx.BusinessLayer.Models.CompanyModels
 
         public CompanyControlPanelModel(int id)
         {
+            App.CompanyId = id;
             _company = App.Db.Companies.Single(x => x.Id == id);
             Company = new CompanyViewModel(_company);
             CompanyItems = new List<ItemViewModel>();
