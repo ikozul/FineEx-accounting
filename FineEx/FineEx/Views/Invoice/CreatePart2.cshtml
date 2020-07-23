@@ -127,6 +127,25 @@
     </div>
 </div>
 
+<div id="success-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@FineEx.Resources.Common.Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @FineEx.Resources.Invoice.Invoice.InvoiceSuccess
+            </div>
+            <div class="modal-footer">
+                <a id="btn-ok" class="btn btn-success font-weight-bold" data-dismiss="modal">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts{
     <script>
         var itemsArray = [];
@@ -209,6 +228,10 @@
             }
         }
 
+        $('#success-modal').on('hidden.bs.modal', function (e) {
+            window.location.href = "/invoices";
+        })
+
         $("#invoice-form").on("submit", function (e) {
             e.preventDefault();
             var invoiceItems = [];
@@ -231,7 +254,7 @@
                 type: "POST",
                 data: invoice,
                 success: function (data) {
-                    alert('OK');
+                    $("#success-modal").modal("show");
                 }
             });
         });

@@ -169,6 +169,15 @@ namespace FineEx.Resources.Invoice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice successfully created!.
+        /// </summary>
+        public static string InvoiceSuccess {
+            get {
+                return ResourceManager.GetString("InvoiceSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice Type.
         /// </summary>
         public static string InvoiceType {
