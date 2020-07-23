@@ -207,4 +207,7 @@
   <data name="VatSwiftNumberClient" xml:space="preserve">
     <value>Swift</value>
   </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
 </root>

@@ -18,6 +18,7 @@ namespace FineEx.BusinessLayer.Services.Billing
 
         public BillingService(int id)
         {
+            _senderCrompany = App.Db.Companies.Single(x => x.Id == 1);
             _receiverCompany = App.Db.Companies.Single(x => x.Id == id);
             _userCount = _receiverCompany.Users.Count();
         }
@@ -25,7 +26,7 @@ namespace FineEx.BusinessLayer.Services.Billing
         public void BillCompany()
         {
             var invoice = new Invoice();
-            invoice.Sender = App.Db.Companies.Single(x => x.Id == 1);
+            invoice.Sender = _senderCrompany;
             invoice.User = invoice.Sender.Users.FirstOrDefault();
             invoice.Receiver = _receiverCompany;
             invoice.InvoiceDate = DateTime.Now;
@@ -43,7 +44,7 @@ namespace FineEx.BusinessLayer.Services.Billing
             invoice.VatSwiftBankClient = _senderCrompany.IBAN;
 
             App.Db.Invoices.Add(invoice);
-            App.Db.SaveChanges();
+            
 
             var viewModel = new InvoiceViewModel(invoice);
         }

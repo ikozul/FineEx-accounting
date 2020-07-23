@@ -46,7 +46,7 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
         {
             if (_invoicesView.Count != 0)
                 _invoicesView.Clear();
-            
+
             foreach (var invoice in _invoices)
             {
                 _invoicesView.Add(new InvoiceViewModel(invoice));
@@ -105,6 +105,13 @@ namespace FineEx.BusinessLayer.Services.InvoiceService
         public User GetCurrentUser(int id)
         {
             return App.Db.Users.Single(u => u.Id == id);
+        }
+
+        public bool ApproveInvoice(int id)
+        {
+            var invoice = App.Db.Invoices.Single(x => x.Id == id);
+            invoice.Approved = true;
+            return App.Db.SaveChanges() > 0;
         }
     }
 }

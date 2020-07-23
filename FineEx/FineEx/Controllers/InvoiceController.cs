@@ -132,6 +132,11 @@ namespace FineEx.Controllers
             return View(invoiceCreateModel);
         }
 
+        public JsonResult ApproveInvoice(int id)
+        {
+            var success = _invoiceService.ApproveInvoice(id);
+            return Json(success, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult DownloadPDF(int id)
         {
             string pdfPath;
