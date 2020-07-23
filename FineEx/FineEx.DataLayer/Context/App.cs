@@ -25,5 +25,6 @@ namespace FineEx.DataLayer.Context
         }
 
         public static int UserId { get; set; }
+        public static int CompanyId { get; set; }
     }
 }
