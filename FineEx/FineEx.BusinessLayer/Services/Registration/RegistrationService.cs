@@ -19,6 +19,7 @@ namespace FineEx.BusinessLayer.Services.Registration
         public RegistrationService(RegistrationViewModel registration)
         {
             _registration = registration;
+            _registration.EmailRegistration = _registration.User.Email;
         }
         public void RegisterBusinessUser()
         {
@@ -52,6 +53,7 @@ namespace FineEx.BusinessLayer.Services.Registration
                 Name = _registration.Company.CompanyName,
                 IBAN = _registration.Company.IBAN,
                 County = _registration.Company.Country,
+                Phone = _registration.Company.Phone,
                 PricePrecision = 2,
                 QuantityPrecision = 2
             };
