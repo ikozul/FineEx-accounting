@@ -120,6 +120,9 @@
   <data name="AddItem" xml:space="preserve">
     <value>Dodaj Stavku</value>
   </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Uređivanje stavke</value>
+  </data>
   <data name="ItemID" xml:space="preserve">
     <value>ID Stavke</value>
   </data>
