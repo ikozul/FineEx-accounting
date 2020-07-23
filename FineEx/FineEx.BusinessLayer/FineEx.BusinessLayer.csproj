@@ -318,6 +318,7 @@
     <Compile Include="Models\ItemModels\ItemCreateModel.cs" />
     <Compile Include="Models\ItemModels\ItemViewModel.cs" />
     <Compile Include="Models\PaymentMethodModels\PaymentMethodViewModel.cs" />
+    <Compile Include="Models\Registration\RegistrationViewModel.cs" />
     <Compile Include="Models\UserModels\LoginViewModel.cs" />
     <Compile Include="Models\UserModels\UserCreateModel.cs" />
     <Compile Include="Models\UserModels\UserViewModel.cs" />

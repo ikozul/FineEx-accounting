@@ -17,7 +17,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
 
         public UserViewModel()
         {
-            
+
         }
         public UserViewModel(User user)
         {
@@ -80,7 +80,7 @@ namespace FineEx.BusinessLayer.Models.UserModels
             user.LastName = LastName;
             user.Password = PasswordHelper.HashPassword(Password);
             user.Email = Email;
-             return App.Db.SaveChanges() > 0;
+            return App.Db.SaveChanges() > 0;
         }
     }
 }
